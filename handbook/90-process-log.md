@@ -20,7 +20,7 @@
 - 变更摘要：工作区原为「非 git 目录」；已 `git init`、`.gitignore`（排除 `.specstory/`）、根 `README.md` 指向 `handbook/`；新增 `handbook/06-github-branch-protection.md`；`handbook/README` 索引更新。
 - 涉及信源：`handbook/*`、`AGENTS.md`、`.cursor/rules`、`.gitignore`、`README.md`
 - 回顾：未提交密钥；`.specstory` 不纳入版本库。待人类：`git remote add` 指向 epix 或 GitHub 后首次 push。
-- 验收：本地 `git log -1` 可见首条提交（当前：`f895f55`）；远程 push 以人类网络环境为准。
+- 验收：本地 `git log` 可见首条 root 提交 `f895f55`；后续文档修补以 `git log` 为准；远程 push 以人类网络环境为准。
 
 
 在 epix 与至少一台客户端（Windows 或其它 Mac）上完成下列项后，将**实值**填在第二列表格，并在底部「验证记录」签字或记日期。
