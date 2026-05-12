@@ -1,0 +1,11 @@
+# Agent 片段配置 — 每个工具一份，由主 .gitconfig 的 includeIf 加载
+# 将 YOUR_HOST 替换为 scutil --get ComputerName 或 hostname 的短名（与约定一致即可）
+# 将 YOUR_TOOL 替换为 cursor | codex | claude-code 等
+
+[user]
+	name = YOUR_HOST-YOUR_TOOL
+	email = epix99@icloud.com
+
+# 可选：仅在该片段中覆盖 editor 等
+# [core]
+#	editor = code --wait

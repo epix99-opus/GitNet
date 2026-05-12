@@ -1,6 +1,13 @@
+# macOS / secrets
 .DS_Store
 .env
 .env.*
 !.env.example
 *.pem
 *.key
+
+# 本地/IDE 噪声（不进入版本交付）
+.specstory/
+
+# 临时脚本（若再出现）
+.tmp_*.py

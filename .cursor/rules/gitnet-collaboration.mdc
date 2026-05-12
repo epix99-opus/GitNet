@@ -1,0 +1,14 @@
+---
+description: GitNet 仓库内 Agent 与人类协作、信源与 Git 主从策略（工作区范围；真全局见 User Rules）
+globs: "**/*"
+alwaysApply: true
+---
+
+# GitNet 协作规则（Cursor）
+
+- **铁律（原则全局，注入本工作区）**：凡 Agent 能判断与执行的事项不得回抛人类；默认由 Agent 自动设计、评审、执行、验收至完成。仅当存在客观硬边界（凭证、物理机授权、不可达网络等）才可请求人类，且必须附**原因**与**逐步操作提示**。若要**全 Cursor 所有工作区**都强制同一条，须复制到 **User Rules**，单靠本仓库规则无法覆盖其它项目。
+- **唯一定稿信源**：`handbook/`。拓扑、SSH、bare 路径、launchd 步骤以 handbook 为准。
+- **Git 权威**：epix 上 bare；GitHub `epix99-opus/GitNet` 为从镜像。默认不向 GitHub 作为主线推送除非人类在 `handbook/90-process-log.md` 记录例外。
+- **提交身份**：人类与 GitHub 一致；Agent 目录下为 `{HOSTNAME}-{tool}` + `epix99@icloud.com`。详见 `handbook/40-identity-and-includeIf.md`。
+- **最小改动**：只改任务所需文件；不扩大范围重构。
+- **秘密**：不得将密钥、token 写入仓库。
