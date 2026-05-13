@@ -67,7 +67,14 @@ git push -u origin main
 - 参与：人类（同意整体方案）/ Agent（Cursor）
 - 变更摘要：新增 `~/.gitconfig-fragment-codex`（`epix-codex`）、`~/.gitconfig-fragment-claude-code`（`epix-claude-code`）；`~/.gitconfig` 增加 `includeIf` 至 `~/Dev/CodexDev/`、`~/agent-work/codex/`、`~/agent-work/claude-code/`（顺序：宽 `~/Dev/` 在前，窄 `CodexDev` 等在后以覆盖）；新建手册 [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) 描述 epix/glab/woot 总表；更新 [40-identity-and-includeIf.md](40-identity-and-includeIf.md)、[templates/gitconfig.mac.main.ini](templates/gitconfig.mac.main.ini)、[handbook/README.md](README.md)。
 - 验收：`GitNet` 目录下 `user.name=epix-cursor`；`Dev/CodexDev/SelfEvo/paseo` 下 `user.name=epix-codex`；`/tmp` 新仓库为人类 `Epix`。
-- 回顾：**glab / woot** 需人类按 `55` 自行落地；若 Claude 主力不在 `agent-work/claude-code/`，可在该机 `.gitconfig` 末尾追加 `includeIf`。
+- 回顾：**woot** 已由后续条目经 Tailscale SSH 落地；**glab** 见 `46` / Windows 脚本；若 Claude 主力不在 `agent-work/claude-code/`，可在该机 `.gitconfig` 末尾追加 `includeIf`。
+
+### 2026-05-13 — Tailscale SSH：woot Git 片段落地；glab 待开 sshd
+
+- 参与：Agent（Cursor）/ 人类（glab 待配合 OpenSSH）
+- 变更摘要：**woot** SSH 有效用户为 **`woot`**（`epix@woot` 公钥未授权）；经 `woot@woot` + `~/.ssh/id_ed25519` 写入与 epix 同构的 `~/.gitconfig`、三片段、`~/agent-work/{cursor,codex,claude-code}`；备份 `~/.gitconfig.backup-gitnet-*`；epix 侧 `~/.ssh/known_hosts` 追加 `woot.tailbb1446.ts.net`，新建 **`~/.ssh/config`** 中 `Host woot`。新增 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)、[templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)；更新 [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md)、[handbook/README.md](README.md)、根 [README.md](../README.md)。
+- 验收：`ssh woot 'cd /Users/woot/Dev/ccdev/everything-claude-code && git config --show-origin user.name'` → `woot-cursor`；`ssh woot 'mktemp -d /tmp/gitXXXX'` 内 `git init` → 人类 `Epix`。
+- 回顾：**glab** 从 epix `ssh-keyscan`/TCP 22 无响应；人类完成 [46](46-tailscale-remote-git-identity.md) 第三节后，在 glab 运行 `windows-glab-git-includeIf.ps1`（或手工编辑），再在 epix 取消注释 `~/.ssh/config` 中 `Host glab` 并填用户名。
 
 ---
 

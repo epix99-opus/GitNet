@@ -2,7 +2,7 @@
 
 本文在 [40-identity-and-includeIf.md](40-identity-and-includeIf.md) 之上，对 **epix / glab / woot** 三台「编程主力节点」与 **多类编程 Agent**（Cursor、Codex、Claude Code 等）给出**统一约定**与**落地检查表**。网络 IP 仍以 NetOps `network_facts.env` 为准，本文只写 **Git 作者名与 `includeIf` 策略**。
 
-> **实机遍历说明**：本文在 **epix** 上结合 `~/.gitconfig`、`~/Dev/` 目录与 `tailscale status` 整理；**glab / woot** 未做 SSH 实机读盘，表格中为**待你在各机自检**的约定值与命令。
+> **实机说明**：**woot** 已由 epix 经 Tailscale SSH（用户 **`woot@woot`**）落地 `includeIf` 与片段；**glab** 在 epix 侧 **`ssh-keyscan`/TCP 22 不可用**（OpenSSH 未暴露或未装），须人类按 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) 开启 `sshd` 并授权公钥后，再在 epix 执行 `ssh glab ...` 或于 glab 本机运行 [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)。
 
 ---
 
@@ -63,6 +63,8 @@
 ### 3.4 woot（macOS）— 与 epix 同构
 
 将上表 epix 的路径前缀改为 **woot 用户主目录**（例如 `/Users/woot/Dev/`），作者名分别为 **`woot-cursor`**、`woot-codex`、`woot-claude-code`。**不要用 epix 的主目录路径抄到 woot 上**。
+
+> **SSH 登录用户**：经 Tailscale 验证，**woot 机 Unix 用户名为 `woot`**（`epix@woot` 默认不可用）；epix 侧 `~/.ssh/config` 应使用 `User woot`。详见 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)。
 
 ---
 

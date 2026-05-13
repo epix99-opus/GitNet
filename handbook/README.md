@@ -13,18 +13,20 @@
 | 5 | [40-identity-and-includeIf.md](40-identity-and-includeIf.md) | 人类兜底与 Agent 作者名、`includeIf` 模板 |
 | 6 | [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) | **epix / glab / woot** 多节点 × Cursor/Codex/Claude 的 Git 身份总表与 `includeIf` 顺序 |
 | 7 | [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md) | 非技术向：Tailscale 机器名、SSH 别名、bare 路径 |
-| 8 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
-| 9 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
-| 10 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
-| 11 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
-| 12 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
-| 13 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
+| 8 | [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) | epix→woot/glab：Tailscale SSH 落地 Git 片段与 `~/.ssh/config` 约定 |
+| 9 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
+| 10 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
+| 11 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
+| 12 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
+| 13 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
+| 14 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 
 ## 模板与脚本
 
 - [templates/gitconfig.windows.main.ini](templates/gitconfig.windows.main.ini)
 - [templates/gitconfig.mac.main.ini](templates/gitconfig.mac.main.ini)
 - [templates/gitconfig.fragment.agent.ini.example](templates/gitconfig.fragment.agent.ini.example)
+- [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)（在 **glab 本机** PowerShell 执行，配置 `glab-*` 片段）
 - [scripts/gitnet-push-github.sh](scripts/gitnet-push-github.sh)（复制到 epix `~/bin/` 使用）
 
 ## 仓库内 Agent 约定
