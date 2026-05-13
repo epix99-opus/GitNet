@@ -68,8 +68,8 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 
 **1）`sshd` 未安装 / 22 未监听（epix `ssh glab` 超时）**
 
-- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；epix 侧 Agent Shell 对 `glab:22` 可能超时，不能代出 SSH 会话证据。
-- **操作提示**：在 **glab** 以管理员打开 PowerShell，`cd` 到 Git 仓库根（`git rev-parse --show-toplevel` 所在目录），执行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)。`-EpixPublicKeyLine` 使用仓库定稿 **[templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)** 的整行（推荐 `Get-Content -Raw …\handbook\templates\epix-id_ed25519.pub` 或 Raw URL，勿手抄聊天）；`-GitNetWorkdirWin` 填 glab 上实际路径。完成后在 **epix Terminal**（非仅 Agent Shell）执行：`ssh glab "hostname"`。
+- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；epix 侧 Agent Shell 对 `glab:22` 可能超时，不能代出 SSH 会话证据；公钥必须以仓库 [`templates/epix-id_ed25519.pub`](templates/epix-id_ed25519.pub)（或同源 [Raw URL](https://raw.githubusercontent.com/epix99-opus/GitNet/main/handbook/templates/epix-id_ed25519.pub)）为准，**勿从聊天手抄**，Agent 也不应代为口述公钥。
+- **操作提示**：公钥整行以仓库文件为准（勿手抄）。若轮换密钥：在 **epix** 更新 `handbook/templates/epix-id_ed25519.pub` 后 **push**，并通知 **glab**。在 **glab** `git pull`，以管理员打开 PowerShell，`cd` 到仓库根（`git rev-parse --show-toplevel`），执行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)，**`-GitNetWorkdirWin`** 填实际根路径；脚本默认从 `handbook\templates\epix-id_ed25519.pub` 读取首条 `ssh-ed25519` 行（也可用 `Get-Content -Raw …\epix-id_ed25519.pub` 传入 `-EpixPublicKeyLine`）。完成后在 **epix Terminal**（非仅 Agent Shell）执行：`ssh glab "hostname"`。
 - **验收**：`Get-Service sshd` 为 **Running**；epix 上 `ssh glab "hostname"` 返回 **GLAB**（或 glab 主机名）；Issue 可再贴一行该输出。
 
 **2）Issue #1 尚未出现 glab 证据评论**
@@ -93,3 +93,4 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 - 2026-05-13：首版（epix Agent 建立，待 glab 执行并回贴）。
 - 2026-05-13：glab Agent 增补 `91-glab-section-A-evidence.ps1`、`published/issue-1-glab-evidence-comment.md`、可选 `post-issue1-github-comment.ps1`；更新期望结果说明。
 - 2026-05-13：增补「未完成项交接人类」强制格式表及与本 handoff 相关的 sshd / Issue 发帖示例（对齐 `AGENTS.md`）。
+- 2026-05-13：epix→glab 公钥信源改为仓库 `templates/epix-id_ed25519.pub`（及 Raw URL）；`setup-glab-openssh-for-epix.ps1` 默认读该文件；轮换密钥流程写入 §「Agent 未完成项」与期望结果。

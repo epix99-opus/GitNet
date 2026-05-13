@@ -45,17 +45,21 @@ ssh woot "hostname -s; git config --show-origin user.name"
 
 ### 3.1 glab：安装 OpenSSH、防火墙 22、authorized_keys（须管理员 PowerShell）
 
-1. **公钥整行（与 GitHub 对接）**：以仓库定稿为准 → [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（Raw：<https://github.com/epix99-opus/GitNet/raw/main/handbook/templates/epix-id_ed25519.pub>）。epix 本机可 `cat ~/.ssh/id_ed25519.pub` 核对是否与该文件**逐字符一致**。
-2. 在 **glab** 以管理员打开 PowerShell，`cd` 到 GitNet 仓库根（例如 `E:\Dev\GitNet` 或 `E:\DEV\GitNet`），执行：
+**公钥信源（唯一）**：仓库内 [`templates/epix-id_ed25519.pub`](templates/epix-id_ed25519.pub) 中**首条**以 `ssh-ed25519` 开头的数据行（可删去文件内 `#` 注释，仅保留一行）。与 `main` 对齐的 Raw 同源（任选其一）：  
+<https://raw.githubusercontent.com/epix99-opus/GitNet/main/handbook/templates/epix-id_ed25519.pub> · <https://github.com/epix99-opus/GitNet/raw/main/handbook/templates/epix-id_ed25519.pub>  
+**勿从聊天/邮件手抄**。epix 本机可 `cat ~/.ssh/id_ed25519.pub` 核对是否与上述文件**逐字符一致**。在 **epix** 上轮换密钥时：更新该文件 → `commit`/`push`（权威 bare 与镜像按团队流程）→ **通知 glab** 管理员重新执行本脚本或手工更新 `authorized_keys`。
+
+1. 若仓库中尚无有效 `ssh-ed25519` 行：在 **epix** 将 `cat ~/.ssh/id_ed25519.pub` 的**整一行**写入上述文件后提交推送（否则 glab 侧脚本会因读不到有效行而失败，属预期）。
+2. 在 **glab** `git pull` 后，以管理员打开 PowerShell，`cd` 到 GitNet 仓库根（例如 `E:\Dev\GitNet` 或 `E:\DEV\GitNet`），执行：
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
-.\handbook\scripts\setup-glab-openssh-for-epix.ps1 `
-  -EpixPublicKeyLine 'ssh-ed25519 AAAA... epix@...' `
-  -GitNetWorkdirWin 'E:\DEV\GitNet'
+.\handbook\scripts\setup-glab-openssh-for-epix.ps1 -GitNetWorkdirWin 'E:\DEV\GitNet'
 ```
 
-`-GitNetWorkdirWin` 填 **`git rev-parse --show-toplevel`** 在资源管理器里对应的盘符路径（常见为 `E:\DEV\GitNet` 或 `E:\Dev\GitNet`）。脚本会安装/启动 **OpenSSH Server**、添加入站 **TCP 22** 规则、把公钥写入 **`%USERPROFILE%\.ssh\authorized_keys`**、尽量打开 **`PubkeyAuthentication yes`** 并重启 **sshd**。
+（可选）显式指定公钥文件：`-EpixPublicKeyPath '.\handbook\templates\epix-id_ed25519.pub'`；或临时覆盖：`-EpixPublicKeyLine 'ssh-ed25519 …'`（仍须为完整一行，优先以仓库文件为准）。
+
+`-GitNetWorkdirWin` 填 **`git rev-parse --show-toplevel`** 在资源管理器里对应的盘符路径（常见为 `E:\DEV\GitNet` 或 `E:\Dev\GitNet`）。脚本会安装/启动 **OpenSSH Server**、添加入站 **TCP 22** 规则、从文件或参数解析出的公钥写入 **`%USERPROFILE%\.ssh\authorized_keys`**、尽量打开 **`PubkeyAuthentication yes`** 并重启 **sshd**。
 
 ### 3.2 glab：写入 Git `includeIf` + 片段（普通 PowerShell 即可）
 

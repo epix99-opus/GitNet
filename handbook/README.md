@@ -30,7 +30,7 @@
 - [templates/gitconfig.fragment.agent.ini.example](templates/gitconfig.fragment.agent.ini.example)
 - [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)（在 **glab 本机** PowerShell 执行，配置 `glab-*` 片段）
 - [templates/epix-ssh-config-glab.fragment.conf](templates/epix-ssh-config-glab.fragment.conf)（合并到 epix `~/.ssh/config`；`User` 当前为 **GG**）
-- [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（**epix→glab SSH 用公钥整行**；供 glab `authorized_keys` / `-EpixPublicKeyLine`）
+- [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（**epix→glab SSH 公钥单行信源**；`setup-glab-openssh-for-epix.ps1` 默认读取 / 亦可 `-EpixPublicKeyLine`；勿从聊天手抄；轮换后更新并 push，再通知 glab 更新 `authorized_keys`）
 - [scripts/gitnet-push-github.sh](scripts/gitnet-push-github.sh)（复制到 epix `~/bin/` 使用）
 - [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)（**glab 管理员**：OpenSSH + 防火墙 22 + `authorized_keys`）
 - [scripts/91-glab-section-A-evidence.ps1](scripts/91-glab-section-A-evidence.ps1)（生成 §A 证据文本）

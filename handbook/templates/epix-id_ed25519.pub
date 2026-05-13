@@ -1,1 +1,7 @@
+# GitNet 信源：glab 的 authorized_keys 必须以本仓库本文件（或下方 Raw URL）为准，勿从聊天/邮件手抄。
+# 在 epix 执行：cat ~/.ssh/id_ed25519.pub
+# 将输出的单行写入本文件（可删去全部 # 注释，仅保留一行以 ssh-ed25519 开头的文本），再 commit、push。
+# 轮换密钥：更新本文件 → push → 通知 glab 管理员重跑 handbook/scripts/setup-glab-openssh-for-epix.ps1，或手工合并 %USERPROFILE%\.ssh\authorized_keys。
+# Raw URL：https://raw.githubusercontent.com/epix99-opus/GitNet/main/handbook/templates/epix-id_ed25519.pub
+
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICakmygvANCtEMpUfFl6CZPDvXqaeVhcTZ/k1Tpnx6vq epix@EpixdeMBP

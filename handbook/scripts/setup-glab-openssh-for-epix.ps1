@@ -4,22 +4,68 @@
   在 glab（Windows）一次性：安装/启动 OpenSSH Server、防火墙放行 TCP 22、写入 epix 公钥到当前用户 authorized_keys、重启 sshd。
 
 .DESCRIPTION
-  需「以管理员身份运行」的 PowerShell。公钥整行以仓库定稿 handbook/templates/epix-id_ed25519.pub 为准传入 -EpixPublicKeyLine（勿手抄）；或从 epix 本机 Get-Content ~/.ssh/id_ed25519.pub 读取后比对一致。
+  需「以管理员身份运行」的 PowerShell。**公钥信源**为仓库 `handbook/templates/epix-id_ed25519.pub`（勿从聊天手抄）；epix 本机 `cat ~/.ssh/id_ed25519.pub` 应与该文件中的 `ssh-ed25519` 行**逐字符一致**。
+  若未传 `-EpixPublicKeyLine` / `-EpixPublicKeyPath`，则从 `-GitNetWorkdirWin\handbook\templates\epix-id_ed25519.pub` 读取首条 `ssh-ed25519` 行（忽略 `#` 注释行）。
 
 .PARAMETER EpixPublicKeyLine
-  epix 上 ~/.ssh/id_ed25519.pub 的完整一行（以 ssh-ed25519 开头）。定稿副本：GitHub 仓库 handbook/templates/epix-id_ed25519.pub（与 glab 对接，勿手抄）。
+  epix 上 `~/.ssh/id_ed25519.pub` 的完整一行（以 `ssh-ed25519` 开头）。与 `-EpixPublicKeyPath` 二选一即可；均省略则读默认模板路径。
+
+.PARAMETER EpixPublicKeyPath
+  含 epix 公钥的文件路径（可为 `handbook\templates\epix-id_ed25519.pub`）。读取首条非注释且以 `ssh-ed25519` 开头的行。
 
 .EXAMPLE
-  $k = Get-Content -Raw "$PSScriptRoot\..\templates\epix-id_ed25519.pub"
-  .\setup-glab-openssh-for-epix.ps1 -EpixPublicKeyLine $k.Trim()
+  .\setup-glab-openssh-for-epix.ps1 -GitNetWorkdirWin 'E:\DEV\GitNet'
+
+.EXAMPLE
+  $k = Get-Content -Raw (Join-Path $PSScriptRoot '..\templates\epix-id_ed25519.pub')
+  .\setup-glab-openssh-for-epix.ps1 -EpixPublicKeyLine $k.Trim() -GitNetWorkdirWin 'E:\DEV\GitNet'
+
+.EXAMPLE
+  .\setup-glab-openssh-for-epix.ps1 -EpixPublicKeyPath '.\handbook\templates\epix-id_ed25519.pub' -GitNetWorkdirWin 'E:\DEV\GitNet'
 #>
 param(
-  [Parameter(Mandatory = $true)]
-  [string] $EpixPublicKeyLine,
+  [string] $EpixPublicKeyLine = '',
+  [string] $EpixPublicKeyPath = '',
   [string] $GitNetWorkdirWin = 'E:\Dev\GitNet'
 )
 
 $ErrorActionPreference = "Stop"
+
+function Read-EpixPubKeyLineFromFile {
+  param([Parameter(Mandatory = $true)][string] $FilePath)
+  if (-not (Test-Path -LiteralPath $FilePath)) {
+    return $null
+  }
+  foreach ($raw in Get-Content -LiteralPath $FilePath) {
+    $t = $raw.Trim()
+    if (-not $t) { continue }
+    if ($t.StartsWith('#')) { continue }
+    if ($t -match '^\s*ssh-ed25519\s+\S+') { return $t }
+  }
+  return $null
+}
+
+function Resolve-EpixPubKeyFilePath {
+  param([string] $PathCandidate, [string] $Workdir)
+  if ([string]::IsNullOrWhiteSpace($PathCandidate)) {
+    return $null
+  }
+  $p = $PathCandidate.Trim()
+  if ([System.IO.Path]::IsPathRooted($p)) {
+    return [System.IO.Path]::GetFullPath($p)
+  }
+  $try = @(
+    (Join-Path (Get-Location) $p),
+    (Join-Path $Workdir $p)
+  )
+  foreach ($c in $try) {
+    $full = [System.IO.Path]::GetFullPath($c)
+    if (Test-Path -LiteralPath $full) {
+      return $full
+    }
+  }
+  return $null
+}
 
 function Test-Administrator {
   $id = [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -29,6 +75,36 @@ function Test-Administrator {
 
 if (-not (Test-Administrator)) {
   Write-Error "请以管理员身份打开 PowerShell，再运行本脚本。"
+}
+
+$work = [System.IO.Path]::GetFullPath($GitNetWorkdirWin.Trim())
+$defaultTemplate = Join-Path $work 'handbook\templates\epix-id_ed25519.pub'
+
+$keyLine = $null
+if (-not [string]::IsNullOrWhiteSpace($EpixPublicKeyPath)) {
+  $resolved = Resolve-EpixPubKeyFilePath -PathCandidate $EpixPublicKeyPath -Workdir $work
+  if (-not $resolved) {
+    Write-Error "找不到公钥文件：$EpixPublicKeyPath（已相对当前目录与 GitNetWorkdirWin 尝试解析）。"
+  }
+  $keyLine = Read-EpixPubKeyLineFromFile -FilePath $resolved
+  if (-not $keyLine) {
+    Write-Error "文件内无有效的 ssh-ed25519 公钥行（跳过空行与 # 注释）：$resolved"
+  }
+} elseif (-not [string]::IsNullOrWhiteSpace($EpixPublicKeyLine)) {
+  $keyLine = $EpixPublicKeyLine.Trim()
+} else {
+  $keyLine = Read-EpixPubKeyLineFromFile -FilePath $defaultTemplate
+  if (-not $keyLine) {
+    Write-Error @"
+未指定公钥且默认模板中无有效 ssh-ed25519 行。
+请在 epix 更新仓库内 handbook/templates/epix-id_ed25519.pub（或 Raw URL 同源）后 git pull，再重试；或显式传入 -EpixPublicKeyPath / -EpixPublicKeyLine。
+默认读取路径: $defaultTemplate
+"@
+  }
+}
+
+if ($keyLine -notmatch '^\s*ssh-ed25519\s+\S+') {
+  Write-Error "公钥行格式无效（须单行、以 ssh-ed25519 开头且含密钥材料）。当前值被拒绝写入 authorized_keys。"
 }
 
 # --- 1) OpenSSH Server ---
@@ -72,10 +148,7 @@ $sshDir = Join-Path $env:USERPROFILE ".ssh"
 $authKeys = Join-Path $sshDir "authorized_keys"
 New-Item -ItemType Directory -Force -Path $sshDir | Out-Null
 
-$line = $EpixPublicKeyLine.Trim()
-if ($line -notmatch '^ssh-ed25519\s') {
-  Write-Warning "公钥行不以 ssh-ed25519 开头，请确认是否为 id_ed25519.pub 整行。"
-}
+$line = $keyLine
 
 $exists = $false
 if (Test-Path $authKeys) {

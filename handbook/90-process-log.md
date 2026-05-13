@@ -76,6 +76,13 @@ git push -u origin main
 - 验收：`ssh woot 'cd /Users/woot/Dev/ccdev/everything-claude-code && git config --show-origin user.name'` → `woot-cursor`；`ssh woot 'mktemp -d /tmp/gitXXXX'` 内 `git init` → 人类 `Epix`。
 - 回顾：**glab** 从 epix `ssh-keyscan`/TCP 22 无响应；人类完成 [46](46-tailscale-remote-git-identity.md) 第三节后，在 glab 运行 `windows-glab-git-includeIf.ps1`（或手工编辑），再在 epix 取消注释 `~/.ssh/config` 中 `Host glab` 并填用户名。
 
+### 2026-05-13 — glab：epix 公钥以仓库 `templates/epix-id_ed25519.pub` 为信源
+
+- 参与：Agent（Cursor）
+- 变更摘要：新增 [`templates/epix-id_ed25519.pub`](templates/epix-id_ed25519.pub)（说明性 `#` 注释 + Raw URL）；[`scripts/setup-glab-openssh-for-epix.ps1`](scripts/setup-glab-openssh-for-epix.ps1) 在未传 `-EpixPublicKeyLine`/`-EpixPublicKeyPath` 时从 `-GitNetWorkdirWin\handbook\templates\epix-id_ed25519.pub` 读取首条 `ssh-ed25519` 行，无效则报错且不写入 `authorized_keys`；更新 [46](46-tailscale-remote-git-identity.md)、[91](91-glab-handoff-epix-ssh-verify.md)、[handbook/README.md](README.md)。
+- 涉及信源：上述路径
+- 回顾：远程 `main` 已含 epix 公钥行；本提交合并注释 + 脚本默认读文件逻辑。密钥轮换时由 epix 更新该文件并 push，再通知 glab 重跑脚本或手改 `authorized_keys`。
+
 ---
 
 ## Tailscale / SSH / epix 实施验证清单
