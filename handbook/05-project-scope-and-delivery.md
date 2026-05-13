@@ -9,7 +9,7 @@
 
 ## 北极星：Agent 优先、尽量少的人类临场
 
-本仓库的长期意图是：**在硬边界之内最大化 Agent 权限与自动化**——把 Git 规范、流程与证据链写进 `handbook/` 与脚本，使多设备、多 Agent 协作任务尽量在**人类不参与**的情况下完成；不可避免时再按 [AGENTS.md](../AGENTS.md) 第 3～4 条交接。完整表述与对照表见 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md)。
+本仓库的长期意图是：**在硬边界之内最大化 Agent 权限与自动化**——把 Git 规范、流程与证据链写进 `handbook/` 与脚本，使多设备、多 Agent 协作任务尽量在**人类不参与**的情况下完成；不可避免时再按 [AGENTS.md](../AGENTS.md) 第 3～4 条交接。**认证上**：默认优先 SSH 公钥与机读令牌；人类显式提供的口令/PAT 须由 Agent 协助落入 **OS 级安全存储** 等形态后使用（见 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) §全链路认证），**不得**因「仅公钥」教条单独阻塞开发。
 
 ## 人类最终要求（从《人类初始指令》归纳）
 
