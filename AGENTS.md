@@ -33,7 +33,7 @@
 ## 提交身份
 
 - **人类**全局兜底：`user.name` / `user.email` 与 **GitHub 账号一致**（邮箱 `epix99@icloud.com`；用户名与 GitHub 展示策略一致即可）。
-- **Agent**：在 `includeIf` 指定的 Agent 工作目录下，作者名 **`{HOSTNAME}-{tool}`**（如 `epix-cursor`），邮箱 **`epix99@icloud.com`**。详见 [handbook/40-identity-and-includeIf.md](handbook/40-identity-and-includeIf.md)。
+- **Agent**：在 `includeIf` 指定的 Agent 工作目录下，作者名 **`{HOSTNAME}-{tool}`**（如 `epix-cursor`），邮箱 **`epix99@icloud.com`**。详见 [handbook/40-identity-and-includeIf.md](handbook/40-identity-and-includeIf.md) 与 [handbook/55-multi-node-multi-agent-git.md](handbook/55-multi-node-multi-agent-git.md)（多节点总表）。
 
 ## 日常工作流
 

@@ -6,6 +6,7 @@
 
 - [handbook/README.md](handbook/README.md)
 - [handbook/07-documentation-placement.md](handbook/07-documentation-placement.md)（写什么、写哪里）
+- [handbook/55-multi-node-multi-agent-git.md](handbook/55-multi-node-multi-agent-git.md)（多机多 Agent Git 身份总表）
 - [AGENTS.md](AGENTS.md)
 
 ## 远端

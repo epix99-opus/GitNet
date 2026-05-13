@@ -62,6 +62,13 @@ git push -u origin main
 - 验收：`cd /Users/epix/Dev/GitNet && git config --show-origin user.name` 来源为片段；`/tmp` 下新 `git init` 仓库来源为全局 `.gitconfig`。
 - 回顾：凡在 **`~/Dev/`** 下任意仓库提交，作者均为 **`epix-cursor`**；若需在 `~/Dev/` 内保留人类作者，可用该仓库 `git config --local user.*` 覆盖或移出 `~/Dev/`。
 
+### 2026-05-12 — epix 多工具 Git 片段（cursor / codex / claude-code）
+
+- 参与：人类（同意整体方案）/ Agent（Cursor）
+- 变更摘要：新增 `~/.gitconfig-fragment-codex`（`epix-codex`）、`~/.gitconfig-fragment-claude-code`（`epix-claude-code`）；`~/.gitconfig` 增加 `includeIf` 至 `~/Dev/CodexDev/`、`~/agent-work/codex/`、`~/agent-work/claude-code/`（顺序：宽 `~/Dev/` 在前，窄 `CodexDev` 等在后以覆盖）；新建手册 [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) 描述 epix/glab/woot 总表；更新 [40-identity-and-includeIf.md](40-identity-and-includeIf.md)、[templates/gitconfig.mac.main.ini](templates/gitconfig.mac.main.ini)、[handbook/README.md](README.md)。
+- 验收：`GitNet` 目录下 `user.name=epix-cursor`；`Dev/CodexDev/SelfEvo/paseo` 下 `user.name=epix-codex`；`/tmp` 新仓库为人类 `Epix`。
+- 回顾：**glab / woot** 需人类按 `55` 自行落地；若 Claude 主力不在 `agent-work/claude-code/`，可在该机 `.gitconfig` 末尾追加 `includeIf`。
+
 ---
 
 ## Tailscale / SSH / epix 实施验证清单

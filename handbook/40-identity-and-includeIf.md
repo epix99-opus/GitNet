@@ -34,3 +34,5 @@ git config --show-origin user.email
 
 - **HOSTNAME**：与团队约定的机器短名一致（epix 上可为 `epix`）；避免空格与特殊符号。
 - **TOOL**：`cursor`、`codex`、`claude-code` 等，全小写、短横线连接。
+
+多编程节点（epix / glab / woot）与多工具并列时的 **`includeIf` 顺序与目录约定** 见 [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md)。

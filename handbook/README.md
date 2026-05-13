@@ -11,13 +11,14 @@
 | 3 | [07-documentation-placement.md](07-documentation-placement.md) | **内容落盘规则**：事实 / 过程 / 草稿各写何处；与 NetOps 网络事实源边界 |
 | 4 | [10-topology.md](10-topology.md) | epix 权威裸仓、GitHub 从镜像、各端角色 |
 | 5 | [40-identity-and-includeIf.md](40-identity-and-includeIf.md) | 人类兜底与 Agent 作者名、`includeIf` 模板 |
-| 6 | [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md) | 非技术向：Tailscale 机器名、SSH 别名、bare 路径 |
-| 7 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
-| 8 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
-| 9 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
-| 10 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
-| 11 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
-| 12 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
+| 6 | [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) | **epix / glab / woot** 多节点 × Cursor/Codex/Claude 的 Git 身份总表与 `includeIf` 顺序 |
+| 7 | [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md) | 非技术向：Tailscale 机器名、SSH 别名、bare 路径 |
+| 8 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
+| 9 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
+| 10 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
+| 11 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
+| 12 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
+| 13 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 
 ## 模板与脚本
 
