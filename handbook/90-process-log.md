@@ -87,9 +87,16 @@ git push -u origin main
 
 - 参与：Agent（Cursor）
 - 变更摘要：新增 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)（T1～T5：`glab-cursor` 已验 / `sshd`+`ssh glab` 待办 / `92` 可选）；[scripts/91-glab-section-A-evidence.ps1](scripts/91-glab-section-A-evidence.ps1) 增补 `Get-Service *ssh*`、`Get-WindowsCapability OpenSSH.Server*`、`Get-NetTCPConnection :22` 诊断块；`handbook/README.md`、`91` 链到收口表。
-- 验收：glab 重跑证据脚本后应覆盖 `published/issue-1-glab-evidence-comment.md` 中更丰富的 SSH 诊断；Issue #1 由人类在 T2+T3 完成后关闭。
+- 验收：glab 重跑证据脚本后应覆盖 `published/issue-1-glab-evidence-comment.md` 中更丰富的 SSH 诊断；人类已在 epix Terminal 完成 §B；Issue #1 可在人类确认 **公钥无口令**（T2）或接受「仅口令交互」后关闭。
 - 回顾：epix Agent Shell `ssh glab` 仍可能超时，不以该结果否定 glab 本机已配置情形。
 - 补充（同日稍后）：`ssh-keyscan` 后 `ssh glab` 变为 **`Permission denied (publickey)`**（非超时），说明 **22/HostKey 已通**，待 glab 将 epix 公钥写入 GG 的 `authorized_keys`；已在 Issue #1 评论与 `published/collaboration-closeout-status.md` 更新 T2 表述。
+
+### 2026-05-13 — epix Terminal 验证 glab Git 身份（人类）
+
+- 参与：人类（epix Terminal）
+- 变更摘要：`ssh glab "cd /d E:\Dev\GitNet && git config --show-origin user.name"` 成功；输出 `file:...\.gitconfig-fragment-cursor` → **`glab-cursor`**。会话为 **口令认证**；已将命令与输出写入 `published/issue-1-glab-evidence-comment.md` §B，并更新 `published/collaboration-closeout-status.md`（T3 完成，T2 仍区分「公钥无口令」）。
+- 涉及信源：`published/issue-1-glab-evidence-comment.md`、`published/collaboration-closeout-status.md`
+- 回顾：Agent Shell 仍建议以公钥闭环，避免交互口令。
 
 ## Tailscale / SSH / epix 实施验证清单
 
