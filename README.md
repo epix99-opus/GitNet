@@ -12,6 +12,7 @@
 - [handbook/55-multi-node-multi-agent-git.md](handbook/55-multi-node-multi-agent-git.md)（多机多 Agent Git 身份总表）
 - [handbook/46-tailscale-remote-git-identity.md](handbook/46-tailscale-remote-git-identity.md)（epix→woot/glab 经 Tailscale 落地与 SSH 约定）
 - [handbook/92-github-auto-sync-collaboration.md](handbook/92-github-auto-sync-collaboration.md)（GitHub 双端自动拉取与通知，见 `launchd`/计划任务）
+- [handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)（**阶段成果**：目标→方案→实现回顾；可外推的大型多跨协作 Git 体系清单）
 - [AGENTS.md](AGENTS.md)
 
 ## 远端

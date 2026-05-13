@@ -2,7 +2,7 @@
 
 本目录为 **GitNet** 仓库运维与多机协作的**唯一定稿信源**。环境事实、拓扑与操作步骤以本手册为准。
 
-**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — 最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。
+**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — 最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。**阶段结论成果**：[93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)。
 
 ## 阅读顺序
 
@@ -26,6 +26,7 @@
 | 16 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 | 17 | [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) | **Handoff**：需 glab 配合的 epix→glab SSH/Git 验收（见 GitHub Issue） |
 | 18 | [92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) | **备选 · Git 数据面**：GitHub 双端轮询/`ff-only` 拉取；与 OpenClaw/Hermes **并行互备**关系见文内对比 |
+| 19 | [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) | **阶段成果**：目标→方案→实现回顾；epix/glab Cursor Agent 协作复盘；**可外推**的大型多跨协作 Git 体系 · 规范 · 流程清单 |
 
 ## 模板与脚本
 

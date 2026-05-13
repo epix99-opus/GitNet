@@ -38,7 +38,7 @@
 
 | 状态 | 内容 |
 |------|------|
-| **已在仓库内交付** | `handbook/` 全套、`AGENTS.md`、`.cursor/rules/`、模板与脚本、对照表、进程模板 |
+| **已在仓库内交付** | `handbook/` 全套、`AGENTS.md`、`.cursor/rules/`、模板与脚本、对照表、进程模板；**阶段成果**见 [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) |
 | **已在人类本机执行（历史动作）** | Cursor `aicontext.personalContext` 追加铁律（见 `AGENTS.md` 中说明与备份路径） |
 | **仍依赖各机 / 账号执行** | bare 初始化、SSH、launchd、SourceTree 点选、GitHub 保护规则、`90-process-log` 填实值 |
 
@@ -57,4 +57,5 @@
 
 ## 修订记录
 
+- 2026-05-13：交付状态表链到 [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)（阶段成果）。
 - 2026-05-12：首次写入，承接「人类用户最终要求 / 项目定义 / 文档 vs 执行 / 是否已写入仓库」类会话结论的归并。

@@ -21,6 +21,13 @@
 - 涉及信源：`46`、`91`、`20`、`30`、`22`、`README`、`90`、`published/collaboration-closeout-status.md`、`scripts/setup-glab-openssh-for-epix.ps1`
 - 回顾：与 [AGENTS.md](../AGENTS.md)「对象权威在 epix bare」一致时，**GitHub 本条仍可作为「已发布给各克隆阅读」的交换面**；epix 人类按上段「epix bare」一句并入即可。与「不向 GitHub 作为主线强推」策略不冲突：本批为文档与 glab 脚本收口，且已在本文记录。
 
+### 2026-05-13 — 阶段成果：93 多端协作回顾与可外推 Git 体系清单
+
+- 参与：Agent（Cursor）/ 人类（前期意图与验收已分散在 Issue、`90`、§B）
+- 变更摘要：新增 [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)（GitNet **目标→方案→实现** 归纳；epix/glab Cursor Agent 协作复盘；**§7** 供其它大型多跨项目复用的 Git 体系/规范/流程）；[README.md](README.md) 阅读顺序与北极星旁链到 `93`。
+- 涉及信源：全文交叉引用 `05`/`08`/`10`/`40`/`46`/`55`/`90`/`91`/`92`、`published/*`、Issue #1。
+- 回顾：`93` 为归纳层；操作细节仍以被引用章节为准。
+
 ### 2026-05-13 — 定稿：多设备多 Agent 以 epix bare 为写集成权威（10-topology）
 
 - 参与：人类（意图确认）/ Agent（Cursor）
