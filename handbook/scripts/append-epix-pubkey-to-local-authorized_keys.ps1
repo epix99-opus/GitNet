@@ -43,9 +43,15 @@ if (Test-Path -LiteralPath $ak) {
 
 if ($exists) {
   Write-Host "OK: key line already in $ak"
-  exit 0
+} else {
+  Add-Content -LiteralPath $ak -Value $line -Encoding ascii
+  Write-Host "OK: appended epix pubkey to $ak"
 }
-
-Add-Content -LiteralPath $ak -Value $line -Encoding ascii
-Write-Host "OK: appended epix pubkey to $ak"
 Write-Host "Verify: sshd can read file; test from epix: ssh -o BatchMode=yes glab hostname"
+
+$id = [Security.Principal.WindowsIdentity]::GetCurrent()
+$principal = New-Object Security.Principal.WindowsPrincipal($id)
+$adminSid = New-Object Security.Principal.SecurityIdentifier([Security.Principal.WellKnownSidType]::BuiltinAdministratorsSid, $null)
+if ($principal.IsInRole($adminSid)) {
+  Write-Warning "本账户在 Administrators 组：sshd 的 Match Group administrators 会使用 C:\ProgramData\ssh\administrators_authorized_keys。请以管理员运行 handbook\scripts\append-epix-pubkey-to-administrators-authorized_keys.ps1 或重跑 setup-glab-openssh-for-epix.ps1，否则 epix 上 BatchMode 公钥仍会失败。"
+}

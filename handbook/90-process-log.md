@@ -126,6 +126,13 @@ git push -u origin main
 - 涉及信源：上述路径
 - 回顾：建议 epix 再验 `ssh -o BatchMode=yes glab "hostname"`。
 
+### 2026-05-13 — glab：Administrators 组与 `administrators_authorized_keys`（BatchMode 根因）
+
+- 参与：Agent（Cursor）
+- 变更摘要：`C:\ProgramData\ssh\sshd_config` 中 `Match Group administrators` 导致管理员账户**不读** `%USERPROFILE%\.ssh\authorized_keys`；文档 [46](46-tailscale-remote-git-identity.md) 增 §3.1.1；[setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) 增 §5 写入 `administrators_authorized_keys`；新增 [append-epix-pubkey-to-administrators-authorized_keys.ps1](scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1)；[append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1) 对 Administrators 成员给出警告；收口表 T2 回到进行中直至管理员重跑脚本。
+- 涉及信源：上述路径
+- 回顾：本会话非提升权限，未能写入 `ProgramData\ssh\`；需人类**管理员 PowerShell** 重跑 `setup-glab-openssh-for-epix.ps1` 或单独管理员 append 脚本。
+
 ## Tailscale / SSH / epix 实施验证清单
 
 在 epix 与至少一台客户端（Windows 或其它 Mac）上完成下列项后，将**实值**填在第二列表格，并在底部「验证记录」签字或记日期。

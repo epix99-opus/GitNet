@@ -39,7 +39,8 @@
 - [templates/gitnet-watch-github-sync.ps1](templates/gitnet-watch-github-sync.ps1)（glab：计划任务轮询）
 - [templates/com.gitnet.watch-github.plist](templates/com.gitnet.watch-github.plist)（epix `LaunchAgents` 示例，间隔秒见 plist 内 `StartInterval`）
 - [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)（**glab 管理员**：OpenSSH + 防火墙 22 + `authorized_keys`）
-- [scripts/append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1)（**glab 当前用户**：仅将定稿公钥行追加到 `%USERPROFILE%\.ssh\authorized_keys`，无需管理员；幂等）
+- [scripts/append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1)（**glab 当前用户**：仅将定稿公钥行追加到 `%USERPROFILE%\.ssh\authorized_keys`，无需管理员；幂等；**若账户在 Administrators 组会提示另跑管理员脚本**）
+- [scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1](scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1)（**glab 管理员**：写入 `C:\ProgramData\ssh\administrators_authorized_keys`，解决 `Match Group administrators` 下 BatchMode 公钥失败）
 - [scripts/91-glab-section-A-evidence.ps1](scripts/91-glab-section-A-evidence.ps1)（生成 §A 证据文本）
 - [scripts/post-issue1-github-comment.ps1](scripts/post-issue1-github-comment.ps1)（需 `GITHUB_TOKEN`，向 Issue #1 发帖）
 - [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)（**T1～T5 收口表**：谁在等谁）

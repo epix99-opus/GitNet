@@ -61,7 +61,16 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
 
 `-GitNetWorkdirWin` 填 **`git rev-parse --show-toplevel`** 在资源管理器里对应的盘符路径（常见为 `E:\DEV\GitNet` 或 `E:\Dev\GitNet`）。脚本会安装/启动 **OpenSSH Server**、添加入站 **TCP 22** 规则、从文件或参数解析出的公钥写入 **`%USERPROFILE%\.ssh\authorized_keys`**、尽量打开 **`PubkeyAuthentication yes`** 并重启 **sshd**。
 
-### 3.2 glab：写入 Git `includeIf` + 片段（普通 PowerShell 即可）
+#### 3.1.1 若登录用户属于 **Administrators**（常见首用户 GG）
+
+Windows 默认 `sshd_config` 含：
+
+```text
+Match Group administrators
+       AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys
+```
+
+此时 **仅**维护 `%USERPROFILE%\.ssh\authorized_keys` **不足以**让公钥登录生效；epix 上 `ssh -o BatchMode=yes` 会得到 **`Permission denied (publickey,...)`**。须**额外**把同一公钥行写入 **`C:\ProgramData\ssh\administrators_authorized_keys`**（须管理员），并保证 ACL 为 **SYSTEM** 与 **Administrators** 完全控制（见 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) §5 或单独运行 [scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1](scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1)）。
 
 仍在 GitNet 根目录：
 
@@ -102,3 +111,4 @@ ssh glab "cd /d E:\DEV\GitNet && git config --show-origin user.name"
 
 - 2026-05-13：首版；记录 woot 实装与 glab 人类配合门槛。
 - 2026-05-13：glab 增补 `setup-glab-openssh-for-epix.ps1`、`epix-ssh-config-glab.fragment.conf`；`windows-glab-git-includeIf.ps1` 用 `git rev-parse` 对齐 `gitdir` 大小写；epix `User` 定稿为 **GG**。
+- 2026-05-13：§3.1.1 **Administrators** 与 `administrators_authorized_keys`（BatchMode 根因）；`setup-glab-openssh-for-epix.ps1` 增 ProgramData 公钥写入。

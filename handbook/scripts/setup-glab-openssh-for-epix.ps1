@@ -1,11 +1,12 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  在 glab（Windows）一次性：安装/启动 OpenSSH Server、防火墙放行 TCP 22、写入 epix 公钥到当前用户 authorized_keys、重启 sshd。
+  在 glab（Windows）一次性：安装/启动 OpenSSH Server、防火墙放行 TCP 22、写入 epix 公钥到当前用户 authorized_keys、**以及**（若存在 Match）`ProgramData\ssh\administrators_authorized_keys`，重启 sshd。
 
 .DESCRIPTION
   需「以管理员身份运行」的 PowerShell。**公钥信源**为仓库 `handbook/templates/epix-id_ed25519.pub`（勿从聊天手抄）；epix 本机 `cat ~/.ssh/id_ed25519.pub` 应与该文件中的 `ssh-ed25519` 行**逐字符一致**。
   若未传 `-EpixPublicKeyLine` / `-EpixPublicKeyPath`，则从 `-GitNetWorkdirWin\handbook\templates\epix-id_ed25519.pub` 读取首条 `ssh-ed25519` 行（忽略 `#` 注释行）。
+  对属于 **Administrators** 的 Windows 用户，默认 `sshd_config` 的 `Match Group administrators` 会使用 **`%ProgramData%\ssh\administrators_authorized_keys`**；本脚本 §5 同步写入，避免仅 `%USERPROFILE%\.ssh\authorized_keys` 时 **BatchMode 公钥失败**。
 
 .PARAMETER EpixPublicKeyLine
   epix 上 `~/.ssh/id_ed25519.pub` 的完整一行（以 `ssh-ed25519` 开头）。与 `-EpixPublicKeyPath` 二选一即可；均省略则读默认模板路径。
@@ -213,6 +214,32 @@ try {
   }
 } catch {
   Write-Warning "icacls authorized_keys 最终收紧失败：$_"
+}
+
+# --- 5) 属于 Administrators 的 Windows 用户：必须写入 ProgramData\ssh\administrators_authorized_keys
+# sshd 默认 Match Group administrators → AuthorizedKeysFile 指向此路径，%USERPROFILE%\.ssh\authorized_keys 对管理员登录不生效。
+$adminAk = Join-Path $env:ProgramData 'ssh\administrators_authorized_keys'
+New-Item -ItemType Directory -Force -Path (Split-Path $adminAk) | Out-Null
+$admDup = $false
+if (Test-Path -LiteralPath $adminAk) {
+  foreach ($x in Get-Content -LiteralPath $adminAk -ErrorAction SilentlyContinue) {
+    if ($x.Trim() -eq $line) { $admDup = $true; break }
+  }
+}
+if (-not $admDup) {
+  try {
+    Add-Content -LiteralPath $adminAk -Value $line -Encoding ascii -ErrorAction Stop
+    Write-Host "Also appended pubkey to $adminAk (Administrators Match in sshd_config)."
+  } catch {
+    Write-Warning "Could not write $adminAk : $_"
+  }
+}
+try {
+  if (Test-Path -LiteralPath $adminAk) {
+    icacls $adminAk /inheritance:r /grant:r "SYSTEM:(F)" /grant:r "Administrators:(F)" | Out-Null
+  }
+} catch {
+  Write-Warning "icacls administrators_authorized_keys: $_"
 }
 
 Restart-Service sshd -Force
