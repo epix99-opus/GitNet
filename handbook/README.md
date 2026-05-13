@@ -48,7 +48,10 @@
 - [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)（**T1～T5 收口表**：谁在等谁）
 - [published/issue-1-glab-evidence-comment.md](published/issue-1-glab-evidence-comment.md)（glab §A 证据快照，可粘贴到 Issue）
 - [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md)（**三机 Git 仓库盘点表模板**；见 `94`）
-- [published/inventory-epix-starter.md](published/inventory-epix-starter.md)（epix 上 **GitNet 一行示例**，完整盘点请复制模板自填）
+- [published/inventory-epix-starter.md](published/inventory-epix-starter.md)（epix 上 **GitNet 一行示例**，完整盘点见 `inventory-epix-enumerated-agent`）
+- [published/inventory-epix-enumerated-agent.md](published/inventory-epix-enumerated-agent.md)（**epix** 本机 `~/Dev` + `~/agent-work` 枚举表）
+- [published/inventory-woot-enumerated-agent.md](published/inventory-woot-enumerated-agent.md)（**woot**，经 `ssh woot@woot`）
+- [published/inventory-glab-enumerated-agent.md](published/inventory-glab-enumerated-agent.md)（**glab**，经 `ssh glab` + PowerShell）
 
 ## 仓库内 Agent 约定
 

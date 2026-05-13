@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — 三机 Git 仓库：Agent 经 Tailscale SSH 枚举落盘
+
+- 参与：Agent（Cursor，cwd 在 epix）
+- 变更摘要：本机 `find` 枚举 epix `~/Dev`+`~/agent-work`；`ssh woot@woot`、`ssh glab` + PowerShell 枚举远端含 `.git` 路径；对代表性路径取 `git branch` / `remote` / `user.name`；新增 [published/inventory-epix-enumerated-agent.md](published/inventory-epix-enumerated-agent.md)、[inventory-woot-enumerated-agent.md](published/inventory-woot-enumerated-agent.md)、[inventory-glab-enumerated-agent.md](published/inventory-glab-enumerated-agent.md)；更新 [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) §1/§3/§5（**§5.6** 跨机枚举为默认、修正铁律表述）。
+- 涉及信源：`94`、`published/inventory-*-enumerated-agent.md`、`46`/`91` SSH 前提
+- 回顾：枚举深度/根路径可按团队扩大后重跑并覆盖提交。
+
 ### 2026-05-13 — 三机 Agent 盘点与 RACI 落盘（94 + 模板 + epix starter）
 
 - 参与：Agent（Cursor）

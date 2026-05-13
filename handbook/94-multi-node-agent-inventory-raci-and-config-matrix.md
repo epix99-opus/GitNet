@@ -7,8 +7,8 @@
 | 类型 | 来源 |
 |------|------|
 | **规范约定**（每机最多 Cursor/Codex/Claude Code、作者名、`includeIf` 路径前缀） | `55`、`40` |
-| **各机已装哪些工具、有哪些 Git 仓库** | **仅**来自各机执行本文 **§5** 命令后的输出；填入 [published/inventory-machine-TEMPLATE.md](../published/inventory-machine-TEMPLATE.md) 的副本，或摘要至 [90-process-log.md](90-process-log.md)（敏感 URL 脱敏） |
-| **glab SSH 与 GitNet 路径实值** | 以 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)、[published/issue-1-glab-evidence-comment.md](published/issue-1-glab-evidence-comment.md) 为准；本文件**不**复制易变用户名路径 |
+| **各机 Git 仓库清单（事实表）** | **优先**：在 **epix** 上具备 `ssh glab` / `ssh woot@woot` 的 Agent，按 **§5.6** 远程枚举并落盘 [published/inventory-*-enumerated-agent.md](../published/)；本机 epix 用 **§5.4**。**备选**：人类在任一节点的终端执行相同命令，将输出填入 [published/inventory-machine-TEMPLATE.md](../published/inventory-machine-TEMPLATE.md) 或 `90`（脱敏） |
+| **glab SSH 与 GitNet 路径实值** | 以 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)、[published/issue-1-glab-evidence-comment.md](published/issue-1-glab-evidence-comment.md) 及 **glab 枚举文件**为准；本文件**不**重复易变用户名路径 |
 
 ---
 
@@ -33,7 +33,7 @@
 | **公钥信源与 epix→glab/woot SSH** | **R/A** | C（本机执行脚本） | I | `46`、`91`、`templates/epix-id_ed25519.pub` |
 | **Windows 专用脚本与 ACL** | I | **R/A**（本机管理员/用户） | — | `handbook/scripts/*.ps1` |
 | **各机 `includeIf` 与片段** | **R**（模板在仓内）/ 各机 **A** | **A** | **A** | `55`、`templates/` |
-| **实机盘点表填写** | **A** | **A** | **A** | 见 §5、`published/inventory-machine-TEMPLATE.md` |
+| **实机仓库枚举（可自动化）** | **R**（命令在 §5）/ **epix 上 Agent 优先 A**：本机 `find` + 经 Tailscale **`ssh woot@woot`** / **`ssh glab`** 执行远端枚举；结果 **commit** 至 `published/inventory-*-enumerated-agent.md`；遇 **BatchMode 失败** 时按 `46`/`91` 修 SSH 后再试，**不得**未尝试即回抛人类 |
 
 **图例**：R=负责定稿/规范，A=批准或实机执行，C=协商/被告知，I=知情。
 
@@ -55,11 +55,17 @@
 
 ## 5. 实机盘点：可复制命令与填表
 
-### 5.1 示例（epix 仅 GitNet 一行）
+### 5.1 已枚举快照（Agent 执行，随跑随更）
 
-见 [published/inventory-epix-starter.md](../published/inventory-epix-starter.md)（随仓库更新可修订；**非**全机枚举）。
+| 节点 | 文件 |
+|------|------|
+| epix（本机） | [published/inventory-epix-enumerated-agent.md](../published/inventory-epix-enumerated-agent.md) |
+| woot（经 `ssh woot@woot`） | [published/inventory-woot-enumerated-agent.md](../published/inventory-woot-enumerated-agent.md) |
+| glab（经 `ssh glab` + PowerShell） | [published/inventory-glab-enumerated-agent.md](../published/inventory-glab-enumerated-agent.md) |
 
-### 5.2 复制模板
+极简示例（单仓一行）仍见 [published/inventory-epix-starter.md](../published/inventory-epix-starter.md)。
+
+### 5.2 复制模板（手工增量或脱敏摘要）
 
 ```bash
 # 在 GitNet 克隆根执行（路径按你本机调整）
@@ -68,7 +74,7 @@ cp handbook/published/inventory-machine-TEMPLATE.md handbook/published/inventory
 
 将 `inventory-$(hostname -s).md` 填完后：**可 commit**（脱敏后）或把摘要写入 `90-process-log.md`。
 
-### 5.3 工具是否安装（各机人类自查）
+### 5.3 工具是否安装（各机自检：人类终端或 **该节点上的** Agent 会话）
 
 | 工具 | macOS | Windows |
 |------|--------|---------|
@@ -82,7 +88,7 @@ cp handbook/published/inventory-machine-TEMPLATE.md handbook/published/inventory
 
 ```bash
 ROOT="$HOME/Dev"
-find "$ROOT" "$HOME/agent-work" -maxdepth 4 -name .git -type d 2>/dev/null | while read g; do repo=$(dirname "$g"); git -C "$repo" rev-parse --show-toplevel 2>/dev/null; done | sort -u
+find "$ROOT" "$HOME/agent-work" -maxdepth 5 -name .git -type d 2>/dev/null | while read g; do repo=$(dirname "$g"); git -C "$repo" rev-parse --show-toplevel 2>/dev/null; done | sort -u
 ```
 
 **Windows（glab）** — PowerShell（示例根 `E:\Dev`）：
@@ -98,12 +104,34 @@ Get-ChildItem -Path E:\Dev, "$env:USERPROFILE\agent-work" -Directory -Recurse -D
 
 ```bash
 pwd
-git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "(not a branch)"
+git branch --show-current 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "(unknown)"
 git remote -v
 git config --show-origin user.name 2>/dev/null | head -1
 git config --show-origin user.email 2>/dev/null | head -1
 git log -1 --format='%h %ci %s' 2>/dev/null || echo "(empty)"
 ```
+
+### 5.6 Tailscale SSH 跨机枚举（**epix 上 Agent 的默认做法**）
+
+与 [AGENTS.md](../AGENTS.md) 铁律一致：**在具备 SSH 与网络前提时**，Agent 应自行从 **epix** 经 Tailscale 登录 **woot** / **glab** 执行与 **§5.4** 等价的枚举，将结果写入 `published/inventory-*-enumerated-agent.md` 并 **commit**，而不是将「全机枚举」默认回抛人类。
+
+**前提**：`~/.ssh/config` 已配置 `Host glab`、`Host woot`（`User woot`）等，见 `46`；`ssh -o BatchMode=yes` 成功（glab 公钥与 `administrators_authorized_keys` 等见收口表 T2）。
+
+**woot（在 epix 上执行）**：
+
+```bash
+ssh -o BatchMode=yes -o ConnectTimeout=15 woot@woot 'for root in "$HOME/Dev" "$HOME/agent-work"; do [ -d "$root" ] || continue; find "$root" -maxdepth 5 -name .git -type d 2>/dev/null | while read -r g; do d=$(dirname "$g"); git -C "$d" rev-parse --show-toplevel 2>/dev/null; done; done | sort -u'
+```
+
+**glab（在 epix 上执行；与 §5.4 Windows 块等价，经 `ssh` 转发）**：
+
+```bash
+ssh -o BatchMode=yes -o ConnectTimeout=20 glab 'powershell -NoProfile -Command "foreach ($r in @(\"E:\\Dev\", \"$env:USERPROFILE\\agent-work\")) { if (Test-Path $r) { Get-ChildItem -Path $r -Directory -Recurse -Depth 4 -ErrorAction SilentlyContinue | ForEach-Object { if (Test-Path (Join-Path $_.FullName \".git\")) { $_.FullName } } } }"'
+```
+
+若单行 `ssh … 'powershell …'` 仍因引号失败，可将 **§5.4** 的 PowerShell 存为 glab 上临时 `.ps1`，使用 `ssh glab powershell -File …`（与 `91` 证据脚本同模式）。
+
+对枚举出的每个路径，再在远端执行 **§5.5** 块中的 `git` 命令拼表；或在本仓库维护一次性脚本（未来可选放入 `handbook/scripts/`）。
 
 **脱敏**：HTTPS remote 中的 token、内网 IP 若不想公开，在表中写 `origin → (redacted)` 并在 `90` 说明「实值已记在某某私有笔记」。
 
@@ -132,4 +160,5 @@ git log -1 --format='%h %ci %s' 2>/dev/null || echo "(empty)"
 
 ## 修订记录
 
+- 2026-05-13：增补 **§5.6**（Tailscale SSH 跨机枚举为 epix Agent 默认路径）；**§1**/**RACI** 与铁律对齐；§5.5 改用 `git branch --show-current`；glab 经 `ssh` 的一行 PowerShell 已实机验证。
 - 2026-05-13：首版（计划 `94` 落盘：盘点模板、RACI、配置矩阵、分层纳入定义）。

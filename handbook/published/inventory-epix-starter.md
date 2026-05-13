@@ -1,5 +1,7 @@
 # epix 机 — 盘点表（starter：仅 GitNet 一行示例）
 
+> **全量枚举**：见同目录 [inventory-epix-enumerated-agent.md](inventory-epix-enumerated-agent.md)（Agent 本机 `find` 生成）。
+
 > **说明**：本文件为 **epix** 上在 GitNet 仓库内执行 §5.4 命令的 **示例一行**；**完整盘点**请复制 [inventory-machine-TEMPLATE.md](inventory-machine-TEMPLATE.md) 为 `inventory-epix.md` 并枚举 `~/Dev`、`~/agent-work` 下全部仓库。`origin` 为 GitHub 表示与 [10-topology.md](../10-topology.md) 目标规范对照下为 **过渡态**（可在 `90-process-log.md` 登记迁回 bare）。
 
 ## 主机元数据
