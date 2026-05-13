@@ -19,7 +19,7 @@
 | 拓扑、SSH、bare 路径、默认 push 目标、launchd、分支与保护策略 | `handbook/` 中 [10-topology.md](10-topology.md)、[30-mac-epix-setup.md](30-mac-epix-setup.md)、[20-windows-setup.md](20-windows-setup.md)、[06-github-branch-protection.md](06-github-branch-protection.md) 等 | 同一主题只维护一处，其它文档**链接**指向，禁止在 `docs/` 或根 `README` 重复写易变事实。 |
 | 某次操作、冲突、验证、GitHub 例外流程 | [90-process-log.md](90-process-log.md) | 时间序 + 可验收摘要；与 AGENTS.md 中「例外须记录」一致。 |
 | 参考稿、未定稿讨论、对照表草稿 | `docs/` | 定稿迁移路径见 [70-docs-migration-map.md](70-docs-migration-map.md)。 |
-| Agent / 人类行为契约（铁律、完成定义、禁止项） | 根目录 [AGENTS.md](../AGENTS.md) 与 [.cursor/rules/](../.cursor/rules/) | **原则级**；具体路径与命令仍以 `handbook/` 为准，不反向复制长段拓扑进规则文件。 |
+| Agent / 人类行为契约（铁律、完成定义、禁止项） | 根目录 [AGENTS.md](../AGENTS.md) 与 [.cursor/rules/](../.cursor/rules/) | **原则级**；多节点多工具的 Git 作者与 `includeIf` 总表见 [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md)。具体路径与命令仍以 `handbook/` 其它章节为准，不反向复制长段拓扑进规则文件。 |
 | **纯网络层**事实（IP、端口、Tailscale 节点表、局域网脚本事实源） | **NetOps** 仓库的 `configs/network_facts.env` 及该仓 Runbook | GitNet **不复制**一份易过期的 IP/端口表；本仓仅保留指向说明（见下节）。 |
 | 人类口述的长期意图与叙事 | [人类初始指令.md](../人类初始指令.md) | **不承载**具体路径与密钥；与 `handbook/` / `00` 冲突时以定稿信源为准，并在进程日志或本文修订记录中注明。 |
 
