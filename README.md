@@ -2,7 +2,7 @@
 
 多设备、多编程 Agent 与人类协作的 **Git 与治理** 元仓库。**拓扑、主从与身份**以 **[handbook/README.md](handbook/README.md)** 为准（**epix bare 为权威**，GitHub 为从镜像；日常勿把 GitHub 当唯一主线）。
 
-**项目本意（北极星）**：在硬边界（凭证不入库、法律与设备授权等）之内，**最大化 Agent 可执行范围**，用 Git、手册与脚本把多机多 Agent 协作尽量做到**可无人值守**；定稿见 **[handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)**。
+**项目本意（北极星）**：在硬边界（法律与授权、**凭据明文不进 Git/Issue** 等）之内，**最大化 Agent 可执行范围**，用 Git、手册与脚本把多机多 Agent 协作尽量做到**可无人值守**；**全链路认证**（公钥默认优先 + 人类提供的口令/PAT 须经 OS 凭据库等安全存储后使用）见 **[handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)**。
 
 ## 从这里开始
 

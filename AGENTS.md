@@ -23,7 +23,10 @@
 ## 项目本意（与 handbook 对齐）
 
 - **北极星**：在遵守本条与 handbook 的前提下，**尽量扩大 Agent 自主完成的范围**，构建可机读的 Git 体系、规范与流程，使多设备、多 Agent 的开发协作**最大限度少依赖人类临场操作**。定稿叙述见 [handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)。
-- **秘密与凭证**：**不得**将私钥、token、**主机口令**写入仓库或 Issue；**不得**要求 Agent 使用在聊天中提供的口令/PAT 代登远程系统。远程自动化应依赖 **公钥（`BatchMode`）**、**本机已配置的环境变量/密钥链**，或按第 3～4 条向人类交接。
+- **秘密与凭证（与 `08` 全链路认证对齐）**：
+  - **禁止**：将私钥、token、**口令/PAT 明文**写入本仓库、Issue、定稿 `handbook/` 正文、`published/`、或任何可被 `git clone` 带走的提交；禁止在 GitHub Issue/PR **正文**粘贴可索引的明文凭据。
+  - **人类若向 Agent 提供口令/PAT 以解除阻塞**：Agent **须**协助纳入 **OS 凭据管理器 / 机外受控文件 / 会话环境变量 / 企业密钥库** 等安全形态，并在自动化中经上述渠道**使用**——不得仅以「等公钥」为由拒绝推进；定稿流程与分层策略见 [handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md) §全链路认证。
+  - **聊天**：不得要求 Agent **复述**人类刚提供的完整秘密；人类应避免在聊天中长期依赖明文凭据，尽快迁入安全存储。
 
 ## 信源
 

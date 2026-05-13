@@ -13,4 +13,4 @@ alwaysApply: true
 - **Git 权威**：epix 上 bare；GitHub `epix99-opus/GitNet` 为从镜像。默认不向 GitHub 作为主线推送除非人类在 `handbook/90-process-log.md` 记录例外。
 - **提交身份**：人类与 GitHub 一致；Agent 目录下为 `{HOSTNAME}-{tool}` + `epix99@icloud.com`。详见 `handbook/40-identity-and-includeIf.md`。
 - **最小改动**：只改任务所需文件；不扩大范围重构。
-- **秘密**：不得将密钥、token、**主机口令**写入仓库或聊天；远程自动化须依赖公钥、`GITHUB_TOKEN` 等本机环境注入（见 `handbook/08-agent-first-collaboration-vision.md`）。
+- **秘密**：凭据**明文**不得进入 Git 对象、Issue、定稿手册、`published/`；人类提供的口令/PAT 须经 **OS 凭据库 / 机外文件 / 环境变量 / 密钥库** 安全存储后由自动化读取（见 `handbook/08-agent-first-collaboration-vision.md` §全链路认证）。公钥 `BatchMode` 仍为默认优先。

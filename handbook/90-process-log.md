@@ -108,9 +108,16 @@ git push -u origin main
 ### 2026-05-13 — 定稿「北极星」：Agent 优先的多机协作意图（Agent）
 
 - 参与：Agent（Cursor）
-- 变更摘要：新增 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md)；根 [README.md](../README.md)、[AGENTS.md](../AGENTS.md)、[05-project-scope-and-delivery.md](05-project-scope-and-delivery.md)、[00-truth-sources.md](00-truth-sources.md)、[handbook/README.md](README.md)、[.cursor/rules/gitnet-collaboration.mdc](../.cursor/rules/gitnet-collaboration.mdc) 交叉引用；AGENTS/规则补充「不得使用聊天中的主机口令代登」。
+- 变更摘要：新增 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md)；根 [README.md](../README.md)、[AGENTS.md](../AGENTS.md)、[05-project-scope-and-delivery.md](05-project-scope-and-delivery.md)、[00-truth-sources.md](00-truth-sources.md)、[handbook/README.md](README.md)、[.cursor/rules/gitnet-collaboration.mdc](../.cursor/rules/gitnet-collaboration.mdc) 交叉引用；初版强调「凭据不进 Git」。**同日稍后**见下条「全链路认证」演进。
 - 涉及信源：上述路径
-- 回顾：**未**将任何口令写入仓库；**未**使用聊天中提供的凭据连接 glab（违反秘密禁令且本会话无受控执行面）。GitHub Issue 发帖仍依赖 `GITHUB_TOKEN` 或人类浏览器。
+- 回顾：**未**将任何口令写入仓库。凭据使用策略以下条定稿为准。
+
+### 2026-05-13 — 全链路认证：人类口令/PAT 的安全存储与使用（定稿）
+
+- 参与：Agent（Cursor）
+- 变更摘要：重写 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) §全链路认证（公钥默认优先 + 口令经 OS 凭据库/机外文件/环境变量/密钥库；Agent 有义务协助迁移秘密、不得仅以公钥未完成阻塞开发）；更新 [AGENTS.md](../AGENTS.md) 秘密与凭证条文、[.cursor/rules/gitnet-collaboration.mdc](../.cursor/rules/gitnet-collaboration.mdc)、[.gitignore](../.gitignore)（`*.credentials.local` 等忽略模式）。
+- 涉及信源：上述路径
+- 回顾：**不变**——凭据**明文**仍不得进入 Git 对象与 Issue；与「安全方式存储和使用」的工程含义一致。
 
 ## Tailscale / SSH / epix 实施验证清单
 

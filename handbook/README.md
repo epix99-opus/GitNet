@@ -2,7 +2,7 @@
 
 本目录为 **GitNet** 仓库运维与多机协作的**唯一定稿信源**。环境事实、拓扑与操作步骤以本手册为准。
 
-**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — 最大化 Agent 可执行范围、构建可无人值守的多机多 Agent Git 协作；与 [AGENTS.md](../AGENTS.md) 硬边界一致。
+**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — 最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。
 
 ## 阅读顺序
 
@@ -10,7 +10,7 @@
 |------|------|------|
 | 1 | [00-truth-sources.md](00-truth-sources.md) | 信源层级、冲突处理规则 |
 | 2 | [05-project-scope-and-delivery.md](05-project-scope-and-delivery.md) | 项目定义、交付边界、会话结论归并、人类检查清单 |
-| 3 | [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) | **北极星**：Agent 优先、多设备无人值守协作意图；与 AGENTS 铁律、秘密禁令对齐 |
+| 3 | [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) | **北极星** + **全链路认证**：Agent 优先；公钥默认优先；人类口令/PAT 须经安全存储后使用；凭据明文不进 Git/Issue |
 | 4 | [07-documentation-placement.md](07-documentation-placement.md) | **内容落盘规则**：事实 / 过程 / 草稿各写何处；与 NetOps 网络事实源边界 |
 | 5 | [10-topology.md](10-topology.md) | epix 权威裸仓、GitHub 从镜像、各端角色 |
 | 6 | [40-identity-and-includeIf.md](40-identity-and-includeIf.md) | 人类兜底与 Agent 作者名、`includeIf` 模板 |

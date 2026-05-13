@@ -11,3 +11,7 @@
 
 # 临时脚本（若再出现）
 .tmp_*.py
+
+# 本机凭据占位/包装（不得提交真实值；见 handbook/08 §全链路认证）
+**/gitnet-secrets.local.*
+*.credentials.local
