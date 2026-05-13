@@ -153,6 +153,39 @@ $sshDir = Join-Path $env:USERPROFILE ".ssh"
 $authKeys = Join-Path $sshDir "authorized_keys"
 New-Item -ItemType Directory -Force -Path $sshDir | Out-Null
 
+$userDirGrant = if ($env:USERDOMAIN) {
+  ('{0}\{1}:(OI)(CI)F' -f $env:USERDOMAIN, $env:USERNAME)
+} else {
+  ('{0}:(OI)(CI)F' -f $env:USERNAME)
+}
+$userFileMod = if ($env:USERDOMAIN) {
+  ('{0}\{1}:(M)' -f $env:USERDOMAIN, $env:USERNAME)
+} else {
+  ('{0}:(M)' -f $env:USERNAME)
+}
+
+# 必须先保证目录/文件可写，再 Add-Content；否则在 ACL 已损坏时会在本步失败。
+# 最终仍须允许本用户对 authorized_keys 具备 (M)，否则仅 :R 时日后无法再次追加公钥。
+try {
+  icacls $sshDir /inheritance:r /grant:r $userDirGrant /grant:r "SYSTEM:(OI)(CI)F" | Out-Null
+} catch {
+  Write-Warning "icacls .ssh 目录失败：$_"
+}
+
+if (Test-GitNetFileExists $authKeys) {
+  $takeown = Join-Path $env:SystemRoot 'System32\takeown.exe'
+  if (Test-Path -LiteralPath $takeown) {
+    try {
+      & $takeown /F $authKeys 2>$null | Out-Null
+    } catch { }
+  }
+  try {
+    icacls $authKeys /inheritance:r /grant:r $userFileMod /grant:r "SYSTEM:(M)" | Out-Null
+  } catch {
+    Write-Warning "icacls authorized_keys 预修复失败：$_"
+  }
+}
+
 $line = $keyLine
 
 $exists = $false
@@ -165,31 +198,21 @@ if (Test-GitNetFileExists $authKeys) {
   }
 }
 if (-not $exists) {
-  Add-Content -Path $authKeys -Value $line -Encoding ascii
+  try {
+    Add-Content -LiteralPath $authKeys -Value $line -Encoding ascii -ErrorAction Stop
+  } catch {
+    Write-Error "无法写入 $authKeys（仍拒绝访问）。请以管理员 CMD 执行: takeown /F `"$authKeys`" 然后 icacls 授予 $($env:USERNAME) 修改权，再重跑本脚本。详情: $_"
+  }
 }
 
-# Windows OpenSSH：.ssh 与 authorized_keys ACL（按官方建议）
-# icacls 的 /grant 主体与「(OI)(CI)F」须连成合法字符串；用 -f 拼接，避免 "$env:USERNAME:(OI)…" 被 PowerShell 误解析导致「无效参数 (OI)(CI)F」。
+# Windows OpenSSH：收紧 authorized_keys（用户保留 M 以便维护；sshd 只读）
 try {
-  $userGrant = if ($env:USERDOMAIN) {
-    ('{0}\{1}:(OI)(CI)F' -f $env:USERDOMAIN, $env:USERNAME)
-  } else {
-    ('{0}:(OI)(CI)F' -f $env:USERNAME)
-  }
-  $userRead = if ($env:USERDOMAIN) {
-    ('{0}\{1}:R' -f $env:USERDOMAIN, $env:USERNAME)
-  } else {
-    ('{0}:R' -f $env:USERNAME)
-  }
-  # 与 SYSTEM 同批授予，避免仅 /inheritance:r 后 grant 失败导致当前用户失去 .ssh 列举权
-  icacls $sshDir /inheritance:r /grant:r $userGrant /grant:r "SYSTEM:(OI)(CI)F" | Out-Null
   if (Test-GitNetFileExists $authKeys) {
-    icacls $authKeys /inheritance:r /grant:r $userRead /grant:r "SYSTEM:R" | Out-Null
+    icacls $authKeys /inheritance:r /grant:r $userFileMod /grant:r "SYSTEM:R" | Out-Null
     icacls $authKeys /grant "NT SERVICE\sshd:R" 2>$null | Out-Null
   }
 } catch {
-  Write-Warning "icacls 设置失败（可手动按微软文档修正 .ssh 权限）：$_"
-  Write-Warning "若已无法访问 authorized_keys：管理员 CMD 执行 takeown /f $authKeys 与 icacls 恢复 $env:USERNAME 与 SYSTEM 读取。"
+  Write-Warning "icacls authorized_keys 最终收紧失败：$_"
 }
 
 Restart-Service sshd -Force
