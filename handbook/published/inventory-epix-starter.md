@@ -10,15 +10,15 @@
 |------|------|
 | **主机名（Tailscale）** | epix |
 | **OS** | macOS |
-| **填写人 / 日期** | Agent starter / 2026-05-13 |
+| **填写人 / 日期** | Agent starter / 2026-05-12（工具行已实机探测） |
 
 ## 已安装的编程 Agent 工具（实机）
 
 | 工具 | 已安装？（是/否） | 主要工作目录（若适用） |
 |------|------------------|------------------------|
-| Cursor | 是（本工作区） | `/Users/epix/Dev/GitNet` |
-| Codex CLI | （待人类填） | |
-| Claude Code | （待人类填） | |
+| Cursor | 是（`/Applications/Cursor.app`；CLI 见 `inventory-epix-enumerated-agent`） | `/Users/epix/Dev/GitNet` |
+| Codex CLI | 是（`/usr/local/bin/codex`） | `/Users/epix/Dev/CodexDev/`（约定，见 `94`） |
+| Claude Code | 是（`~/.local/bin/claude`） | `~/agent-work/claude-code/`（约定，见 `55`/`94`） |
 
 ## 仓库清单（示例一行）
 
@@ -28,4 +28,5 @@
 
 ## 修订记录
 
+- 2026-05-12：Codex / Claude Code 行改为实机探测结果；与 `inventory-epix-enumerated-agent` 探测节一致。
 - 2026-05-13：starter 行（GitNet），其余待人类补全。

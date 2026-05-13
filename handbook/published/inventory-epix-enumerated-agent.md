@@ -4,6 +4,16 @@
 
 **生成日期**：2026-05-13
 
+## 编程 Agent 工具（实机探测）
+
+> **探测日期**：2026-05-12；在 **epix** 本机执行（非仅凭 Git `user.name` 推断）。
+
+| 工具 | 结论 | 证据（可复跑） |
+|------|------|----------------|
+| **Cursor** | 已安装 | `/Applications/Cursor.app` 存在；默认 shell **无** `cursor` 于 `PATH`；`~/.local/bin/cursor-agent`、`agent` 为 **cursor-agent** 符号链 |
+| **Codex CLI** | 已安装 | `command -v codex` → `/usr/local/bin/codex` |
+| **Claude Code** | 已安装 | `~/.local/bin/claude` → `~/.local/share/claude/versions/2.1.122`（`claude --version` 可自检） |
+
 ## 仓库表
 
 | 路径 | 分支 | `origin` | `user.name`（摘要） |
@@ -29,4 +39,5 @@
 
 ## 修订记录
 
+- 2026-05-12：增补「编程 Agent 工具」实机探测（Cursor.app / codex / claude 路径）。
 - 2026-05-13：首版全表（Agent 本机枚举）。

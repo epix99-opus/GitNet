@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-12 — 三机编程 Agent：Tailscale SSH 实机探测（非仅 Git 身份）
+
+- 参与：Agent（Cursor，cwd epix）
+- 变更摘要：在 **epix** 本机与经 **`ssh woot@woot`**、**`ssh glab`** 执行 `which`/`where` 与路径检查，结论落盘：**epix** — Cursor.app + `codex` + `claude`；**woot** — Cursor.app + `claude` + cursor-agent，**无** `/usr/local/bin/codex`；**glab** — Cursor + `claude.exe`，**`where codex` 未命中**。更新 [published/inventory-epix-enumerated-agent.md](published/inventory-epix-enumerated-agent.md)、[inventory-woot-enumerated-agent.md](published/inventory-woot-enumerated-agent.md)、[inventory-glab-enumerated-agent.md](published/inventory-glab-enumerated-agent.md)、[inventory-epix-starter.md](published/inventory-epix-starter.md)；[94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) §5.3 链到上述「实机探测」节。
+- 涉及信源：`94`、`published/inventory-*`、`46`
+- 回顾：CAMA `regulations/cama-git-inventory.md` §1 矩阵同步见 **CAMA** 仓库单独提交（本仓不重复业务清单全文）。
+
 ### 2026-05-13 — CAMA-concept：派生 CAMA-git 方案/手册与三机清单
 
 - 参与：Agent（Cursor，cwd epix）

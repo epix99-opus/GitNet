@@ -82,6 +82,8 @@ cp handbook/published/inventory-machine-TEMPLATE.md handbook/published/inventory
 | **Codex CLI** | 例如 `which codex` 或依团队安装路径 | 依安装文档 |
 | **Claude Code** | 依 Anthropic 安装指引 | 若未使用可标「未部署」 |
 
+**三机路径级证据（已跑）**：见 [published/inventory-epix-enumerated-agent.md](../published/inventory-epix-enumerated-agent.md)、[inventory-woot-enumerated-agent.md](../published/inventory-woot-enumerated-agent.md)、[inventory-glab-enumerated-agent.md](../published/inventory-glab-enumerated-agent.md) 各文件 **「编程 Agent 工具（实机探测）」**（epix 本机 + `ssh woot@woot` / `ssh glab`）。
+
 ### 5.4 枚举 Git 仓库（只读；限制深度避免过慢）
 
 **macOS（epix / woot）** — 在需盘点的根目录执行（示例深度 4，可按需调整）：
@@ -160,5 +162,6 @@ ssh -o BatchMode=yes -o ConnectTimeout=20 glab 'powershell -NoProfile -Command "
 
 ## 修订记录
 
+- 2026-05-12：§5.3 增加指向三机 `published/inventory-*`「实机探测」节的链接。
 - 2026-05-13：增补 **§5.6**（Tailscale SSH 跨机枚举为 epix Agent 默认路径）；**§1**/**RACI** 与铁律对齐；§5.5 改用 `git branch --show-current`；glab 经 `ssh` 的一行 PowerShell 已实机验证。
 - 2026-05-13：首版（计划 `94` 落盘：盘点模板、RACI、配置矩阵、分层纳入定义）。
