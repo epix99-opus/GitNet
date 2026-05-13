@@ -54,6 +54,14 @@ git push -u origin main
 - 涉及信源：上述路径
 - 回顾：未在 GitNet 内复制 `network_facts.env`；与 NetOps 边界见 `07` 第二节。
 
+### 2026-05-12 — 本机 Git 人类兜底与 Agent includeIf（epix）
+
+- 参与：人类（同意）/ Agent（Cursor）
+- 变更摘要：`~/.gitconfig` 备份为 `~/.gitconfig.backup-gitnet-2026-05-12`；全局 `user.email` 改为 **`epix99@icloud.com`**，`user.name` 维持 **`Epix`**；新增 **`~/.gitconfig-fragment-cursor`**（`epix-cursor` / `epix99@icloud.com`）；`includeIf gitdir:/Users/epix/Dev/` 与 `gitdir:/Users/epix/agent-work/cursor/` 加载片段；已创建目录 **`~/agent-work/cursor/`**（含 `.gitkeep`）供手册约定路径使用。
+- 涉及信源：`handbook/40-identity-and-includeIf.md`、模板 `templates/gitconfig.*`
+- 验收：`cd /Users/epix/Dev/GitNet && git config --show-origin user.name` 来源为片段；`/tmp` 下新 `git init` 仓库来源为全局 `.gitconfig`。
+- 回顾：凡在 **`~/Dev/`** 下任意仓库提交，作者均为 **`epix-cursor`**；若需在 `~/Dev/` 内保留人类作者，可用该仓库 `git config --local user.*` 覆盖或移出 `~/Dev/`。
+
 ---
 
 ## Tailscale / SSH / epix 实施验证清单
