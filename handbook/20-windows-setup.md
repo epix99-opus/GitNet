@@ -61,3 +61,12 @@ git config --show-origin --list | findstr user
 ssh -T git@git-epix
 ssh -T git@github.com
 ```
+
+## 7. PowerShell 脚本与文本编码（GitNet `handbook/scripts`）
+
+本仓库在 **glab** 上执行的 **Windows PowerShell 5.1**（`powershell.exe`，非 **PowerShell 7** `pwsh`）对脚本**源文件编码**敏感：
+
+- **含中文**的 `.ps1` 须保存为 **UTF-8 带 BOM**（UTF-8 with BOM）。无 BOM 时，5.1 常按**当前代码页**（简体中文 Windows 多为 **GBK**）误读 UTF-8 字节流，导致 **ParserError**（例如「意外的标记 `}`」「意外的标记 `else`」），**与逻辑是否写对无关**。
+- **维护方式**：用 VS Code / Cursor 打开脚本 → 右下角编码 → **Save with Encoding** → **UTF-8 with BOM**；或合并前用工具检查文件头为 **`EF BB BF`**。
+- **PowerShell 7+**：对 UTF-8 无 BOM 更宽容；若团队统一用 `pwsh` 跑脚本，仍建议带 BOM，以免他人用 5.1 误跑。
+- **交叉引用**：epix→glab 全流程见 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) §3.1；`ssh-keyscan` / macOS 见同文 §3.3 与 [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) §B。

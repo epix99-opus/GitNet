@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — 文档收口：glab/epix 全流程（UTF-8 BOM、`ssh-keyscan`、`BatchMode`）
+
+- 参与：人类（实机验收）/ Agent（Cursor）
+- 变更摘要：将本会话已验证事实写入定稿手册：**Windows PowerShell 5.1** 对 **UTF-8 无 BOM** 中文脚本误读致 **ParserError**（根因与维护规则 → [20-windows-setup.md](20-windows-setup.md) §7、[46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) §3.1）；**epix** 上 **`ssh-keyscan` → `fdlim_get: bad value`** 与 **`ulimit -n` / `accept-new`** 绕过（→ `46` §3.3、[91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) §B）；**Administrators** 与 **`administrators_authorized_keys`** 在 [22-glab-tailscale-epix-remote.md](22-glab-tailscale-epix-remote.md) §3.C 与 `91` 期望结果中显式化；[30-mac-epix-setup.md](30-mac-epix-setup.md) §6 链到 glab SSH；[published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) **T2** 标为完成（管理员重跑 `setup-glab-openssh-for-epix.ps1` 后 epix `ssh glab` / `git config` 已验）；`setup-glab-openssh-for-epix.ps1` 末尾 epix 提示增补 **`ulimit`** 行。
+- 涉及信源：`46`、`91`、`20`、`30`、`22`、`README`、`90`、`published/collaboration-closeout-status.md`、`scripts/setup-glab-openssh-for-epix.ps1`
+- 回顾：与 [AGENTS.md](../AGENTS.md)「Git 权威在 epix bare」不冲突；GitHub 仍为从镜像，本条目仅为文档与 glab 执行记录同步。
+
 ### 2026-05-13 — 定稿：多设备多 Agent 以 epix bare 为写集成权威（10-topology）
 
 - 参与：人类（意图确认）/ Agent（Cursor）

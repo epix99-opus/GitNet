@@ -6,7 +6,7 @@
 
 - epix 本机已加载用于登录远端的私钥（示例：`~/.ssh/id_ed25519`），且远端 **`authorized_keys` 已包含对应公钥**。
 - **woot** 登录用户名为 **`woot`**（已验证：`woot@woot` 可公钥登录）；**不是** `epix@woot`。
-- `~/.ssh/known_hosts` 含 `woot.tailbb1446.ts.net`（可由 `ssh-keyscan woot.tailbb1446.ts.net >> ~/.ssh/known_hosts` 追加）。
+- `~/.ssh/known_hosts` 含 `woot.tailbb1446.ts.net`（可由 `ssh-keyscan woot.tailbb1446.ts.net >> ~/.ssh/known_hosts` 追加；若在 **macOS** 上遇 **`fdlim_get: bad value`**，与 glab 相同处理：先 `ulimit -n 10240` 或使用 `accept-new`，见 **§3.3**）。
 
 ### 1.1 建议在 epix `~/.ssh/config` 增加
 
@@ -61,6 +61,8 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
 
 `-GitNetWorkdirWin` 填 **`git rev-parse --show-toplevel`** 在资源管理器里对应的盘符路径（常见为 `E:\DEV\GitNet` 或 `E:\Dev\GitNet`）。脚本会安装/启动 **OpenSSH Server**、添加入站 **TCP 22** 规则、从文件或参数解析出的公钥写入 **`%USERPROFILE%\.ssh\authorized_keys`**、尽量打开 **`PubkeyAuthentication yes`** 并重启 **sshd**。
 
+**脚本文本编码（维护 `handbook/scripts/*.ps1` 时必读）**：在 **Windows PowerShell 5.1** 下，含**中文**的脚本须保存为 **UTF-8 带 BOM**。若文件为 UTF-8 **无** BOM，解释器常按**系统 ANSI**（如简体中文 Windows 的 GBK）解码，会在**随机行**报 **ParserError**（例如「表达式或语句中包含意外的标记 `}`」），与 `if`/`else` 是否写对无关。用 VS Code / Cursor 另存为 **UTF-8 with BOM** 后重跑即可。仓库内 `setup-glab-openssh-for-epix.ps1` 已定稿为带 BOM；其它新增中文脚本须遵守同一规则。详见 [20-windows-setup.md](20-windows-setup.md) §7。
+
 #### 3.1.1 若登录用户属于 **Administrators**（常见首用户 GG）
 
 Windows 默认 `sshd_config` 含：
@@ -88,17 +90,35 @@ git config --show-origin user.name
 
 应出现 **`glab-cursor`**，来源为 **`…\.gitconfig-fragment-cursor`**。
 
-### 3.3 epix：启用 `Host glab` 并验收 SSH + Git
+### 3.3 epix：启用 `Host glab`、写入 `known_hosts` 并验收 SSH + Git
 
 1. 将 [templates/epix-ssh-config-glab.fragment.conf](templates/epix-ssh-config-glab.fragment.conf) 合并进 **`~/.ssh/config`**（若原文件里已有被注释的 `Host glab` 段，**取消注释**并把 **`User`** 设为 **`GG`**）。
-2. 在 epix：
+2. 在 epix **Terminal**（建议与 [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) §B 一致）追加主机公钥：
 
 ```bash
 ssh-keyscan glab.tailbb1446.ts.net >> ~/.ssh/known_hosts
+```
+
+若 Apple 自带的 `ssh-keyscan` 报错 **`fdlim_get: bad value`**（常见于 `ulimit -n` 为 **unlimited** 时，OpenSSH 将 64 位 fd 上限塞进 `int` 溢出）：**同一 shell** 先收紧上限再扫描，例如：
+
+```bash
+ulimit -n 10240
+ssh-keyscan glab.tailbb1446.ts.net >> ~/.ssh/known_hosts
+```
+
+**替代**：若客户端支持 **`StrictHostKeyChecking=accept-new`**（OpenSSH 8+），可跳过 `ssh-keyscan`，用首次成功连接写入 `known_hosts`：
+
+```bash
+ssh -o StrictHostKeyChecking=accept-new glab "hostname"
+```
+
+3. 验收 Git 片段（路径与 glab 上 `git rev-parse --show-toplevel` 一致）：
+
+```bash
 ssh glab "cd /d E:\DEV\GitNet && git config --show-origin user.name"
 ```
 
-（若 glab 上仓库在 `E:\Dev\GitNet`，把路径改成该目录。）成功时应看到 **`glab-cursor`**。
+（若 glab 上仓库在 `E:\Dev\GitNet`，把路径改成该目录。）成功时应看到 **`glab-cursor`**。无口令 / **BatchMode** 须已在 glab 完成 §3.1 + §3.1.1（含 `administrators_authorized_keys` 时），epix 上可再验：`ssh -o BatchMode=yes glab "hostname"`。
 
 ### 3.4 能力边界
 
@@ -112,3 +132,4 @@ ssh glab "cd /d E:\DEV\GitNet && git config --show-origin user.name"
 - 2026-05-13：首版；记录 woot 实装与 glab 人类配合门槛。
 - 2026-05-13：glab 增补 `setup-glab-openssh-for-epix.ps1`、`epix-ssh-config-glab.fragment.conf`；`windows-glab-git-includeIf.ps1` 用 `git rev-parse` 对齐 `gitdir` 大小写；epix `User` 定稿为 **GG**。
 - 2026-05-13：§3.1.1 **Administrators** 与 `administrators_authorized_keys`（BatchMode 根因）；`setup-glab-openssh-for-epix.ps1` 增 ProgramData 公钥写入。
+- 2026-05-13：§3.1 增补 **PowerShell 5.1 + UTF-8 BOM** 说明（无 BOM 中文脚本 ParserError）；§3.3 增补 epix 上 **`ssh-keyscan` / `fdlim_get`** 与 **`accept-new`** 替代；链到 `20` §7。

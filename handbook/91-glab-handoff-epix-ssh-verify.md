@@ -64,13 +64,15 @@ ssh-keyscan glab.tailbb1446.ts.net 2>/dev/null | tail -1
 git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' | tr -d '\r')" config --show-origin user.name 2>/dev/null || true
 ```
 
+**`ssh-keyscan` 在 epix（macOS）报 `fdlim_get: bad value`**：多为 **`ulimit -n` 为 unlimited** 时 Apple 自带 OpenSSH 的已知问题。同一终端先执行 `ulimit -n 10240`（或其它有限值，且小于 2147483647），再运行 `ssh-keyscan`；或改用 `ssh -o StrictHostKeyChecking=accept-new glab "hostname"` 在首次成功连接时写入 `known_hosts`。详见 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) §3.3。
+
 与 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) **T3** 对齐的**一行式**验收（已在实践中跑通；口令会话亦可，证据写入 `issue-1-glab-evidence-comment.md` §B）：
 
 ```bash
 ssh glab 'cd /d E:\Dev\GitNet && git config --show-origin user.name'
 ```
 
-期望出现 **`glab-cursor`**，且来源为 **`…\\.gitconfig-fragment-cursor`**。**无口令 / BatchMode** 仍以 [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub) → GG `authorized_keys`（**T2**）为准。
+期望出现 **`glab-cursor`**，且来源为 **`…\\.gitconfig-fragment-cursor`**。**无口令 / BatchMode** 仍以 [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub) 写入 glab 的 **`%USERPROFILE%\.ssh\authorized_keys`**，且在 Windows 用户属于 **Administrators** 时**还须**写入 **`C:\ProgramData\ssh\administrators_authorized_keys`**（**T2**；见 [46](46-tailscale-remote-git-identity.md) §3.1.1 与 [setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) §5）。
 
 （若路径含空格或盘符不同，以 glab 上 `rev-parse` 输出为准手动构造 `git -C`。）
 
@@ -88,7 +90,7 @@ ssh glab 'cd /d E:\Dev\GitNet && git config --show-origin user.name'
 
 **1）`sshd` 未安装 / 22 未监听（epix `ssh glab` 超时）**
 
-- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；epix 侧 Agent Shell 对 `glab:22` 可能超时，不能代出 SSH 会话证据；公钥必须以仓库 [`templates/epix-id_ed25519.pub`](templates/epix-id_ed25519.pub)（或同源 [Raw URL](https://raw.githubusercontent.com/epix99-opus/GitNet/main/handbook/templates/epix-id_ed25519.pub)）为准，**勿从聊天手抄**，Agent 也不应代为口述公钥。
+- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；epix 侧 Agent Shell 对 `glab:22` 可能超时，不能代出 SSH 会话证据；公钥必须以仓库 [`templates/epix-id_ed25519.pub`](templates/epix-id_ed25519.pub)（或同源 [Raw URL](https://raw.githubusercontent.com/epix99-opus/GitNet/main/handbook/templates/epix-id_ed25519.pub)）为准，**勿从聊天手抄**，Agent 也不应代为口述公钥。若在 **glab** 运行 `setup-glab-openssh-for-epix.ps1` 出现 **ParserError**（如意外 `}`），多为 **UTF-8 无 BOM** 被 PowerShell 5.1 误读，见 [46](46-tailscale-remote-git-identity.md) §3.1 与 [20-windows-setup.md](20-windows-setup.md) §7。
 - **操作提示**：公钥整行以仓库文件为准（勿手抄）。若轮换密钥：在 **epix** 更新 `handbook/templates/epix-id_ed25519.pub` 后 **push**，并通知 **glab**。在 **glab** `git pull`，以管理员打开 PowerShell，`cd` 到仓库根（`git rev-parse --show-toplevel`），执行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)，**`-GitNetWorkdirWin`** 填实际根路径；脚本默认从 `handbook\templates\epix-id_ed25519.pub` 读取首条 `ssh-ed25519` 行（也可用 `Get-Content -Raw …\epix-id_ed25519.pub` 传入 `-EpixPublicKeyLine`）。完成后在 **epix Terminal**（非仅 Agent Shell）执行：`ssh glab "hostname"`。
 - **验收**：`Get-Service sshd` 为 **Running**；epix 上 `ssh glab "hostname"` 返回 **GLAB**（或 glab 主机名）；Issue 可再贴一行该输出。
 
@@ -116,4 +118,4 @@ ssh glab 'cd /d E:\Dev\GitNet && git config --show-origin user.name'
 - 2026-05-13：epix→glab 公钥信源改为仓库 `templates/epix-id_ed25519.pub`（及 Raw URL）；`setup-glab-openssh-for-epix.ps1` 默认读该文件；轮换密钥流程写入 §「Agent 未完成项」与期望结果。
 - 2026-05-13：链到 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)；证据脚本增加 SSH 诊断块。
 - 2026-05-13：增补 **「谁应在 glab 上 git pull / 跑管理员脚本」** 职责表（与 epix Agent 边界区分）。
-- 2026-05-13：§B 与 [collaboration-closeout-status.md](published/collaboration-closeout-status.md) T3 对齐的一行式 `git config` 验收；期望结果区分 §A 快照、§B、Issue 全文粘贴与 T2 公钥/BatchMode。
+- 2026-05-13：§B 增补 **`ssh-keyscan` / `fdlim_get`** 说明与链到 `46` §3.3；「未完成项」§1 原因中链到 **UTF-8 BOM**（`46` / `20` §7）。

@@ -247,6 +247,9 @@ try {
 
 Restart-Service sshd -Force
 
-Write-Host "OpenSSH configured. On epix run:"
+Write-Host "OpenSSH configured. On epix (Terminal) run:"
+Write-Host "  ulimit -n 10240   # if ssh-keyscan fails: fdlim_get bad value (macOS Apple OpenSSH + unlimited fds)"
 Write-Host "  ssh-keyscan glab.tailbb1446.ts.net >> ~/.ssh/known_hosts"
+Write-Host "  # or: ssh -o StrictHostKeyChecking=accept-new glab hostname"
 Write-Host ('  ssh glab "cd /d ' + $GitNetWorkdirWin + ' && git config --show-origin user.name"')
+Write-Host "See handbook/46-tailscale-remote-git-identity.md section 3.3 and 20-windows-setup.md section 7 (UTF-8 BOM for PS1)."

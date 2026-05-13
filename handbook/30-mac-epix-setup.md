@@ -121,6 +121,7 @@ tail -n 50 ~/Library/Logs/GitNet/push-github.log
 
 - epix 对外克隆地址形如：`git@git-epix:/srv/git/GitNet.git`（`git-epix` 为 `~/.ssh/config` 里 `Host`，见 [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md)）。
 - 访问 GitHub 使用同一用户下的 `Host github.com` 与 `IdentityFile`，保证 `git -C ... push github` 成功。
+- 经 Tailscale **SSH 登录 glab**、追加 `known_hosts`、公钥与 `BatchMode` 验收见 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) **§3**。若在 epix 上执行 `ssh-keyscan glab…` 报错 **`fdlim_get: bad value`**，先在同一 shell 执行 `ulimit -n 10240` 再重试，或使用 `StrictHostKeyChecking=accept-new`（见 `46` §3.3）。
 
 ## 7. 回滚
 

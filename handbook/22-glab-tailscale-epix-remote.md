@@ -49,7 +49,7 @@ ping -c 3 100.119.210.69
 
 1. Windows：**设置 → 应用 → 可选功能 → OpenSSH 服务器** 安装并启动 `sshd`；防火墙仅允许 **Tailscale 接口或 100.64.0.0/10** 来源（由网络管理员收紧，勿对公网 0.0.0.0 开放 22）。
 2. `C:\ProgramData\ssh\sshd_config`：建议 `PasswordAuthentication no`，仅公钥。
-3. **epix 登录 glab 所用公钥（与 GitHub 定稿对接）**：整行见仓库 [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（Raw 便于脚本：`https://github.com/epix99-opus/GitNet/raw/main/handbook/templates/epix-id_ed25519.pub`），写入 glab 上目标用户的 `authorized_keys`；勿在聊天里手抄以免截断。
+3. **epix 登录 glab 所用公钥（与 GitHub 定稿对接）**：整行见仓库 [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（Raw 便于脚本：`https://github.com/epix99-opus/GitNet/raw/main/handbook/templates/epix-id_ed25519.pub`），写入 glab 上目标用户的 `authorized_keys`；勿在聊天里手抄以免截断。**若该 Windows 登录用户属于 Administrators 组**，默认 `sshd_config` 的 **`Match Group administrators`** 还会要求 **`%ProgramData%\ssh\administrators_authorized_keys`**，仅写 `%USERPROFILE%\.ssh\authorized_keys` 会导致 **BatchMode 公钥失败**；须按 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) §3.1.1 同步写入（或运行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) 一次完成）。
 4. epix `~/.ssh/config` 示例：
 
 ```sshconfig
@@ -74,4 +74,4 @@ Host glab-win
 
 ---
 
-**记录**：事实字段摘录于 Glab 本机命令行，`tailscale status` 与 `tailscale status --json`（日期以 Git 提交日为准）。
+**记录**：事实字段摘录于 Glab 本机命令行，`tailscale status` 与 `tailscale status --json`（日期以 Git 提交日为准）。**2026-05-13**：§3.C 增补 **Administrators** 与 **`administrators_authorized_keys`**（与 `46` §3.1.1、`setup-glab-openssh-for-epix.ps1` §5 对齐）。
