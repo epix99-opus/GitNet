@@ -4,13 +4,14 @@
   在 glab（Windows）一次性：安装/启动 OpenSSH Server、防火墙放行 TCP 22、写入 epix 公钥到当前用户 authorized_keys、重启 sshd。
 
 .DESCRIPTION
-  需「以管理员身份运行」的 PowerShell。公钥须由你在 epix 上执行 `Get-Content ~/.ssh/id_ed25519.pub` 复制整行传入 -EpixPublicKeyLine。
+  需「以管理员身份运行」的 PowerShell。公钥整行以仓库定稿 handbook/templates/epix-id_ed25519.pub 为准传入 -EpixPublicKeyLine（勿手抄）；或从 epix 本机 Get-Content ~/.ssh/id_ed25519.pub 读取后比对一致。
 
 .PARAMETER EpixPublicKeyLine
-  epix 上 ~/.ssh/id_ed25519.pub 的完整一行（以 ssh-ed25519 开头）。
+  epix 上 ~/.ssh/id_ed25519.pub 的完整一行（以 ssh-ed25519 开头）。定稿副本：GitHub 仓库 handbook/templates/epix-id_ed25519.pub（与 glab 对接，勿手抄）。
 
 .EXAMPLE
-  .\setup-glab-openssh-for-epix.ps1 -EpixPublicKeyLine 'ssh-ed25519 AAAA... epix@epix'
+  $k = Get-Content -Raw "$PSScriptRoot\..\templates\epix-id_ed25519.pub"
+  .\setup-glab-openssh-for-epix.ps1 -EpixPublicKeyLine $k.Trim()
 #>
 param(
   [Parameter(Mandatory = $true)]

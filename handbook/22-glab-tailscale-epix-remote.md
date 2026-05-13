@@ -49,7 +49,8 @@ ping -c 3 100.119.210.69
 
 1. Windows：**设置 → 应用 → 可选功能 → OpenSSH 服务器** 安装并启动 `sshd`；防火墙仅允许 **Tailscale 接口或 100.64.0.0/10** 来源（由网络管理员收紧，勿对公网 0.0.0.0 开放 22）。
 2. `C:\ProgramData\ssh\sshd_config`：建议 `PasswordAuthentication no`，仅公钥。
-3. epix `~/.ssh/config` 示例：
+3. **epix 登录 glab 所用公钥（与 GitHub 定稿对接）**：整行见仓库 [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（Raw 便于脚本：`https://github.com/epix99-opus/GitNet/raw/main/handbook/templates/epix-id_ed25519.pub`），写入 glab 上目标用户的 `authorized_keys`；勿在聊天里手抄以免截断。
+4. epix `~/.ssh/config` 示例：
 
 ```sshconfig
 Host glab-win
@@ -58,7 +59,7 @@ Host glab-win
     IdentityFile ~/.ssh/id_ed25519_glab
 ```
 
-4. epix 上验收：`ssh glab-win` 能进 PowerShell/cmd 即成功。
+5. epix 上验收：`ssh glab-win` 能进 PowerShell/cmd 即成功。
 
 ## 4. 与「通过 GitHub 提供给 epix」的关系
 

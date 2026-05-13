@@ -45,7 +45,7 @@ ssh woot "hostname -s; git config --show-origin user.name"
 
 ### 3.1 glab：安装 OpenSSH、防火墙 22、authorized_keys（须管理员 PowerShell）
 
-1. 在 **epix** 上取公钥整行：`cat ~/.ssh/id_ed25519.pub`
+1. **公钥整行（与 GitHub 对接）**：以仓库定稿为准 → [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（Raw：<https://github.com/epix99-opus/GitNet/raw/main/handbook/templates/epix-id_ed25519.pub>）。epix 本机可 `cat ~/.ssh/id_ed25519.pub` 核对是否与该文件**逐字符一致**。
 2. 在 **glab** 以管理员打开 PowerShell，`cd` 到 GitNet 仓库根（例如 `E:\Dev\GitNet` 或 `E:\DEV\GitNet`），执行：
 
 ```powershell

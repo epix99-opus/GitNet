@@ -14,6 +14,21 @@
 - epix 节点名即本 Mac；手册见 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)、[22-glab-tailscale-epix-remote.md](22-glab-tailscale-epix-remote.md)。
 - Cursor Agent 在 epix 上执行 `ssh glab "hostname"` 时出现 **`connect to host glab port 22: Operation timed out`**，与「你在本机 Terminal 已能通」可并存，故需 **glab 或人类**补证据。
 
+## epix 公钥（glab `authorized_keys` 一整行）
+
+**与 GitHub / glab 对接的定稿信源**：本仓库文件（**整行一条，勿断行、勿加引号弯字符**）：
+
+- [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)
+
+传给 `setup-glab-openssh-for-epix.ps1 -EpixPublicKeyLine` 时，用 PowerShell 从克隆根读取例如：
+
+```powershell
+$k = Get-Content -Raw "E:\Dev\GitNet\handbook\templates\epix-id_ed25519.pub"
+.\handbook\scripts\setup-glab-openssh-for-epix.ps1 -EpixPublicKeyLine $k.Trim()
+```
+
+（此为 **公钥**，可入 git；**永远不要**把 `id_ed25519` **私钥**写入仓库。）
+
 ## 要求（在 glab 上以管理员或普通用户按需执行）
 
 ### A. glab 本机（PowerShell）
@@ -53,8 +68,8 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 
 **1）`sshd` 未安装 / 22 未监听（epix `ssh glab` 超时）**
 
-- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；Agent 拿不到 epix 私钥对面的 **公钥整行**，也不应代填占位公钥。
-- **操作提示**：在 **glab** 以管理员打开 PowerShell，`cd` 到 Git 仓库根（`git rev-parse --show-toplevel` 所在目录），执行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)，`-EpixPublicKeyLine` 填在 **epix** 上 `Get-Content $HOME/.ssh/id_ed25519.pub` 的**整一行**；`-GitNetWorkdirWin` 填 glab 上实际路径（如 `E:\DEV\GitNet`）。完成后在 **epix Terminal**（非仅 Agent Shell）执行：`ssh glab "hostname"`。
+- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；epix 侧 Agent Shell 对 `glab:22` 可能超时，不能代出 SSH 会话证据。
+- **操作提示**：在 **glab** 以管理员打开 PowerShell，`cd` 到 Git 仓库根（`git rev-parse --show-toplevel` 所在目录），执行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)。`-EpixPublicKeyLine` 使用仓库定稿 **[templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)** 的整行（推荐 `Get-Content -Raw …\handbook\templates\epix-id_ed25519.pub` 或 Raw URL，勿手抄聊天）；`-GitNetWorkdirWin` 填 glab 上实际路径。完成后在 **epix Terminal**（非仅 Agent Shell）执行：`ssh glab "hostname"`。
 - **验收**：`Get-Service sshd` 为 **Running**；epix 上 `ssh glab "hostname"` 返回 **GLAB**（或 glab 主机名）；Issue 可再贴一行该输出。
 
 **2）Issue #1 尚未出现 glab 证据评论**
@@ -74,6 +89,7 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 
 ## 修订记录
 
+- 2026-05-13：增补 **epix `id_ed25519.pub` 定稿副本** [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)，与 GitHub/glab 对接；与 `46` / `setup-glab-openssh` 交叉引用。
 - 2026-05-13：首版（epix Agent 建立，待 glab 执行并回贴）。
 - 2026-05-13：glab Agent 增补 `91-glab-section-A-evidence.ps1`、`published/issue-1-glab-evidence-comment.md`、可选 `post-issue1-github-comment.ps1`；更新期望结果说明。
 - 2026-05-13：增补「未完成项交接人类」强制格式表及与本 handoff 相关的 sshd / Issue 发帖示例（对齐 `AGENTS.md`）。
