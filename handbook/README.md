@@ -54,4 +54,4 @@
 
 - HTTPS：<https://github.com/epix99-opus/GitNet>
 
-日常协作 **push/pull 以 epix 裸仓为准**；向 GitHub 的更新由 epix 侧定时任务执行（见 [30-mac-epix-setup.md](30-mac-epix-setup.md)）。
+日常协作 **push/pull 以 epix 裸仓为准**；向 GitHub 的更新由 epix 侧定时任务执行（见 [30-mac-epix-setup.md](30-mac-epix-setup.md)）。**例外（对齐通知面）**：当提交已由任一端 **push 到 GitHub `main`**（例如 glab/Agent 收口文档后），需要与 glab 同树的 **epix 工作副本**若将 **GitHub** 设为拉取远端，应执行 **`git pull`** 载入同一提交；若以 **bare** 为唯一写入口，在 epix 将 GitHub 变更 **并入 bare** 后再从 bare 分发，详见 [90-process-log.md](90-process-log.md) 当日「文档收口」条。
