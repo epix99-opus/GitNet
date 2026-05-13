@@ -1,59 +1,79 @@
-# 在 glab（本机 PowerShell）一次性执行：人类兜底 + 三工具片段 + includeIf
-# 使用前：已安装 Git for Windows；已与 epix 约定 HOSTNAME=glab；路径按你实际 Dev 盘符修改 $DevRoot。
+# Glab: one-shot human + agent git fragments + includeIf (PowerShell)
+# Requires Git for Windows. HOSTNAME for agents is glab. Edit $DevRoot / $GitNetRoot if paths differ.
 
 $ErrorActionPreference = "Stop"
-$DevRoot = "E:/Dev"   # 若 GitNet 在 E:\Dev\GitNet，则父级为 E:/Dev；若在 C:\Users\x\Dev 则改为该路径（正斜杠）
+
+$rd = Resolve-Path 'E:\Dev' -ErrorAction SilentlyContinue
+$DevRoot = if ($rd) { $rd.Path.Replace('\', '/') } else { 'E:/Dev' }
+
+$GitNetRoot = $null
+try {
+  $GitNetRoot = (git -C 'E:\Dev\GitNet' rev-parse --show-toplevel 2>$null).Replace('\', '/')
+} catch {}
+if (-not $GitNetRoot) {
+  $rp = Resolve-Path 'E:\Dev\GitNet' -ErrorAction SilentlyContinue
+  $GitNetRoot = if ($rp) { $rp.Path.Replace('\', '/') } else { 'E:/Dev/GitNet' }
+}
+
+if (-not (Test-Path $GitNetRoot.Replace('/', '\'))) {
+  Write-Warning ('GitNet path not found: ' + $GitNetRoot + ' - edit $GitNetRoot in this script.')
+}
 
 $homeUnix = $env:USERPROFILE.Replace('\', '/')
 $fragCursor = "$homeUnix/.gitconfig-fragment-cursor"
 $fragCodex = "$homeUnix/.gitconfig-fragment-codex"
 $fragClaude = "$homeUnix/.gitconfig-fragment-claude-code"
 
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE/agent-work/cursor" | Out-Null
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE/agent-work/codex" | Out-Null
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE/agent-work/claude-code" | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $env:USERPROFILE 'agent-work\cursor') | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $env:USERPROFILE 'agent-work\codex') | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $env:USERPROFILE 'agent-work\claude-code') | Out-Null
 
-@"
-[user]
-	name = glab-cursor
-	email = epix99@icloud.com
-"@ | Set-Content -Encoding utf8 $fragCursor
+Set-Content -Encoding utf8 -Path $fragCursor -Value @(
+  '[user]',
+  '	name = glab-cursor',
+  '	email = epix99@icloud.com'
+)
 
-@"
-[user]
-	name = glab-codex
-	email = epix99@icloud.com
-"@ | Set-Content -Encoding utf8 $fragCodex
+Set-Content -Encoding utf8 -Path $fragCodex -Value @(
+  '[user]',
+  '	name = glab-codex',
+  '	email = epix99@icloud.com'
+)
 
-@"
-[user]
-	name = glab-claude-code
-	email = epix99@icloud.com
-"@ | Set-Content -Encoding utf8 $fragClaude
+Set-Content -Encoding utf8 -Path $fragClaude -Value @(
+  '[user]',
+  '	name = glab-claude-code',
+  '	email = epix99@icloud.com'
+)
 
-$main = @"
-[user]
-	name = Epix
-	email = epix99@icloud.com
+$dq = [char]34
 
-[core]
-	autocrlf = true
-	longpaths = true
+$mainLines = @(
+  '[user]',
+  '	name = Epix',
+  '	email = epix99@icloud.com',
+  '',
+  '[core]',
+  '	autocrlf = true',
+  '	longpaths = true',
+  '',
+  ('[includeIf ' + $dq + 'gitdir:' + $GitNetRoot + '/' + $dq + ']'),
+  ('	path = ' + $fragCursor),
+  ('[includeIf ' + $dq + 'gitdir:' + $homeUnix + '/agent-work/cursor/' + $dq + ']'),
+  ('	path = ' + $fragCursor),
+  ('[includeIf ' + $dq + 'gitdir:' + $DevRoot + '/CodexDev/' + $dq + ']'),
+  ('	path = ' + $fragCodex),
+  ('[includeIf ' + $dq + 'gitdir:' + $homeUnix + '/agent-work/codex/' + $dq + ']'),
+  ('	path = ' + $fragCodex),
+  ('[includeIf ' + $dq + 'gitdir:' + $homeUnix + '/agent-work/claude-code/' + $dq + ']'),
+  ('	path = ' + $fragClaude)
+)
+$main = ($mainLines -join [Environment]::NewLine) + [Environment]::NewLine
 
-[includeIf "gitdir:$DevRoot/"]
-	path = $fragCursor
-[includeIf "gitdir:$homeUnix/agent-work/cursor/"]
-	path = $fragCursor
-[includeIf "gitdir:$DevRoot/CodexDev/"]
-	path = $fragCodex
-[includeIf "gitdir:$homeUnix/agent-work/codex/"]
-	path = $fragCodex
-[includeIf "gitdir:$homeUnix/agent-work/claude-code/"]
-	path = $fragClaude
-"@
+$bak = Join-Path $env:USERPROFILE ('.gitconfig.backup-gitnet-' + (Get-Date -Format 'yyyyMMdd'))
+Copy-Item (Join-Path $env:USERPROFILE '.gitconfig') $bak -ErrorAction SilentlyContinue
+Set-Content -Encoding utf8 (Join-Path $env:USERPROFILE '.gitconfig') $main
 
-Copy-Item $env:USERPROFILE\.gitconfig "$env:USERPROFILE\.gitconfig.backup-gitnet-$(Get-Date -Format yyyyMMdd)" -ErrorAction SilentlyContinue
-Set-Content -Encoding utf8 $env:USERPROFILE\.gitconfig $main
-
-Write-Host "Done. Verify in a repo under Dev:"
-Write-Host "  git config --show-origin user.name"
+Write-Host 'Done. Verify under GitNet:'
+Write-Host '  cd E:\Dev\GitNet'
+Write-Host '  git config --show-origin user.name'

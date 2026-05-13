@@ -28,7 +28,9 @@
 - [templates/gitconfig.mac.main.ini](templates/gitconfig.mac.main.ini)
 - [templates/gitconfig.fragment.agent.ini.example](templates/gitconfig.fragment.agent.ini.example)
 - [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)（在 **glab 本机** PowerShell 执行，配置 `glab-*` 片段）
+- [templates/epix-ssh-config-glab.fragment.conf](templates/epix-ssh-config-glab.fragment.conf)（合并到 epix `~/.ssh/config`；`User` 当前为 **GG**）
 - [scripts/gitnet-push-github.sh](scripts/gitnet-push-github.sh)（复制到 epix `~/bin/` 使用）
+- [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)（**glab 管理员**：OpenSSH + 防火墙 22 + `authorized_keys`）
 
 ## 仓库内 Agent 约定
 

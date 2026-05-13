@@ -39,32 +39,62 @@ ssh woot "hostname -s; git config --show-origin user.name"
 
 ---
 
-## 3. glab（Windows）— 需一次性人类配合后再由 epix 代执行
+## 3. glab（Windows）— 一次性配合清单（顺序固定）
 
-当前常见状态：**TCP 22 未对 tailnet 开放或未装 OpenSSH Server**，从 epix `ssh-keyscan glab` 可能无响应；请先在本机完成：
+以下与仓库脚本一致；**事实表**见 [22-glab-tailscale-epix-remote.md](22-glab-tailscale-epix-remote.md)。Glab 当前 Windows 登录名（用于 SSH `User`）为 **`GG`**（与 `C:\Users\GG` 一致）；若你机不同，请全局替换。
 
-1. **设置 → 应用 → 可选功能 → OpenSSH 服务器** 安装并启动 **`sshd`**；PowerShell（管理员）：`Start-Service sshd`；`Set-Service -Name sshd -StartupType 'Automatic'`。
-2. **防火墙**：入站允许 **22**（域/专用/公用按你的网络配置文件勾选）。
-3. **授权 epix 公钥**：将 epix 上 `~/.ssh/id_ed25519.pub` **整行**追加到 glab 上目标用户的 `C:\Users\<用户>\.ssh\authorized_keys`（若目录不存在则创建；权限按 OpenSSH 文档设置）。
-4. 确认 glab 上 **SSH 登录用户名**（例如 `epix` 或微软账户短名）；在 epix `~/.ssh/config` 增加：
+### 3.1 glab：安装 OpenSSH、防火墙 22、authorized_keys（须管理员 PowerShell）
 
-```sshconfig
-Host glab glab.tailbb1446.ts.net
-  User 你的Windows用户名
-  IdentityFile ~/.ssh/id_ed25519
+1. 在 **epix** 上取公钥整行：`cat ~/.ssh/id_ed25519.pub`
+2. 在 **glab** 以管理员打开 PowerShell，`cd` 到 GitNet 仓库根（例如 `E:\Dev\GitNet` 或 `E:\DEV\GitNet`），执行：
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass -Force
+.\handbook\scripts\setup-glab-openssh-for-epix.ps1 `
+  -EpixPublicKeyLine 'ssh-ed25519 AAAA... epix@...' `
+  -GitNetWorkdirWin 'E:\DEV\GitNet'
 ```
 
-5. 在 epix 执行验证：
+`-GitNetWorkdirWin` 填 **`git rev-parse --show-toplevel`** 在资源管理器里对应的盘符路径（常见为 `E:\DEV\GitNet` 或 `E:\Dev\GitNet`）。脚本会安装/启动 **OpenSSH Server**、添加入站 **TCP 22** 规则、把公钥写入 **`%USERPROFILE%\.ssh\authorized_keys`**、尽量打开 **`PubkeyAuthentication yes`** 并重启 **sshd**。
+
+### 3.2 glab：写入 Git `includeIf` + 片段（普通 PowerShell 即可）
+
+仍在 GitNet 根目录：
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass -Force
+.\handbook\templates\windows-glab-git-includeIf.ps1
+```
+
+脚本会用 **`git rev-parse --show-toplevel`** 解析真实 `gitdir` 大小写（例如 `E:/DEV/GitNet/`），避免 `includeIf` 与 Git 工作区不一致。本机自检：
+
+```powershell
+cd E:\Dev\GitNet   # 或你的 toplevel 目录
+git config --show-origin user.name
+```
+
+应出现 **`glab-cursor`**，来源为 **`…\.gitconfig-fragment-cursor`**。
+
+### 3.3 epix：启用 `Host glab` 并验收 SSH + Git
+
+1. 将 [templates/epix-ssh-config-glab.fragment.conf](templates/epix-ssh-config-glab.fragment.conf) 合并进 **`~/.ssh/config`**（若原文件里已有被注释的 `Host glab` 段，**取消注释**并把 **`User`** 设为 **`GG`**）。
+2. 在 epix：
 
 ```bash
 ssh-keyscan glab.tailbb1446.ts.net >> ~/.ssh/known_hosts
-ssh glab "hostname && git --version"
+ssh glab "cd /d E:\DEV\GitNet && git config --show-origin user.name"
 ```
 
-通过后，在 **glab 本机** 用 PowerShell（可改 `$DevRoot`）执行 [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)，或按 [templates/gitconfig.windows.main.ini](templates/gitconfig.windows.main.ini) 手工编辑 `%USERPROFILE%\.gitconfig` 与三份片段，**HOSTNAME 一律用 `glab`**。
+（若 glab 上仓库在 `E:\Dev\GitNet`，把路径改成该目录。）成功时应看到 **`glab-cursor`**。
+
+### 3.4 能力边界
+
+- 以上实现的是 **SSH + Git 身份**；**不能**用同一套步骤「远程驱动 Glab 上所有 Cursor 图形 Agent」。
+- 仓库内**永不**提交私钥、密码、PAT。
 
 ---
 
 ## 4. 修订记录
 
 - 2026-05-13：首版；记录 woot 实装与 glab 人类配合门槛。
+- 2026-05-13：glab 增补 `setup-glab-openssh-for-epix.ps1`、`epix-ssh-config-glab.fragment.conf`；`windows-glab-git-includeIf.ps1` 用 `git rev-parse` 对齐 `gitdir` 大小写；epix `User` 定稿为 **GG**。
