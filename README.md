@@ -12,8 +12,12 @@
 - 远端仓库曾为空；若你仅在 Glab 本地开发，请在本机首次推送前在 **Glab** 上完成「已有仓库绑定远端并推送」（见 [docs/GLAB_PUSH.md](docs/GLAB_PUSH.md)）。
 - 若远端已有提交，在本目录执行：`git pull origin main`。
 
-## 克隆
+## 克隆（建议本地目录名与仓库一致）
 
 ```bash
-git clone https://github.com/epix99-opus/GitNet.git
+cd /Users/epix/Dev
+git clone https://github.com/epix99-opus/GitNet.git GitNet
+cd GitNet
 ```
+
+本机工作副本路径：**`/Users/epix/Dev/GitNet`**。

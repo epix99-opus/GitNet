@@ -37,6 +37,6 @@ git branch -M main
 git push -u origin main
 ```
 
-完成后在 Mac 上 `/Users/epix/Dev/NetGit` 执行 `git pull origin main` 即可对齐。
+完成后在 Mac 上 `/Users/epix/Dev/GitNet` 执行 `git pull origin main` 即可对齐。
 
 **注意**：请勿将密钥、Token、私钥提交进仓库；敏感项用本机 secret 或 SOPS（见 NetOps `docs/SOPS.md`）。
