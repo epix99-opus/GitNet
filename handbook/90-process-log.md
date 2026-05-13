@@ -22,6 +22,27 @@
 - 回顾：未提交密钥；`.specstory` 不纳入版本库。待人类：`git remote add` 指向 epix 或 GitHub 后首次 push。
 - 验收：本地 `git log` 可见首条 root 提交 `f895f55`；后续文档修补以 `git log` 为准；远程 push 以人类网络环境为准。
 
+### 2026-05-13 — Windows 配置 GitHub origin（人类已同意阶段 A）
+
+- 参与：人类（书面同意）/ Agent（Cursor）
+- 变更摘要：在 `E:\DEV\GitNet` 已执行 `git remote add origin https://github.com/epix99-opus/GitNet.git`（此前无 remote）；分支已为 `main`。因 Cursor 集成终端对 **HTTPS 推送** 常阻塞在 **Git Credential Manager** 交互（浏览器/弹窗），Agent 侧 **非交互 push 未完成**。
+- 涉及信源：`handbook/90-process-log.md`、本地 `.git/config`
+- 回顾：人类请在 **本机 PowerShell/cmd（可弹出凭据）** 或 **SourceTree** 中执行下方「人类一步」完成验收；若任务管理器中有卡住的 `git.exe`，可结束后再推。
+- 验收：`git ls-remote origin refs/heads/main` 能列出远端提交且与本地 `main` 一致；GitHub 网页可见 `main` 历史。
+
+**人类一步（复制执行）**：
+
+```powershell
+cd E:\DEV\GitNet
+git remote -v
+git push -u origin main
+```
+
+若提示登录：使用 GitHub 账号 + PAT（或已配置的凭据管理器）。完成后将本段「验收」勾为已完成并填日期。
+
+---
+
+## Tailscale / SSH / epix 实施验证清单
 
 在 epix 与至少一台客户端（Windows 或其它 Mac）上完成下列项后，将**实值**填在第二列表格，并在底部「验证记录」签字或记日期。
 
