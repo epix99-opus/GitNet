@@ -7,6 +7,10 @@
 - **不是**某一业务应用的产品代码仓为主目标。
 - **是**一套面向 **Tailscale 局域网内多 Mac + 多编程 Agent + 人类** 的 **Git 与协作治理** 的承载仓库：拓扑、身份、备份、手册、脚本模板、进程记录、Cursor 规则等。
 
+## 北极星：Agent 优先、尽量少的人类临场
+
+本仓库的长期意图是：**在硬边界之内最大化 Agent 权限与自动化**——把 Git 规范、流程与证据链写进 `handbook/` 与脚本，使多设备、多 Agent 协作任务尽量在**人类不参与**的情况下完成；不可避免时再按 [AGENTS.md](../AGENTS.md) 第 3～4 条交接。完整表述与对照表见 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md)。
+
 ## 人类最终要求（从《人类初始指令》归纳）
 
 1. **可运行的多设备 / 多 Agent Git 体系**（含 SourceTree 与人类可操作路径）。

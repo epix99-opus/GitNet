@@ -105,6 +105,13 @@ git push -u origin main
 - 涉及信源：上述路径
 - 回顾：**未**在 glab 写入 `authorized_keys`（硬边界）；**未**向 Issue #1 发帖（无 `GITHUB_TOKEN`）。剩余：人类粘贴 `issue-1-glab-evidence-comment.md` 全文、择机关闭 Issue、可选完成 T2 公钥。
 
+### 2026-05-13 — 定稿「北极星」：Agent 优先的多机协作意图（Agent）
+
+- 参与：Agent（Cursor）
+- 变更摘要：新增 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md)；根 [README.md](../README.md)、[AGENTS.md](../AGENTS.md)、[05-project-scope-and-delivery.md](05-project-scope-and-delivery.md)、[00-truth-sources.md](00-truth-sources.md)、[handbook/README.md](README.md)、[.cursor/rules/gitnet-collaboration.mdc](../.cursor/rules/gitnet-collaboration.mdc) 交叉引用；AGENTS/规则补充「不得使用聊天中的主机口令代登」。
+- 涉及信源：上述路径
+- 回顾：**未**将任何口令写入仓库；**未**使用聊天中提供的凭据连接 glab（违反秘密禁令且本会话无受控执行面）。GitHub Issue 发帖仍依赖 `GITHUB_TOKEN` 或人类浏览器。
+
 ## Tailscale / SSH / epix 实施验证清单
 
 在 epix 与至少一台客户端（Windows 或其它 Mac）上完成下列项后，将**实值**填在第二列表格，并在底部「验证记录」签字或记日期。

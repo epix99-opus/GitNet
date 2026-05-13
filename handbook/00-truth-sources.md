@@ -10,6 +10,7 @@
 4. **[人类初始指令.md](../人类初始指令.md)**：项目意图与范围；**不承载**具体路径、主机名、密钥等易变事实。若与 1～3 冲突，以 1～3 为准，并在此文或进程日志中注明「意图不变、落地以 handbook 为准」。
 5. **`docs/` 下两篇参考文档**：历史与思路参考；**非定稿**。对照表见 [70-docs-migration-map.md](70-docs-migration-map.md)。
 6. **[05-project-scope-and-delivery.md](05-project-scope-and-delivery.md)**：项目元定义、交付边界、会话结论归并、人类检查清单；与 `00` 不冲突时作为意图与验收的摘要信源。
+7. **[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md)**：**北极星**——以 Agent 为执行主体的多设备协作意图；与 AGENTS 铁律、秘密禁令一并阅读，避免把「意图」理解成「可违反安全」。
 
 ## 冲突时怎么处理
 

@@ -2,9 +2,12 @@
 
 多设备、多编程 Agent 与人类协作的 **Git 与治理** 元仓库。**拓扑、主从与身份**以 **[handbook/README.md](handbook/README.md)** 为准（**epix bare 为权威**，GitHub 为从镜像；日常勿把 GitHub 当唯一主线）。
 
+**项目本意（北极星）**：在硬边界（凭证不入库、法律与设备授权等）之内，**最大化 Agent 可执行范围**，用 Git、手册与脚本把多机多 Agent 协作尽量做到**可无人值守**；定稿见 **[handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)**。
+
 ## 从这里开始
 
 - [handbook/README.md](handbook/README.md)
+- [handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)（**北极星**：Agent 优先、多设备无人值守协作意图）
 - [handbook/07-documentation-placement.md](handbook/07-documentation-placement.md)（写什么、写哪里）
 - [handbook/55-multi-node-multi-agent-git.md](handbook/55-multi-node-multi-agent-git.md)（多机多 Agent Git 身份总表）
 - [handbook/46-tailscale-remote-git-identity.md](handbook/46-tailscale-remote-git-identity.md)（epix→woot/glab 经 Tailscale 落地与 SSH 约定）
