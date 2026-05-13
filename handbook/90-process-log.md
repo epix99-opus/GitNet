@@ -119,6 +119,13 @@ git push -u origin main
 - 涉及信源：上述路径
 - 回顾：**不变**——凭据**明文**仍不得进入 Git 对象与 Issue；与「安全方式存储和使用」的工程含义一致。
 
+### 2026-05-13 — glab：authorized_keys 公钥行由本机脚本确认（Agent）
+
+- 参与：Agent（Cursor，工作区在 glab）
+- 变更摘要：新增 [scripts/append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1)；于本机执行后确认 `C:\Users\GG\.ssh\authorized_keys` 已含定稿 `ssh-ed25519` 行；`Get-Service sshd` 为 **Running**；更新 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) **T2** 为完成。
+- 涉及信源：上述路径
+- 回顾：建议 epix 再验 `ssh -o BatchMode=yes glab "hostname"`。
+
 ## Tailscale / SSH / epix 实施验证清单
 
 在 epix 与至少一台客户端（Windows 或其它 Mac）上完成下列项后，将**实值**填在第二列表格，并在底部「验证记录」签字或记日期。
