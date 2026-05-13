@@ -17,9 +17,9 @@
 ### 2026-05-13 — CAMA-concept：派生 CAMA-git 方案/手册与三机清单
 
 - 参与：Agent（Cursor，cwd epix）
-- 变更摘要：在 **`/Users/epix/Dev/CAMA/CAMA-concept`** 新增 `doctrine/CAMA-git方案.md`、`doctrine/CAMA-git手册.md`、`regulations/cama-git-inventory.md`（合并 epix/glab/woot 枚举与 Agent 矩阵）；`AGENTS.md` / `README*` / `CHANGELOG` 绑定 Git 工程可信来源；提交 **`3b352d2`**（该仓当前 **无 `git remote`**，未执行 `push`）。
+- 变更摘要：在 **`/Users/epix/Dev/CAMA/CAMA-concept`** 新增 `doctrine/CAMA-git方案.md`、`doctrine/CAMA-git手册.md`、`regulations/cama-git-inventory.md`（合并 epix/glab/woot 枚举与 Agent 矩阵）；`AGENTS.md` / `README*` / `CHANGELOG` 绑定 Git 工程可信来源；提交 **`3b352d2`**。随后 Agent 已 **`git remote add origin https://github.com/epix99-opus/CAMA.git`** 并 **`git push -u origin CAMA_Cursor`**（铁律：不因「未配置」回抛人类）。
 - 涉及信源：GitNet `handbook/published/inventory-*-enumerated-agent.md`、`94`、`10`、`55`、`08`
-- 回顾：CAMA-concept 工作区尚有 **未暂存** 的删除/未跟踪文件（与本提交无关）；维护者按需 `git status` 清理或另开提交。
+- 回顾：CAMA-concept 工作区尚有 **未暂存** 的删除/未跟踪文件（与 `3b352d2` 提交内容无关）；合并 `main` 或清理请人类另开任务以免与本线混淆。
 
 ### 2026-05-13 — 三机 Git 仓库：Agent 经 Tailscale SSH 枚举落盘
 
