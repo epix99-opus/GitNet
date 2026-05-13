@@ -164,6 +164,7 @@ ssh -o BatchMode=yes -o ConnectTimeout=20 glab 'powershell -NoProfile -Command "
 
 ## 修订记录
 
+- 2026-05-13：`AGENTS.md` 条文扩展至 **1～7**（规划/可验证信号、人类对话提示）；`.cursor/rules/gitnet-collaboration.mdc` 以 **`AGENTS.md` 为全文**、本文件仅索引（与 Cursor 官方「避免规则重复」一致）。
 - 2026-05-13：§1 信息边界增「回合前/末（目标与检索）」行，指向 `AGENTS.md`「回合前与回合末」。
 - 2026-05-13：§1 信息边界增「Agent 回合完成定义」行，指向 `AGENTS.md`「多机与盘点：实测完成定义」。
 - 2026-05-12：§5.3 增加指向三机 `published/inventory-*`「实机探测」节的链接。

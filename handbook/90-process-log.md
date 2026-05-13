@@ -14,6 +14,14 @@
 
 ## 已记录条目
 
+### 2026-05-13 — AGENTS / Cursor 规则：对齐官方习惯、去冗与本机细节迁出
+
+- 参与：Agent（Cursor）
+- 变更摘要：`AGENTS.md` — 「全工作区」段改为 **User Rules / Team Rules** 原则 + 过程细节迁 **`90`**；条文增 **6 规划与可验证信号**（Plan Mode、最小 lint/测）、**7 人类协作提示**（新会话、`@Past Chats`）；多机小节改为引用条文 **1～7**。`.cursor/rules/gitnet-collaboration.mdc` — **铁律长文删除**，改为 **`AGENTS.md` 为唯一全文** 的索引句，避免与根契约漂移重复。
+- 涉及信源：`AGENTS.md`、`.cursor/rules/gitnet-collaboration.mdc`、`90`
+- 回顾：Windows `personalContext` 具体操作与备份路径若仍需可查，应只在 `90` 历史条目中保留，不再写进 `AGENTS`。
+  - **归档（原 `AGENTS` 曾写，今迁出）**：曾在 Windows 本机将铁律合并写入 Cursor 库键 **`aicontext.personalContext`**；整库备份示例文件名 **`state.vscdb.gitnet-ironlaw-backup`**（位于 **`%APPDATA%\Cursor\User\globalStorage\`** 下，随 Cursor 版本可能变化）。当前以 **Settings → Rules → User Rules** 界面为准维护全局条文。
+
 ### 2026-05-13 — AGENTS 增补「回合前与回合末：目标对齐与主动检索」
 
 - 参与：Agent（Cursor）

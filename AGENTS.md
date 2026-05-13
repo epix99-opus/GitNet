@@ -8,7 +8,7 @@
 
 - **指（原则范围）**：凡由 Agent 承担的任务，**不因换仓库或换会话就变卦**——能执行就执行到可验收为止；只有客观硬边界才交接人类，且须附原因与操作提示。
 - **不指（Cursor 注入范围）**：本文件与 `.cursor/rules/` 写在 **GitNet 仓库内**时，在 Cursor 里默认只对**打开本仓库作为工作区**的会话稳定注入；这属于**本项目的契约与信源**，**不等于** Cursor 对「你电脑上每一个文件夹」自动生效。
-- **全 Cursor、全工作区（本机已执行）**：已在 Windows 本机将铁律追加写入 Cursor 本地库键 **`aicontext.personalContext`**（与既有「用中文回答」合并，未删除原内容）。备份：`%APPDATA%\Cursor\User\globalStorage\state.vscdb.gitnet-ironlaw-backup`（更新前整库拷贝）。若你在 **Cursor Settings → Rules** 中清空 User Rules，可能覆盖该键；请从备份恢复或从本文件再合并。**说明**：Cursor 可能随版本调整存储位置；若失效，以官方「User Rules」界面为准重新粘贴条文。
+- **全 Cursor、全工作区**：若要在 **所有** Cursor 工作区默认生效与本条等价的铁律，请使用 **Cursor Settings → Rules → User Rules**（或团队 **Team Rules**）。**勿假设**未配置 User Rules 时其它文件夹打开的工作区会自动带上本仓契约。一次性本机迁移、备份路径、存储键名等**过程细节**只记在 [`handbook/90-process-log.md`](handbook/90-process-log.md)，**不写入本文件**，以免随 Cursor 版本漂移。
 
 ### 条文
 
@@ -19,8 +19,12 @@
    - **操作提示**（逐步、可复制：在何设备、点何处、填何值、如何验收）。
 4. **交接人类的格式（强制）**：凡列出「Agent 不能判断或不能执行的未完成项」时，**禁止**只写事项名称或一句「请人类处理」。每条未完成项须在同一处写清：**原因** + **操作提示**（命令/菜单路径逐步可复制）+ **验收标准**（怎样算完成）。会话回复、Issue/PR 评论、`handbook/90-process-log.md` 与各类 handoff 文档均适用。
 5. **任务完成定义**：以「目标可验证地达成」或「不可逾越边界已用第 3～4 条格式交接」为准，不得停在未尝试的中间态。
+6. **规划与可验证信号（与 Cursor Agent 习惯对齐）**：
+   - **大改先规划**：多文件重构、架构/安全/发布相关、或需求边界不清时，**优先**使用 Cursor **Plan Mode**（或先在本会话写出可审阅的短方案与受影响文件列表）再动大 diff；与 [handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) 的归纳层可并用。
+   - **改代码后给信号**：本仓库若存在 **CI、lint、测试脚本**，在**实质改动**应用代码或构建配置后，**须**运行与变更相关的**最小**检查（单测文件 / 目标 lint），不得跳过可得的失败信号；仍遵守下文「禁止」中不得为过测而改测。
+7. **人类协作提示（可选）**：换任务、模型明显跑偏或长会话后效果下降时，**新开对话**；续作可用 Cursor **`@Past Chats`** 拉取摘要，优于整段粘贴。
 
-### 回合前与回合末：目标对齐与主动检索（与条文 1～5 一并遵守）
+### 回合前与回合末：目标对齐与主动检索（与条文 1～7 一并遵守）
 
 面向**所有任务类型**（不限于多机盘点）：约束「不读信源就编、不对齐用户目标就收口」。
 
@@ -30,7 +34,7 @@
 
 ### 多机与盘点：实测完成定义（铁律的操作化）
 
-下列约束与上文 **条文 1～5**、**「回合前与回合末：目标对齐与主动检索」** 一并遵守；操作细节与命令模板见 [handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md](handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md) §5、`handbook/published/inventory-*-enumerated-agent.md`。
+下列约束与上文 **条文 1～7**、**「回合前与回合末：目标对齐与主动检索」** 一并遵守；操作细节与命令模板见 [handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md](handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md) §5、`handbook/published/inventory-*-enumerated-agent.md`。
 
 1. **回合完成定义（DoD）**：任务若涉及「各机是否安装某编程 Agent/CLI」「可执行路径」「跨机仓库枚举」等**可经网络与 SSH 验证的事实**——在 **epix 上 `ssh -o BatchMode=yes glab` / `ssh -o BatchMode=yes woot@woot` 已能成功**（或仅需本机命令）时，本回合交付须同时满足：**已实际执行**与结论对应的命令（或等价的一键脚本）、**结论写入受版本控制的信源**（默认可落盘 `handbook/published/inventory-*-enumerated-agent.md` 等 `94` 约定路径）、**已 `git commit`**；若该工作副本对约定远端有写权限且团队策略允许，则 **`git push` 至约定分支**。**禁止**仅以「已撰写流程/模板/RACI/可复制命令块」作为回合结束态。
 2. **禁止「待填」冒充完成**：凡表格或清单字段表示**各机实测事实**（安装与否、绝对路径、`origin` 实值等），在 Agent **客观上能跑通 SSH/本机命令** 时，**不得**长期保留「待填」「依实机」「人类补」等占位而不尝试。尝试失败时：该字段改为 **失败事实**（含命令与 stderr/退出码摘要），并仅在满足条文 **3～4** 时上抛人类。

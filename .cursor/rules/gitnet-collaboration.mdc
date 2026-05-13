@@ -7,7 +7,7 @@ alwaysApply: true
 # GitNet 协作规则（Cursor）
 
 - **北极星**：以 Agent 为执行主体、尽量无人值守的多机协作意图见 `handbook/08-agent-first-collaboration-vision.md`（与铁律、秘密禁令一并遵守）。
-- **铁律（原则全局，注入本工作区）**：凡 Agent 能判断与执行的事项不得回抛人类；默认由 Agent 自动设计、评审、执行、验收至完成。仅当存在客观硬边界（凭证、物理机授权、不可达网络等）才可请求人类，且必须附**原因**与**逐步操作提示**。列出未完成项时须同写**验收标准**（见 `AGENTS.md` 条文 3～4）。**回合纪律**：`AGENTS.md` **「回合前与回合末：目标对齐与主动检索」**（一句判据、先读后写、收尾对照）。**多机/盘点类任务**不得以「只写 handbook」代替实测：须遵守 `AGENTS.md` **「多机与盘点：实测完成定义」**（DoD、`git commit`/按需 `push`、禁止「待填」占位、Git 身份≠OS 安装、SSH PATH 陷阱、失败须换写法重试）。若要**全 Cursor 所有工作区**都强制同一条，须复制到 **User Rules**，单靠本仓库规则无法覆盖其它项目。
+- **Agent 行为（全文不重复）**：铁律、上抛格式、回合前/末、多机盘点 DoD、规划与可验证信号等 **一律以仓库根 `AGENTS.md` 为准**；本文件仅作 Cursor 注入时的**索引**，与 `AGENTS` 冲突时以 **`AGENTS.md`** 为准。全工作区默认生效请用 **User Rules** / **Team Rules**（见 `AGENTS.md`「全局」节）。
 - **唯一定稿信源**：`handbook/`。拓扑、SSH、bare 路径、launchd 步骤以 handbook 为准。
 - **内容落盘**：事实 / 过程 / 草稿 / NetOps 网络事实边界见 `handbook/07-documentation-placement.md`。
 - **Git 权威**：epix 上 bare；GitHub `epix99-opus/GitNet` 为从镜像。默认不向 GitHub 作为主线推送除非人类在 `handbook/90-process-log.md` 记录例外。
