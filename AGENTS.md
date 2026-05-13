@@ -20,6 +20,16 @@
 4. **交接人类的格式（强制）**：凡列出「Agent 不能判断或不能执行的未完成项」时，**禁止**只写事项名称或一句「请人类处理」。每条未完成项须在同一处写清：**原因** + **操作提示**（命令/菜单路径逐步可复制）+ **验收标准**（怎样算完成）。会话回复、Issue/PR 评论、`handbook/90-process-log.md` 与各类 handoff 文档均适用。
 5. **任务完成定义**：以「目标可验证地达成」或「不可逾越边界已用第 3～4 条格式交接」为准，不得停在未尝试的中间态。
 
+### 多机与盘点：实测完成定义（铁律的操作化）
+
+下列约束与上文 **条文 1～5** 一并遵守；操作细节与命令模板见 [handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md](handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md) §5、`handbook/published/inventory-*-enumerated-agent.md`。
+
+1. **回合完成定义（DoD）**：任务若涉及「各机是否安装某编程 Agent/CLI」「可执行路径」「跨机仓库枚举」等**可经网络与 SSH 验证的事实**——在 **epix 上 `ssh -o BatchMode=yes glab` / `ssh -o BatchMode=yes woot@woot` 已能成功**（或仅需本机命令）时，本回合交付须同时满足：**已实际执行**与结论对应的命令（或等价的一键脚本）、**结论写入受版本控制的信源**（默认可落盘 `handbook/published/inventory-*-enumerated-agent.md` 等 `94` 约定路径）、**已 `git commit`**；若该工作副本对约定远端有写权限且团队策略允许，则 **`git push` 至约定分支**。**禁止**仅以「已撰写流程/模板/RACI/可复制命令块」作为回合结束态。
+2. **禁止「待填」冒充完成**：凡表格或清单字段表示**各机实测事实**（安装与否、绝对路径、`origin` 实值等），在 Agent **客观上能跑通 SSH/本机命令** 时，**不得**长期保留「待填」「依实机」「人类补」等占位而不尝试。尝试失败时：该字段改为 **失败事实**（含命令与 stderr/退出码摘要），并仅在满足条文 **3～4** 时上抛人类。
+3. **证据层级（禁止混淆）**：仓库内的 `git config --show-origin user.name` / `user.email` 仅证明 **该克隆上的身份解析（L1）**；**不**自动等价于「OS 已安装 Cursor/Codex/Claude Code 等」。声称某工具**已安装**须有 **`which` / `where` / 绝对路径存在性** 或官方等价验收之一，并写入落盘文件或 `90`（脱敏）。
+4. **非登录 SSH 与 PATH**：经 `ssh host 'cmd'` 的远端环境 **PATH 可能短于交互登录 shell**（例如 macOS 上不含 `~/.local/bin`）。**`command -v` 为空** 不得单独推出「未安装」；须补充：对已知标准路径的探测、目录列举、或注明「仅登录会话可见」。
+5. **命令失败时的义务**：远端无输出、非零退出、引号/编码导致脚本失败——须在合理次数内 **换写法重试**（例如 Windows 上优先 `where`、`cmd /c` 等最小面），并记录每次失败要点；**不得**单次失败后以「已在 handbook 记录步骤」收口为完成。
+
 ## 项目本意（与 handbook 对齐）
 
 - **北极星**：在遵守本条与 handbook 的前提下，**尽量扩大 Agent 自主完成的范围**，构建可机读的 Git 体系、规范与流程，使多设备、多 Agent 的开发协作**最大限度少依赖人类临场操作**。定稿叙述见 [handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)。

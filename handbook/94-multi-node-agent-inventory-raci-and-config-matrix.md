@@ -9,6 +9,7 @@
 | **规范约定**（每机最多 Cursor/Codex/Claude Code、作者名、`includeIf` 路径前缀） | `55`、`40` |
 | **各机 Git 仓库清单（事实表）** | **优先**：在 **epix** 上具备 `ssh glab` / `ssh woot@woot` 的 Agent，按 **§5.6** 远程枚举并落盘 [published/inventory-*-enumerated-agent.md](../published/)；本机 epix 用 **§5.4**。**备选**：人类在任一节点的终端执行相同命令，将输出填入 [published/inventory-machine-TEMPLATE.md](../published/inventory-machine-TEMPLATE.md) 或 `90`（脱敏） |
 | **glab SSH 与 GitNet 路径实值** | 以 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)、[published/issue-1-glab-evidence-comment.md](published/issue-1-glab-evidence-comment.md) 及 **glab 枚举文件**为准；本文件**不**重复易变用户名路径 |
+| **Agent 回合完成定义（禁止「只写流程」）** | 仓库根 [AGENTS.md](../AGENTS.md) **「多机与盘点：实测完成定义」**；与本文件 §5、`published/inventory-*` 探测节一致 |
 
 ---
 
@@ -162,6 +163,7 @@ ssh -o BatchMode=yes -o ConnectTimeout=20 glab 'powershell -NoProfile -Command "
 
 ## 修订记录
 
+- 2026-05-13：§1 信息边界增「Agent 回合完成定义」行，指向 `AGENTS.md`「多机与盘点：实测完成定义」。
 - 2026-05-12：§5.3 增加指向三机 `published/inventory-*`「实机探测」节的链接。
 - 2026-05-13：增补 **§5.6**（Tailscale SSH 跨机枚举为 epix Agent 默认路径）；**§1**/**RACI** 与铁律对齐；§5.5 改用 `git branch --show-current`；glab 经 `ssh` 的一行 PowerShell 已实机验证。
 - 2026-05-13：首版（计划 `94` 落盘：盘点模板、RACI、配置矩阵、分层纳入定义）。

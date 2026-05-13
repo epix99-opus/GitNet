@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — 约束落盘：AGENTS「多机与盘点实测完成定义」+ Cursor 规则交叉引用
+
+- 参与：Agent（Cursor）
+- 变更摘要：在 [AGENTS.md](../AGENTS.md) 增补 **「多机与盘点：实测完成定义」**（DoD、`commit`/`push`、禁止文档顶替测量与「待填」占位、Git 身份≠OS 安装证据、非登录 SSH 的 PATH 陷阱、失败须换写法重试）；[.cursor/rules/gitnet-collaboration.mdc](../.cursor/rules/gitnet-collaboration.mdc) 铁律条下链到该节；[94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) §1 信息边界增一行指向 `AGENTS`。
+- 涉及信源：`AGENTS.md`、`94`、`90`
+- 回顾：真·全 Cursor 默认仍依赖 User Rules；本批为 **本仓库与会话注入** 的硬约束。
+
 ### 2026-05-12 — 三机编程 Agent：Tailscale SSH 实机探测（非仅 Git 身份）
 
 - 参与：Agent（Cursor，cwd epix）
