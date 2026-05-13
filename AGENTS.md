@@ -43,6 +43,7 @@
 
 ## 文档与清理
 
+- **落盘规则（已定稿）**：[handbook/07-documentation-placement.md](handbook/07-documentation-placement.md) — 事实进 `handbook/`、过程进 `90-process-log`、草稿进 `docs/` 后迁移；纯网络层事实在 **NetOps** `network_facts.env`，本仓不复制。
 - 变更定稿内容时，优先更新 `handbook/`，避免与 [docs/](docs/) 参考文重复叙述同一事实。
 - 交付后回顾：归并应保留的信息；删除无长期价值的临时文件；在 [handbook/90-process-log.md](handbook/90-process-log.md) 记摘要。
 

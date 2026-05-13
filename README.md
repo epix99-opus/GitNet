@@ -5,6 +5,7 @@
 ## 从这里开始
 
 - [handbook/README.md](handbook/README.md)
+- [handbook/07-documentation-placement.md](handbook/07-documentation-placement.md)（写什么、写哪里）
 - [AGENTS.md](AGENTS.md)
 
 ## 远端

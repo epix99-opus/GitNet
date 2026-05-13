@@ -21,7 +21,7 @@
 
 | 会话内容 | 归类 | 应落在何处 |
 |----------|------|------------|
-| 对人类最终意图、GitNet 元项目定义、最佳实践原则 | **文档化** | 本文 + 必要时链到 [00-truth-sources.md](00-truth-sources.md)、[10-topology.md](10-topology.md) |
+| 对人类最终意图、GitNet 元项目定义、最佳实践原则 | **文档化** | 本文 + 必要时链到 [00-truth-sources.md](00-truth-sources.md)、[07-documentation-placement.md](07-documentation-placement.md)、[10-topology.md](10-topology.md) |
 | 「已完成 / 未完成」对照表 | **文档化** | 本文「交付状态」；机器实值仍以 [90-process-log.md](90-process-log.md) 为准 |
 | 对人类的具体建议（重启 Cursor、填表、分支保护、dotfiles） | **文档化（作检查清单）** | 本文「人类检查清单」；执行动作由责任方按清单做 |
 | Windows / Mac 实配 Git、SSH、克隆、推送 | **方案 → 执行 → 验收** | 执行照 [20-windows-setup.md](20-windows-setup.md)、[30-mac-epix-setup.md](30-mac-epix-setup.md)；验收用其中自检命令 + [90-process-log.md](90-process-log.md) 表格 |

@@ -47,6 +47,13 @@ git push -u origin main
 - 变更摘要：`git pull origin main --rebase` 在 **`.gitignore`**、**`README.md`** 发生 add/add 冲突。已手工合并：`.gitignore` 含 Mac 侧（`.DS_Store`、`.env*`、密钥后缀）与 Glab 侧（`.specstory/`、`.tmp_*.py`）；`README.md` 以 `handbook` 为信源描述主从，并保留 Mac/Windows 工作路径示例。rebase 完成后已执行 **`git push -u origin main`**，`main` 已与 `origin/main` 对齐（顶提交以 `git log -1` 为准）。
 - 验收：GitHub 网页 `main` 可见完整手册与 `handbook/`；Mac `/Users/epix/Dev/GitNet` 可 `git pull origin main` 快进。
 
+### 2026-05-12 — 内容落盘规则定稿（handbook/07）
+
+- 参与：人类（同意落盘建议）/ Agent（Cursor）
+- 变更摘要：新增 [07-documentation-placement.md](07-documentation-placement.md)（事实→`handbook/`、过程→`90-process-log`、草稿→`docs/` 后迁移、网络事实→NetOps）；更新 [00-truth-sources.md](00-truth-sources.md)、[handbook/README.md](README.md)、根 [README.md](../README.md)、[AGENTS.md](../AGENTS.md)、[05-project-scope-and-delivery.md](05-project-scope-and-delivery.md)、[70-docs-migration-map.md](70-docs-migration-map.md)、[人类初始指令.md](../人类初始指令.md) 的交叉引用。
+- 涉及信源：上述路径
+- 回顾：未在 GitNet 内复制 `network_facts.env`；与 NetOps 边界见 `07` 第二节。
+
 ---
 
 ## Tailscale / SSH / epix 实施验证清单

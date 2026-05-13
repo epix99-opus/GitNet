@@ -2,6 +2,8 @@
 
 ## 信源层级（从高到低）
 
+**内容与目录应写到哪里（表格级指引）**：见 [07-documentation-placement.md](07-documentation-placement.md)（含 `docs/` / `handbook/` / NetOps 边界）。
+
 1. **机器可验证事实**：操作系统、主机名、Tailscale DNS 名称、磁盘上的 bare 路径、SSH 是否连通。
 2. **本目录 `handbook/`**：定稿拓扑、操作步骤、身份与远端约定；**有变更时在此更新**，并视需要在 [90-process-log.md](90-process-log.md) 记一笔。
 3. **仓库根目录 [AGENTS.md](../AGENTS.md)**：编程 Agent 与人类的分工、**全局铁律（能执行则不得回抛人类）**、提交命名、禁止事项；与 handbook 冲突时，**以 handbook 拓扑与身份章节为准**，AGENTS 应改为引用 handbook 而非重复叙述拓扑细节。

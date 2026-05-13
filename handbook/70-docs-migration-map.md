@@ -1,6 +1,6 @@
 # `docs/` 参考文 → `handbook/` 定稿 对照表
 
-说明：`docs/` 下两篇为起草与参考，**非唯一信源**。已定稿差异与采纳关系如下。
+说明：`docs/` 下两篇为起草与参考，**非唯一信源**。未定稿材料先放 `docs/`，定稿迁移与目录边界见 [07-documentation-placement.md](07-documentation-placement.md)。已定稿差异与采纳关系如下。
 
 ## 《Git 多设备多账号体系、跨系统配置与长期维护方案》
 
