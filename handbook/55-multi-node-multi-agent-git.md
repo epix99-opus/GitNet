@@ -98,6 +98,12 @@ git config --show-origin user.email
 
 ---
 
+## 5.1 对象层：`fetch` / `push` 与 bare 权威
+
+本节以上只约定 **提交作者是谁**（`includeIf` + 片段）。**各 ref 在哪里汇合、默认 `push` 指向谁**，由 [10-topology.md](10-topology.md) 的 **「规范状态与演进」「多设备 × 多 Agent」** 两节定稿：**日常写集成与 push 权威在 epix bare**；GitHub 为从镜像；过渡偏离须在 [90-process-log.md](90-process-log.md) 记录。
+
+---
+
 ## 6. 演进清单（可选）
 
 1. **woot / glab**：按上表补齐片段文件与 `includeIf`；结果记入 [90-process-log.md](90-process-log.md)。
@@ -108,5 +114,5 @@ git config --show-origin user.email
 
 ## 修订记录
 
-- 2026-05-13：补充 **woot** 经 Tailscale SSH 实装与 **glab** 门槛；SSH 用户名为 **`woot`**；新增 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)。
+- 2026-05-13：补充 **woot** 经 Tailscale SSH 实装与 **glab** 门槛；SSH 用户名为 **`woot`**；新增 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)；新增 **§5.1** 链到 [10-topology.md](10-topology.md) 对象层（bare 汇合 / GitHub 镜像）。
 - 2026-05-12：首版；基于 epix 当前 `~/Dev` + `agent-work` 实装与 tailnet 节点名归纳 glab/woot 方案。

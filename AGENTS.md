@@ -47,7 +47,7 @@
 ## 日常工作流
 
 1. 开发、提交在**工作克隆**上进行。
-2. `git push` 默认指向 **epix**（`origin` 或团队约定的 `lan`）。
+2. `git push` 默认指向 **epix**（`origin` 或团队约定的 `lan`），即 **epix bare** 为写集成权威；**多设备多 Agent** 的节律、并发与 GitHub 次优路径见 [handbook/10-topology.md](handbook/10-topology.md)「规范状态与演进」「多设备 × 多 Agent」。
 3. 不在未记录流程下从 GitHub 强推覆盖 epix 上的历史。
 
 ## 文档与清理

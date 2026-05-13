@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — 定稿：多设备多 Agent 以 epix bare 为写集成权威（10-topology）
+
+- 参与：人类（意图确认）/ Agent（Cursor）
+- 变更摘要：在 [10-topology.md](10-topology.md) 落盘 **目标规范**（可经实机运行后改为「已定」）：**日常 `fetch`/`pull`/`push` 汇合于 epix bare**；GitHub 为从镜像；过渡性以 GitHub 汇合须在本文记录原因与迁回验收；增补 bare 侧 / 各克隆 / 并发 / 次优路径 / 感知层五段「最优实现」清单。[55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) 增 §5.1；[AGENTS.md](../AGENTS.md) 日常工作流链到 `10`；[README.md](README.md) 阅读顺序更新对 `10` 的说明。
+- 涉及信源：`10-topology.md`、`55`、`AGENTS.md`、`README.md`
+- 回顾：与既有 `30`（bare+launchd）、`06`（分支保护）、`92`（轮询感知）不冲突；控制面编排仍以各项目为准。
+
 ### 2026-05-12 — 仓库初始化与手册交付（Agent）
 
 - 参与：Agent（Cursor）

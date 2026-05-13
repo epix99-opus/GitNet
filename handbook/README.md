@@ -12,7 +12,7 @@
 | 2 | [05-project-scope-and-delivery.md](05-project-scope-and-delivery.md) | 项目定义、交付边界、会话结论归并、人类检查清单 |
 | 3 | [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) | **北极星** + **全链路认证**：Agent 优先；公钥默认优先；人类口令/PAT 须经安全存储后使用；凭据明文不进 Git/Issue |
 | 4 | [07-documentation-placement.md](07-documentation-placement.md) | **内容落盘规则**：事实 / 过程 / 草稿各写何处；与 NetOps 网络事实源边界 |
-| 5 | [10-topology.md](10-topology.md) | epix 权威裸仓、GitHub 从镜像、各端角色 |
+| 5 | [10-topology.md](10-topology.md) | epix 权威裸仓、GitHub 从镜像、各端角色；**多设备 × 多 Agent 时 bare 为写集成与默认 push 汇合点的目标规范与最优实现** |
 | 6 | [40-identity-and-includeIf.md](40-identity-and-includeIf.md) | 人类兜底与 Agent 作者名、`includeIf` 模板 |
 | 7 | [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) | **epix / glab / woot** 多节点 × Cursor/Codex/Claude 的 Git 身份总表与 `includeIf` 顺序 |
 | 8 | [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md) | 非技术向：Tailscale 机器名、SSH 别名、bare 路径 |
