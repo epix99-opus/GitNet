@@ -1,5 +1,7 @@
 # 给非技术用户：Tailscale、SSH 与「地址」是什么
 
+若克隆地址里 `git@` 后面的主机名不确定，先问团队是否在 `handbook/22-glab-tailscale-epix-remote.md` 写了 **Glab** 的 MagicDNS（Windows 节点）。
+
 ## 一句话
 
 你在 SourceTree 里要填的「仓库地址」，技术同学会整理成一条类似：

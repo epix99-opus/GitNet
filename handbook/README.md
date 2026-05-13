@@ -14,12 +14,13 @@
 | 6 | [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) | **epix / glab / woot** 多节点 × Cursor/Codex/Claude 的 Git 身份总表与 `includeIf` 顺序 |
 | 7 | [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md) | 非技术向：Tailscale 机器名、SSH 别名、bare 路径 |
 | 8 | [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) | epix→woot/glab：Tailscale SSH 落地 Git 片段与 `~/.ssh/config` 约定 |
-| 9 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
-| 10 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
-| 11 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
-| 12 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
-| 13 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
-| 14 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
+| 9 | [22-glab-tailscale-epix-remote.md](22-glab-tailscale-epix-remote.md) | **Glab（Windows）本机 Tailscale 事实**与 epix 远程边界（与 46 互补：事实表 + 能力边界） |
+| 10 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
+| 11 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
+| 12 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
+| 13 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
+| 14 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
+| 15 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 
 ## 模板与脚本
 
