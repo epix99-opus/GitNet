@@ -159,13 +159,26 @@ if (-not $exists) {
   Add-Content -Path $authKeys -Value $line -Encoding ascii
 }
 
-# Windows OpenSSH：.ssh 与 authorized_keys ACL（简化版，按官方建议）
+# Windows OpenSSH：.ssh 与 authorized_keys ACL（按官方建议）
+# icacls 的 /grant 主体与「(OI)(CI)F」须连成合法字符串；用 -f 拼接，避免 "$env:USERNAME:(OI)…" 被 PowerShell 误解析导致「无效参数 (OI)(CI)F」。
 try {
+  $userGrant = if ($env:USERDOMAIN) {
+    ('{0}\{1}:(OI)(CI)F' -f $env:USERDOMAIN, $env:USERNAME)
+  } else {
+    ('{0}:(OI)(CI)F' -f $env:USERNAME)
+  }
+  $userRead = if ($env:USERDOMAIN) {
+    ('{0}\{1}:R' -f $env:USERDOMAIN, $env:USERNAME)
+  } else {
+    ('{0}:R' -f $env:USERNAME)
+  }
   icacls $sshDir /inheritance:r | Out-Null
-  icacls $sshDir /grant:r "$env:USERNAME:(OI)(CI)F" | Out-Null
+  icacls $sshDir /grant:r $userGrant | Out-Null
   if (Test-Path $authKeys) {
     icacls $authKeys /inheritance:r | Out-Null
-    icacls $authKeys /grant:r "$env:USERNAME:R" | Out-Null
+    icacls $authKeys /grant:r $userRead | Out-Null
+    # 公钥认证：sshd 服务账户需能读取 authorized_keys（名称以本机为准；失败则仅依赖用户 R，仍可能可登录）
+    icacls $authKeys /grant "NT SERVICE\sshd:R" 2>$null | Out-Null
   }
 } catch {
   Write-Warning "icacls 设置失败（可手动按微软文档修正 .ssh 权限）：$_"
