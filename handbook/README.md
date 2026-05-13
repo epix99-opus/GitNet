@@ -22,6 +22,7 @@
 | 14 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
 | 15 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 | 16 | [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) | **Handoff**：需 glab 配合的 epix→glab SSH/Git 验收（见 GitHub Issue） |
+| 17 | [92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) | **GitHub 近实时协作**：双端轮询/通知/`ff-only` 拉取与任务收口 |
 
 ## 模板与脚本
 
@@ -31,7 +32,9 @@
 - [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)（在 **glab 本机** PowerShell 执行，配置 `glab-*` 片段）
 - [templates/epix-ssh-config-glab.fragment.conf](templates/epix-ssh-config-glab.fragment.conf)（合并到 epix `~/.ssh/config`；`User` 当前为 **GG**）
 - [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)（**epix→glab SSH 公钥单行信源**；`setup-glab-openssh-for-epix.ps1` 默认读取 / 亦可 `-EpixPublicKeyLine`；勿从聊天手抄；轮换后更新并 push，再通知 glab 更新 `authorized_keys`）
-- [scripts/gitnet-push-github.sh](scripts/gitnet-push-github.sh)（复制到 epix `~/bin/` 使用）
+- [scripts/gitnet-watch-github-sync.sh](scripts/gitnet-watch-github-sync.sh)（epix：`launchd` 轮询 `origin`，`ff-only` 合并；见 `92`）
+- [templates/gitnet-watch-github-sync.ps1](templates/gitnet-watch-github-sync.ps1)（glab：计划任务轮询）
+- [templates/com.gitnet.watch-github.plist](templates/com.gitnet.watch-github.plist)（epix `LaunchAgents` 示例，间隔秒见 plist 内 `StartInterval`）
 - [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)（**glab 管理员**：OpenSSH + 防火墙 22 + `authorized_keys`）
 - [scripts/91-glab-section-A-evidence.ps1](scripts/91-glab-section-A-evidence.ps1)（生成 §A 证据文本）
 - [scripts/post-issue1-github-comment.ps1](scripts/post-issue1-github-comment.ps1)（需 `GITHUB_TOKEN`，向 Issue #1 发帖）

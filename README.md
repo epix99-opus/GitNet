@@ -8,6 +8,7 @@
 - [handbook/07-documentation-placement.md](handbook/07-documentation-placement.md)（写什么、写哪里）
 - [handbook/55-multi-node-multi-agent-git.md](handbook/55-multi-node-multi-agent-git.md)（多机多 Agent Git 身份总表）
 - [handbook/46-tailscale-remote-git-identity.md](handbook/46-tailscale-remote-git-identity.md)（epix→woot/glab 经 Tailscale 落地与 SSH 约定）
+- [handbook/92-github-auto-sync-collaboration.md](handbook/92-github-auto-sync-collaboration.md)（GitHub 双端自动拉取与通知，见 `launchd`/计划任务）
 - [AGENTS.md](AGENTS.md)
 
 ## 远端
