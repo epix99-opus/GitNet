@@ -1,6 +1,8 @@
 # glab 侧配合：epix→glab SSH 与 Git 身份验收（Handoff）
 
-> 由 epix 上 Cursor Agent 建立：因 **Agent 内置 Shell 对 `glab:22` 探测超时**，无法在 epix 侧代出「SSH 已通」的终端证据，需 **glab 本机**（或你在 epix 本机 Terminal 重跑）完成下列验收，并把输出贴到 GitHub Issue（见仓库 Issues 中同名标题）或本文件 PR 讨论串。
+**GitHub Issue（回贴输出）**：https://github.com/epix99-opus/GitNet/issues/1
+
+> 由 epix 上 Cursor Agent 建立：因 **Agent 内置 Shell 对 `glab:22` 探测超时**，无法在 epix 侧代出「SSH 已通」的终端证据，需 **glab 本机**（或你在 epix 本机 Terminal 重跑）完成下列验收，并把输出贴到 **Issue #1** 或本文件 PR 讨论串。
 
 ## 目标
 
