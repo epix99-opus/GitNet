@@ -98,6 +98,13 @@ git push -u origin main
 - 涉及信源：`published/issue-1-glab-evidence-comment.md`、`published/collaboration-closeout-status.md`
 - 回顾：Agent Shell 仍建议以公钥闭环，避免交互口令。
 
+### 2026-05-13 — 91 / 收口表 T4 与 Issue 证据链对齐（Agent）
+
+- 参与：Agent（Cursor）
+- 变更摘要：更新 [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md)（§B 一行式验收、期望结果含 §A 快照说明与 §B、口令 vs 公钥）；更新 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) **T4**（证据上墙 vs 关闭 Issue 条件）。
+- 涉及信源：上述路径
+- 回顾：**未**在 glab 写入 `authorized_keys`（硬边界）；**未**向 Issue #1 发帖（无 `GITHUB_TOKEN`）。剩余：人类粘贴 `issue-1-glab-evidence-comment.md` 全文、择机关闭 Issue、可选完成 T2 公钥。
+
 ## Tailscale / SSH / epix 实施验证清单
 
 在 epix 与至少一台客户端（Windows 或其它 Mac）上完成下列项后，将**实值**填在第二列表格，并在底部「验证记录」签字或记日期。

@@ -7,7 +7,7 @@
 | T1 | glab：`git config` 命中 `glab-cursor` + `epix99@icloud.com` | **完成** | [issue-1-glab-evidence-comment.md](issue-1-glab-evidence-comment.md) §A |
 | T2 | glab：OpenSSH Server（`sshd`）安装并 **Running**；**epix 公钥已写入 GG 的 `authorized_keys`**（无口令 `ssh glab`） | **进行中** | **已通**：epix **Terminal** 可对 glab 执行远程命令（见 §B，**口令** 会话）。**仍建议**：将仓库 [templates/epix-id_ed25519.pub](../templates/epix-id_ed25519.pub) 对应公钥写入 GG 的 `authorized_keys` 并重跑 [scripts/setup-glab-openssh-for-epix.ps1](../scripts/setup-glab-openssh-for-epix.ps1)，以便 **BatchMode/Agent** 无需口令。 |
 | T3 | epix：本机 **Terminal**（非 Cursor Agent Shell）对 glab 跑通 **GitNet 路径下** `git config --show-origin user.name` | **完成** | 证据：[issue-1-glab-evidence-comment.md](issue-1-glab-evidence-comment.md) §B（`glab-cursor` + `C:/Users/GG/.gitconfig-fragment-cursor`） |
-| T4 | Issue #1：结论可见（评论或关闭理由） | **进行中** | 可粘贴 `issue-1-glab-evidence-comment.md`；T2+T3 完成后由人类关闭 Issue |
+| T4 | Issue #1：证据上墙并收口 | **进行中** | **证据上墙**：将 [issue-1-glab-evidence-comment.md](issue-1-glab-evidence-comment.md) **含 §A+§B 全文** 粘贴为 Issue #1 评论（或 `GITHUB_TOKEN` + `post-issue1-github-comment.ps1`）。**关闭 Issue**：由人类在认可当前验证（含「口令交互 + §B」）或 **T2 公钥无口令** 完成后执行。 |
 | T5 | `92` 轮询同步（备选） | **可选** | 见 [92-github-auto-sync-collaboration.md](../92-github-auto-sync-collaboration.md)；与 Hermes/OpenClaw **并行** |
 
-**「全部任务」在 Git 身份链路上的定义**：T1、**T3** 已完成；**无口令 SSH（公钥）** 仍以 **T2** 为准。编排类（Hermes/OpenClaw）不在本表范围。
+**「全部任务」在 Git 身份链路上的定义**：T1、**T3** 已完成；**无口令 SSH（公钥）** 仍以 **T2** 为准。**Issue 证据上墙** 见 T4；编排类（Hermes/OpenClaw）不在本表范围。

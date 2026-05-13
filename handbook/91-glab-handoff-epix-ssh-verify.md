@@ -64,6 +64,14 @@ ssh-keyscan glab.tailbb1446.ts.net 2>/dev/null | tail -1
 git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' | tr -d '\r')" config --show-origin user.name 2>/dev/null || true
 ```
 
+与 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) **T3** 对齐的**一行式**验收（已在实践中跑通；口令会话亦可，证据写入 `issue-1-glab-evidence-comment.md` §B）：
+
+```bash
+ssh glab 'cd /d E:\Dev\GitNet && git config --show-origin user.name'
+```
+
+期望出现 **`glab-cursor`**，且来源为 **`…\\.gitconfig-fragment-cursor`**。**无口令 / BatchMode** 仍以 [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub) → GG `authorized_keys`（**T2**）为准。
+
 （若路径含空格或盘符不同，以 glab 上 `rev-parse` 输出为准手动构造 `git -C`。）
 
 ## Agent 未完成项 → 人类（强制格式，与 [AGENTS.md](../AGENTS.md) 铁律一致）
@@ -94,10 +102,10 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 
 ## 期望结果
 
-- Issue 或 PR 中附上 **A** 的完整文本输出（可脱敏）。
-- **glab Cursor Agent 落地**：已将 **§A 实时输出**写入仓库 [`handbook/published/issue-1-glab-evidence-comment.md`](published/issue-1-glab-evidence-comment.md)（由 `handbook/scripts/91-glab-section-A-evidence.ps1` 生成）。若本机已配置 `GITHUB_TOKEN`（`issues:write`），可运行 [`handbook/scripts/post-issue1-github-comment.ps1`](scripts/post-issue1-github-comment.ps1) 自动发帖；否则请打开 Issue #1 后 **粘贴**该文件内容（本机 Agent 已尝试 **复制到剪贴板** 并 **打开浏览器** 到 Issue 页）。
-- 若执行了 **B**，附上 **`ssh glab "hostname"`** 一行成功输出。
-- 若发现 **sshd 未运行** 或 **22 未监听**，在 glab 上按 [handbook/scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) 重新跑或人工修复后再贴输出。
+- Issue 或 PR 中附上 **A** 的完整文本输出（可脱敏）；§A 中 `Get-Service sshd` 等为**当时快照**，若现机已装 OpenSSH Server 以 glab 本机为准。
+- **§B（epix Terminal）**：将 `ssh glab "cd /d … && git config --show-origin user.name"` 等命令与输出写入 [`handbook/published/issue-1-glab-evidence-comment.md`](published/issue-1-glab-evidence-comment.md) §B，并与 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) **T3** 对齐。
+- **glab Cursor Agent 落地**：已将 **§A 实时输出**写入仓库 [`handbook/published/issue-1-glab-evidence-comment.md`](published/issue-1-glab-evidence-comment.md)（由 `handbook/scripts/91-glab-section-A-evidence.ps1` 生成）。若本机已配置 `GITHUB_TOKEN`（`issues:write`），可运行 [`handbook/scripts/post-issue1-github-comment.ps1`](scripts/post-issue1-github-comment.ps1) 自动发帖；否则请打开 Issue #1 后 **粘贴**该文件**含 §A+§B 全文**。
+- **口令 vs 公钥**：交互会话可用口令；**Agent / `BatchMode`** 仍须 **T2**（`authorized_keys` 公钥）。若发现 **sshd 未运行** 或 **22 未监听**，在 glab 上按 [handbook/scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) 重新跑或人工修复后再贴输出。
 
 ## 修订记录
 
@@ -108,3 +116,4 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 - 2026-05-13：epix→glab 公钥信源改为仓库 `templates/epix-id_ed25519.pub`（及 Raw URL）；`setup-glab-openssh-for-epix.ps1` 默认读该文件；轮换密钥流程写入 §「Agent 未完成项」与期望结果。
 - 2026-05-13：链到 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)；证据脚本增加 SSH 诊断块。
 - 2026-05-13：增补 **「谁应在 glab 上 git pull / 跑管理员脚本」** 职责表（与 epix Agent 边界区分）。
+- 2026-05-13：§B 与 [collaboration-closeout-status.md](published/collaboration-closeout-status.md) T3 对齐的一行式 `git config` 验收；期望结果区分 §A 快照、§B、Issue 全文粘贴与 T2 公钥/BatchMode。
