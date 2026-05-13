@@ -39,6 +39,32 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 
 （若路径含空格或盘符不同，以 glab 上 `rev-parse` 输出为准手动构造 `git -C`。）
 
+## Agent 未完成项 → 人类（强制格式，与 [AGENTS.md](../AGENTS.md) 铁律一致）
+
+凡 Agent **客观上不能执行** 的步骤，不得只列清单；须对**每一项**同时写：
+
+| 字段 | 内容 |
+|------|------|
+| **原因** | 为何当前 Agent/会话不能继续（权限、凭证、网络、交互 UI 等） |
+| **操作提示** | 在**哪台设备**、用**什么身份**（管理员/普通用户）、**可复制**的命令或菜单路径 |
+| **验收** | 怎样算完成（命令预期输出、网页上可见状态等） |
+
+### 与本 Issue handoff 相关的示例（若仍卡住）
+
+**1）`sshd` 未安装 / 22 未监听（epix `ssh glab` 超时）**
+
+- **原因**：安装 OpenSSH Server、改防火墙、`authorized_keys` 通常需 **Windows 管理员**；Agent 拿不到 epix 私钥对面的 **公钥整行**，也不应代填占位公钥。
+- **操作提示**：在 **glab** 以管理员打开 PowerShell，`cd` 到 Git 仓库根（`git rev-parse --show-toplevel` 所在目录），执行 [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)，`-EpixPublicKeyLine` 填在 **epix** 上 `Get-Content $HOME/.ssh/id_ed25519.pub` 的**整一行**；`-GitNetWorkdirWin` 填 glab 上实际路径（如 `E:\DEV\GitNet`）。完成后在 **epix Terminal**（非仅 Agent Shell）执行：`ssh glab "hostname"`。
+- **验收**：`Get-Service sshd` 为 **Running**；epix 上 `ssh glab "hostname"` 返回 **GLAB**（或 glab 主机名）；Issue 可再贴一行该输出。
+
+**2）Issue #1 尚未出现 glab 证据评论**
+
+- **原因**：本机可能无 **`gh`** CLI，且环境变量中无 **`GITHUB_TOKEN`**（或 token 无 `issues:write`），REST API 发帖在 Agent 侧不可无凭证完成。
+- **操作提示（二选一）**：  
+  - **A. 浏览器**：打开 Issue #1，将 [`published/issue-1-glab-evidence-comment.md`](published/issue-1-glab-evidence-comment.md) 全文粘贴为评论；或运行 `handbook/scripts/91-glab-section-A-evidence.ps1` 刷新该文件后再贴。  
+  - **B. API**：在 **glab** PowerShell 临时设置 ` $env:GITHUB_TOKEN='ghp_…或 fine-grained PAT' `（勿写入仓库），运行 `.\handbook\scripts\post-issue1-github-comment.ps1`。
+- **验收**：Issue #1 可见评论块；其中 `user.name` 为 **glab-cursor** 且来源为 **`…\.gitconfig-fragment-cursor`**（用户名因机而异时在评论中注明即可）。
+
 ## 期望结果
 
 - Issue 或 PR 中附上 **A** 的完整文本输出（可脱敏）。
@@ -50,3 +76,4 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 
 - 2026-05-13：首版（epix Agent 建立，待 glab 执行并回贴）。
 - 2026-05-13：glab Agent 增补 `91-glab-section-A-evidence.ps1`、`published/issue-1-glab-evidence-comment.md`、可选 `post-issue1-github-comment.ps1`；更新期望结果说明。
+- 2026-05-13：增补「未完成项交接人类」强制格式表及与本 handoff 相关的 sshd / Issue 发帖示例（对齐 `AGENTS.md`）。
