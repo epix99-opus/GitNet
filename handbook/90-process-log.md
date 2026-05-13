@@ -83,7 +83,13 @@ git push -u origin main
 - 涉及信源：上述路径
 - 回顾：远程 `main` 已含 epix 公钥行；本提交合并注释 + 脚本默认读文件逻辑。密钥轮换时由 epix 更新该文件并 push，再通知 glab 重跑脚本或手改 `authorized_keys`。
 
----
+### 2026-05-13 — 协作任务收口：状态表 + 证据脚本增强（epix）
+
+- 参与：Agent（Cursor）
+- 变更摘要：新增 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)（T1～T5：`glab-cursor` 已验 / `sshd`+`ssh glab` 待办 / `92` 可选）；[scripts/91-glab-section-A-evidence.ps1](scripts/91-glab-section-A-evidence.ps1) 增补 `Get-Service *ssh*`、`Get-WindowsCapability OpenSSH.Server*`、`Get-NetTCPConnection :22` 诊断块；`handbook/README.md`、`91` 链到收口表。
+- 验收：glab 重跑证据脚本后应覆盖 `published/issue-1-glab-evidence-comment.md` 中更丰富的 SSH 诊断；Issue #1 由人类在 T2+T3 完成后关闭。
+- 回顾：epix Agent Shell `ssh glab` 仍可能超时，不以该结果否定 glab 本机已配置情形。
+- 补充（同日稍后）：`ssh-keyscan` 后 `ssh glab` 变为 **`Permission denied (publickey)`**（非超时），说明 **22/HostKey 已通**，待 glab 将 epix 公钥写入 GG 的 `authorized_keys`；已在 Issue #1 评论与 `published/collaboration-closeout-status.md` 更新 T2 表述。
 
 ## Tailscale / SSH / epix 实施验证清单
 

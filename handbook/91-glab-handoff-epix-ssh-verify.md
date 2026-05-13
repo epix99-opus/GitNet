@@ -2,6 +2,8 @@
 
 **GitHub Issue（回贴输出）**：https://github.com/epix99-opus/GitNet/issues/1
 
+**收口总表（T1～T5）**：[published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)
+
 > 由 epix 上 Cursor Agent 建立：因 **Agent 内置 Shell 对 `glab:22` 探测超时**，无法在 epix 侧代出「SSH 已通」的终端证据，需 **glab 本机**（或你在 epix 本机 Terminal 重跑）完成下列验收，并把输出贴到 **Issue #1** 或本文件 PR 讨论串。
 
 ## 目标
@@ -94,3 +96,4 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 - 2026-05-13：glab Agent 增补 `91-glab-section-A-evidence.ps1`、`published/issue-1-glab-evidence-comment.md`、可选 `post-issue1-github-comment.ps1`；更新期望结果说明。
 - 2026-05-13：增补「未完成项交接人类」强制格式表及与本 handoff 相关的 sshd / Issue 发帖示例（对齐 `AGENTS.md`）。
 - 2026-05-13：epix→glab 公钥信源改为仓库 `templates/epix-id_ed25519.pub`（及 Raw URL）；`setup-glab-openssh-for-epix.ps1` 默认读该文件；轮换密钥流程写入 §「Agent 未完成项」与期望结果。
+- 2026-05-13：链到 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)；证据脚本增加 SSH 诊断块。

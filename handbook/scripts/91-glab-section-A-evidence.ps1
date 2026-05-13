@@ -22,6 +22,18 @@ if ($s) {
 } else {
   Write-Output '(sshd service not found - OpenSSH Server may not be installed)'
 }
+Write-Output '--- Get-Service *ssh* / name or displayname contains OpenSSH ---'
+Get-Service -ErrorAction SilentlyContinue |
+  Where-Object { $_.Name -match 'ssh' -or ($_.DisplayName -and $_.DisplayName -match 'OpenSSH') } |
+  Format-Table -AutoSize Name, Status, StartType, DisplayName
+Write-Output '--- Get-WindowsCapability OpenSSH.Server* ---'
+Get-WindowsCapability -Online -ErrorAction SilentlyContinue |
+  Where-Object Name -like 'OpenSSH.Server*' |
+  Format-Table -AutoSize Name, State
+Write-Output '--- Get-NetTCPConnection LocalPort 22 (first 5; may be empty without admin) ---'
+Get-NetTCPConnection -LocalPort 22 -ErrorAction SilentlyContinue |
+  Select-Object -First 5 LocalAddress, LocalPort, State, OwningProcess |
+  Format-Table -AutoSize
 Write-Output '--- git rev-parse --show-toplevel ---'
 git -C $top rev-parse --show-toplevel
 Write-Output '--- git config --show-origin user.name ---'
