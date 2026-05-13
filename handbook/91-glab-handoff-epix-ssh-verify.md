@@ -31,6 +31,16 @@ $k = Get-Content -Raw "E:\Dev\GitNet\handbook\templates\epix-id_ed25519.pub"
 
 （此为 **公钥**，可入 git；**永远不要**把 `id_ed25519` **私钥**写入仓库。）
 
+## 谁应在 glab 上 `git pull` / 跑管理员脚本
+
+| 事项 | 负责人（在 **glab 本机**） |
+|------|------------------------------|
+| **`git pull`** 以更新 `handbook/scripts/` 等 | **glab 上 GitNet 工作副本的维护者**：本机人类，或 **工作区根目录在 glab 的** Cursor/其它 Agent（会话 cwd 必须在 glab，而非 epix） |
+| **`setup-glab-openssh-for-epix.ps1`**（须**管理员** PowerShell） | 具备该 Windows 账户**管理员**权限的人；或人类明确授权后，由 **已在 glab 上以提升权限运行的会话** 代跑 |
+| **脚本/手册的作者与推送** | 按 [10-topology.md](10-topology.md)：定稿与主线在 **epix bare**；GitHub 常为从镜像。glab 侧在多数流程下 **只拉取（pull）并执行**，不必替 epix 承担推送职责，除非团队另有约定并记入 [90-process-log.md](90-process-log.md) |
+
+**epix 上的 Agent 不能替代**：无法在 GG 的 Windows 上替你执行本机 `git pull` 或管理员 PowerShell；此前说「请在 glab 上 git pull」指的就是上表第一行。
+
 ## 要求（在 glab 上以管理员或普通用户按需执行）
 
 ### A. glab 本机（PowerShell）
@@ -97,3 +107,4 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 - 2026-05-13：增补「未完成项交接人类」强制格式表及与本 handoff 相关的 sshd / Issue 发帖示例（对齐 `AGENTS.md`）。
 - 2026-05-13：epix→glab 公钥信源改为仓库 `templates/epix-id_ed25519.pub`（及 Raw URL）；`setup-glab-openssh-for-epix.ps1` 默认读该文件；轮换密钥流程写入 §「Agent 未完成项」与期望结果。
 - 2026-05-13：链到 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)；证据脚本增加 SSH 诊断块。
+- 2026-05-13：增补 **「谁应在 glab 上 git pull / 跑管理员脚本」** 职责表（与 epix Agent 边界区分）。
