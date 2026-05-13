@@ -2,7 +2,7 @@
 
 本文在 [40-identity-and-includeIf.md](40-identity-and-includeIf.md) 之上，对 **epix / glab / woot** 三台「编程主力节点」与 **多类编程 Agent**（Cursor、Codex、Claude Code 等）给出**统一约定**与**落地检查表**。网络 IP 仍以 NetOps `network_facts.env` 为准，本文只写 **Git 作者名与 `includeIf` 策略**。
 
-> **实机说明**：**woot** 已由 epix 经 Tailscale SSH（用户 **`woot@woot`**）落地 `includeIf` 与片段；**glab** 在 epix 侧 **`ssh-keyscan`/TCP 22 不可用**（OpenSSH 未暴露或未装），须人类按 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) 开启 `sshd` 并授权公钥后，再在 epix 执行 `ssh glab ...` 或于 glab 本机运行 [templates/windows-glab-git-includeIf.ps1](templates/windows-glab-git-includeIf.ps1)。
+> **实机说明**：**woot** 已由 epix 经 Tailscale SSH（用户 **`woot@woot`**）落地 `includeIf` 与片段。**glab**：OpenSSH 与 `authorized_keys` 已按 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)、[91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) 与 [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md) 推进；epix 侧 **`BatchMode` 免口令** 等最终验收以收口表 **T2** 与 `90` 为准。若 epix Agent Shell 与 **人类 Terminal** 行为不一致，以 `46` / `91` 的「能力边界」为准，不在此重复断言端口状态。
 
 ---
 
@@ -109,10 +109,11 @@ git config --show-origin user.email
 1. **woot / glab**：按上表补齐片段文件与 `includeIf`；结果记入 [90-process-log.md](90-process-log.md)。
 2. **Claude Code 主力目录**：若固定在 `~/Dev/CcDev` 等，可在该机 `.gitconfig` 末尾增加对应 `includeIf` → `epix-claude-code`（或 `HOSTNAME-claude-code`）。
 3. **若某仓要人类作者**：仅在该仓库 `git config --local user.name` / `user.email`，并记录在进程日志。
+4. **三机仓库盘点与 RACI**：见 [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md)；填表模板见 [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md)。
 
 ---
 
 ## 修订记录
 
-- 2026-05-13：补充 **woot** 经 Tailscale SSH 实装与 **glab** 门槛；SSH 用户名为 **`woot`**；新增 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)；新增 **§5.1** 链到 [10-topology.md](10-topology.md) 对象层（bare 汇合 / GitHub 镜像）。
+- 2026-05-13：文首 **glab** 实机说明与 `46`/`91`/收口表对齐；演进清单链到 `94` 盘点与 RACI；补充 **woot** 经 Tailscale SSH 实装；SSH 用户名为 **`woot`**；`46`；**§5.1** 链到 `10`。
 - 2026-05-12：首版；基于 epix 当前 `~/Dev` + `agent-work` 实装与 tailnet 节点名归纳 glab/woot 方案。

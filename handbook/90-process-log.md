@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — 三机 Agent 盘点与 RACI 落盘（94 + 模板 + epix starter）
+
+- 参与：Agent（Cursor）
+- 变更摘要：新增 [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md)（分层纳入定义 L1～L3、RACI、全局/项目配置矩阵、可复制盘点命令）；[published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md)（空白表）；[published/inventory-epix-starter.md](published/inventory-epix-starter.md)（**仅 GitNet 一行**示例，含当前 `origin`/片段来源）；[handbook/README.md](README.md) 阅读顺序第 20 项与模板与脚本索引；[55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) 文首 glab 说明与收口表对齐、演进清单链到 `94`。
+- 涉及信源：`94`、`55`、`published/inventory-*`
+- 回顾：**完整三机仓库枚举**须人类/各机在各自主机执行 `94` §5 后填表或贴本文；勿在无输出时编造清单。
+
 ### 2026-05-13 — 文档收口：glab/epix 全流程（UTF-8 BOM、`ssh-keyscan`、`BatchMode`）
 
 - 参与：人类（实机验收）/ Agent（Cursor）

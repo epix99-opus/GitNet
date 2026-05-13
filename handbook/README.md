@@ -27,6 +27,7 @@
 | 17 | [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) | **Handoff**：需 glab 配合的 epix→glab SSH/Git 验收（见 GitHub Issue） |
 | 18 | [92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) | **备选 · Git 数据面**：GitHub 双端轮询/`ff-only` 拉取；与 OpenClaw/Hermes **并行互备**关系见文内对比 |
 | 19 | [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) | **阶段成果**：目标→方案→实现回顾；epix/glab Cursor Agent 协作复盘；**可外推**的大型多跨协作 Git 体系 · 规范 · 流程清单 |
+| 20 | [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) | **三机盘点与 RACI**：工具清单、仓库表模板、纳入分层（L1～L3）、全局/项目配置矩阵；模板 [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md) |
 
 ## 模板与脚本
 
@@ -46,6 +47,8 @@
 - [scripts/post-issue1-github-comment.ps1](scripts/post-issue1-github-comment.ps1)（需 `GITHUB_TOKEN`，向 Issue #1 发帖）
 - [published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)（**T1～T5 收口表**：谁在等谁）
 - [published/issue-1-glab-evidence-comment.md](published/issue-1-glab-evidence-comment.md)（glab §A 证据快照，可粘贴到 Issue）
+- [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md)（**三机 Git 仓库盘点表模板**；见 `94`）
+- [published/inventory-epix-starter.md](published/inventory-epix-starter.md)（epix 上 **GitNet 一行示例**，完整盘点请复制模板自填）
 
 ## 仓库内 Agent 约定
 

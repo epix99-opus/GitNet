@@ -152,6 +152,7 @@
 | 协作收口 | `handbook/published/collaboration-closeout-status.md` |
 | 证据快照 | `handbook/published/issue-1-glab-evidence-comment.md` |
 | Handoff | `handbook/91-glab-handoff-epix-ssh-verify.md` |
+| 三机盘点与 RACI | `handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md` |
 | Issue 讨论 | `https://github.com/epix99-opus/GitNet/issues/1` |
 
 ---
