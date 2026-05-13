@@ -31,6 +31,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# Test-Path 在 EAP=Stop 且对目标无读取 ACL 时会抛「拒绝访问」；此处用 .NET Exists + try/catch 做存在性判断。
+function Test-GitNetFileExists([string] $LiteralPath) {
+  try { return [System.IO.File]::Exists($LiteralPath) } catch { return $false }
+}
+
 function Read-EpixPubKeyLineFromFile {
   param([Parameter(Mandatory = $true)][string] $FilePath)
   if (-not (Test-Path -LiteralPath $FilePath)) {
@@ -151,9 +156,13 @@ New-Item -ItemType Directory -Force -Path $sshDir | Out-Null
 $line = $keyLine
 
 $exists = $false
-if (Test-Path $authKeys) {
-  $content = Get-Content $authKeys -ErrorAction SilentlyContinue
-  if ($content | Where-Object { $_.Trim() -eq $line }) { $exists = $true }
+if (Test-GitNetFileExists $authKeys) {
+  try {
+    $content = Get-Content -LiteralPath $authKeys -ErrorAction Stop
+    if ($content | Where-Object { $_.Trim() -eq $line }) { $exists = $true }
+  } catch {
+    $exists = $false
+  }
 }
 if (-not $exists) {
   Add-Content -Path $authKeys -Value $line -Encoding ascii
@@ -172,16 +181,15 @@ try {
   } else {
     ('{0}:R' -f $env:USERNAME)
   }
-  icacls $sshDir /inheritance:r | Out-Null
-  icacls $sshDir /grant:r $userGrant | Out-Null
-  if (Test-Path $authKeys) {
-    icacls $authKeys /inheritance:r | Out-Null
-    icacls $authKeys /grant:r $userRead | Out-Null
-    # 公钥认证：sshd 服务账户需能读取 authorized_keys（名称以本机为准；失败则仅依赖用户 R，仍可能可登录）
+  # 与 SYSTEM 同批授予，避免仅 /inheritance:r 后 grant 失败导致当前用户失去 .ssh 列举权
+  icacls $sshDir /inheritance:r /grant:r $userGrant /grant:r "SYSTEM:(OI)(CI)F" | Out-Null
+  if (Test-GitNetFileExists $authKeys) {
+    icacls $authKeys /inheritance:r /grant:r $userRead /grant:r "SYSTEM:R" | Out-Null
     icacls $authKeys /grant "NT SERVICE\sshd:R" 2>$null | Out-Null
   }
 } catch {
   Write-Warning "icacls 设置失败（可手动按微软文档修正 .ssh 权限）：$_"
+  Write-Warning "若已无法访问 authorized_keys：管理员 CMD 执行 takeown /f $authKeys 与 icacls 恢复 $env:USERNAME 与 SYSTEM 读取。"
 }
 
 Restart-Service sshd -Force
