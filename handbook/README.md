@@ -22,7 +22,7 @@
 | 14 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
 | 15 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 | 16 | [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) | **Handoff**：需 glab 配合的 epix→glab SSH/Git 验收（见 GitHub Issue） |
-| 17 | [92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) | **GitHub 近实时协作**：双端轮询/通知/`ff-only` 拉取与任务收口 |
+| 17 | [92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) | **备选 · Git 数据面**：GitHub 双端轮询/`ff-only` 拉取；与 OpenClaw/Hermes **并行互备**关系见文内对比 |
 
 ## 模板与脚本
 
