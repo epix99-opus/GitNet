@@ -1,5 +1,7 @@
 # Glab（Windows）Tailscale 事实与 epix 侧远程协作边界
 
+与操作向的 **[46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)** 互补：本文侧重 **Glab 本机可验证事实表** 与 **能力边界**（不提供「无界接管所有 Agent」方案）。
+
 本文供 **epix（Mac）** 经 **GitHub 拉取本仓** 后按图施工；事实字段来自 **Glab 本机** 一次 `tailscale` 查询（见文末日期）。**不得**在本文或仓库内写入私钥、密码、API token。
 
 ## 1. 本机 Tailscale 事实（Glab / Windows）
