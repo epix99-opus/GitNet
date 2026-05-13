@@ -108,4 +108,5 @@ git config --show-origin user.email
 
 ## 修订记录
 
+- 2026-05-13：补充 **woot** 经 Tailscale SSH 实装与 **glab** 门槛；SSH 用户名为 **`woot`**；新增 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md)。
 - 2026-05-12：首版；基于 epix 当前 `~/Dev` + `agent-work` 实装与 tailnet 节点名归纳 glab/woot 方案。
