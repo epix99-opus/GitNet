@@ -42,9 +42,11 @@ git -C "$(ssh glab 'git -C E:/Dev/GitNet rev-parse --show-toplevel 2>/dev/null' 
 ## 期望结果
 
 - Issue 或 PR 中附上 **A** 的完整文本输出（可脱敏）。
+- **glab Cursor Agent 落地**：已将 **§A 实时输出**写入仓库 [`handbook/published/issue-1-glab-evidence-comment.md`](published/issue-1-glab-evidence-comment.md)（由 `handbook/scripts/91-glab-section-A-evidence.ps1` 生成）。若本机已配置 `GITHUB_TOKEN`（`issues:write`），可运行 [`handbook/scripts/post-issue1-github-comment.ps1`](scripts/post-issue1-github-comment.ps1) 自动发帖；否则请打开 Issue #1 后 **粘贴**该文件内容（本机 Agent 已尝试 **复制到剪贴板** 并 **打开浏览器** 到 Issue 页）。
 - 若执行了 **B**，附上 **`ssh glab "hostname"`** 一行成功输出。
 - 若发现 **sshd 未运行** 或 **22 未监听**，在 glab 上按 [handbook/scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1) 重新跑或人工修复后再贴输出。
 
 ## 修订记录
 
 - 2026-05-13：首版（epix Agent 建立，待 glab 执行并回贴）。
+- 2026-05-13：glab Agent 增补 `91-glab-section-A-evidence.ps1`、`published/issue-1-glab-evidence-comment.md`、可选 `post-issue1-github-comment.ps1`；更新期望结果说明。
