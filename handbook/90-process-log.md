@@ -25,16 +25,17 @@
 ### 2026-05-13 — Windows 配置 GitHub origin（人类已同意阶段 A）
 
 - 参与：人类（书面同意）/ Agent（Cursor）
-- 变更摘要：在 `E:\DEV\GitNet` 已执行 `git remote add origin https://github.com/epix99-opus/GitNet.git`（此前无 remote）；分支已为 `main`。因 Cursor 集成终端对 **HTTPS 推送** 常阻塞在 **Git Credential Manager** 交互（浏览器/弹窗），Agent 侧 **非交互 push 未完成**。
+- 变更摘要：在 `E:\DEV\GitNet` 已执行 `git remote add origin https://github.com/epix99-opus/GitNet.git`（此前无 remote）；分支已为 `main`。后续非交互 `git push`（任务 970081）**退出码 1**：`! [rejected] main -> main (fetch first)` —— **远端 `main` 已有本地没有的提交**（例如 Mac 先推过 README），需先 **`git pull origin main --rebase`** 再 **`git push -u origin main`**。PowerShell 将 Git 的 stderr 显示为 `NativeCommandError` 属常见现象，可忽略类型只看 Git 原文。
 - 涉及信源：`handbook/90-process-log.md`、本地 `.git/config`
-- 回顾：人类请在 **本机 PowerShell/cmd（可弹出凭据）** 或 **SourceTree** 中执行下方「人类一步」完成验收；若任务管理器中有卡住的 `git.exe`，可结束后再推。
-- 验收：`git ls-remote origin refs/heads/main` 能列出远端提交且与本地 `main` 一致；GitHub 网页可见 `main` 历史。
+- 回顾：人类在本机可交互终端执行下方命令；若仍有凭据弹窗，用 GitHub 账号 + PAT 或凭据管理器完成。
+- 验收：`git ls-remote origin refs/heads/main` 与本地 `main` 顶提交一致；GitHub 网页可见完整历史。
 
 **人类一步（复制执行）**：
 
 ```powershell
 cd E:\DEV\GitNet
 git remote -v
+git pull origin main --rebase
 git push -u origin main
 ```
 
