@@ -41,6 +41,12 @@ git push -u origin main
 
 若提示登录：使用 GitHub 账号 + PAT（或已配置的凭据管理器）。完成后将本段「验收」勾为已完成并填日期。
 
+### 2026-05-13 — rebase 冲突解决并推送至 GitHub（Agent，Glab）
+
+- 参与：Agent（Cursor）
+- 变更摘要：`git pull origin main --rebase` 在 **`.gitignore`**、**`README.md`** 发生 add/add 冲突。已手工合并：`.gitignore` 含 Mac 侧（`.DS_Store`、`.env*`、密钥后缀）与 Glab 侧（`.specstory/`、`.tmp_*.py`）；`README.md` 以 `handbook` 为信源描述主从，并保留 Mac/Windows 工作路径示例。rebase 完成后已执行 **`git push -u origin main`**，`main` 已与 `origin/main` 对齐（顶提交以 `git log -1` 为准）。
+- 验收：GitHub 网页 `main` 可见完整手册与 `handbook/`；Mac `/Users/epix/Dev/GitNet` 可 `git pull origin main` 快进。
+
 ---
 
 ## Tailscale / SSH / epix 实施验证清单
