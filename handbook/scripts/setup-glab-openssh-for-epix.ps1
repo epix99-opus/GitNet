@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 <#
 .SYNOPSIS
   在 glab（Windows）一次性：安装/启动 OpenSSH Server、防火墙放行 TCP 22、写入 epix 公钥到当前用户 authorized_keys、**以及**（若存在 Match）`ProgramData\ssh\administrators_authorized_keys`，重启 sshd。
@@ -96,16 +96,19 @@ if (-not [string]::IsNullOrWhiteSpace($EpixPublicKeyPath)) {
   if (-not $keyLine) {
     Write-Error "文件内无有效的 ssh-ed25519 公钥行（跳过空行与 # 注释）：$resolved"
   }
-} elseif (-not [string]::IsNullOrWhiteSpace($EpixPublicKeyLine)) {
-  $keyLine = $EpixPublicKeyLine.Trim()
 } else {
-  $keyLine = Read-EpixPubKeyLineFromFile -FilePath $defaultTemplate
-  if (-not $keyLine) {
-    Write-Error @"
-未指定公钥且默认模板中无有效 ssh-ed25519 行。
-请在 epix 更新仓库内 handbook/templates/epix-id_ed25519.pub（或 Raw URL 同源）后 git pull，再重试；或显式传入 -EpixPublicKeyPath / -EpixPublicKeyLine。
-默认读取路径: $defaultTemplate
-"@
+  if (-not [string]::IsNullOrWhiteSpace($EpixPublicKeyLine)) {
+    $keyLine = $EpixPublicKeyLine.Trim()
+  } else {
+    $keyLine = Read-EpixPubKeyLineFromFile -FilePath $defaultTemplate
+    if (-not $keyLine) {
+      $msg = @(
+        '未指定公钥且默认模板中无有效 ssh-ed25519 行。'
+        '请在 epix 更新仓库内 handbook/templates/epix-id_ed25519.pub（或 Raw URL 同源）后 git pull，再重试；或显式传入 -EpixPublicKeyPath / -EpixPublicKeyLine。'
+        "默认读取路径: $defaultTemplate"
+      ) -join [Environment]::NewLine
+      Write-Error $msg
+    }
   }
 }
 
