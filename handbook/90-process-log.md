@@ -22,6 +22,7 @@
 - 验收（PR merge + sync 后在本机执行，**双端 SHA 一致**）：
   - `gh api repos/epix99-opus/GitNet/commits/main --jq .sha`
   - `git -C ~/git/GitNet.git rev-parse refs/heads/main`
+- **2026-05-14 首轮 dogfood（PR #2 merge + sync）**：上述两命令输出均为 **`87b5a0ae1f5891a5310dc0a3dbfcde0ce3106fb9`**（Agent 实跑）。
 - 回顾：**`com.gitnet.sync-github-to-bare`** 可按需 `cp handbook/templates/… ~/Library/LaunchAgents/` 再 **`launchctl load`**；若 ff-only fetch 失败，**禁止**对 bare **强推 `main` 静默修复**——须在 `90` 另开条写事故与协调步骤。
 
 ### 2026-05-14 — handbook **`56`** + 根 **`CONTRIBUTING.md`**：约定式提交与工作流六条定稿
