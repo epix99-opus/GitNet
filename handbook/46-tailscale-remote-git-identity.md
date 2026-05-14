@@ -14,26 +14,35 @@
 
 1. **`tailscale status`**：确认目标短名（如 `woot`、`glab`）在表中为 **在线**（非 `offline`）。
 2. **`tailscale ping -c 1 <短名>`**：确认 **L3** 可达（有 `pong`）。
-3. **再 `ssh`**：若此处 **仍** `ssh: connect to host woot port 22: Operation timed out`，在 **macOS** 上核对 **系统 DNS 解析出的 100.x** 是否与 **`tailscale status` 中该机器行一致**：
-   - `dscacheutil -q host -a name woot`（或 `dig woot.tail…`）；
-   - 若解析到的地址 **不是** `tailscale status` 里 **woot** 行的地址（曾出现：解析到 **旧 100.x**，`tailscale ping` 该旧地址为 **`no matching peer`**，而 ping **status 表中的新 100.x** 正常），则 **`ssh woot@woot` 可能在连错误目标**，与「woot 未连 Tailscale」**无关**。处置示例：刷新 DNS（`sudo dscacheutil -flushcache` + `sudo killall -HUP mDNSResponder`）、等待 MagicDNS 收敛，或在 **`~/.ssh/config`** 的 `Host woot` 下临时/长期写 **`HostName <tailscale status 所示的 woot 100.x>`**（以 status 为准），再重试 `ssh`。
+3. **再 `ssh`**：若 **`ssh woot@woot`（短名）** 出现 **`connect … port 22: Operation timed out`**，**不要**先下结论「对端不在线」。
+4. **权威 IPv4（推荐，不经系统 DNS）**：执行 **`tailscale ip -4 woot`**（或 `glab`），输出应与 **`tailscale status`** 该行的 **100.x** 一致。**实机已验**：`ssh woot@<上述 100.x>` 可正常登录（与短名解析滞后无关）。
+5. **与系统解析器交叉核对（可选）**：`dscacheutil -q host -a name woot`。若其 **100.x** 与 **`tailscale ip -4 woot`** 不一致，则短名 SSH 可能在连 **旧地址**；处置：刷新 DNS（`sudo dscacheutil -flushcache` + `sudo killall -HUP mDNSResponder`），或直接在 **`~/.ssh/config`** 的 `Host woot` 写 **`HostName` = `tailscale ip -4 woot` 的输出**（随节点重建以 **`tailscale status`/`tailscale ip`** 为准更新）。**网络事实登记**见 NetOps `configs/network_facts.env` 之 **`TAILSCALE_WOOT_IP`** 与 **`scripts/tailscale-peer-ipv4.sh`**。
 
-**教训**：不得仅凭 **`ssh` 超时** 就妄断 **对端未在线**；须与 **`tailscale status` / `tailscale ping` / DNS 解析** 交叉验证。
+**教训**：不得仅凭 **`ssh` 短名超时** 妄断 **对端未在线**；须先 **`tailscale status` / `tailscale ping` / `tailscale ip -4`**。
 
 ### 1.1 建议在 epix `~/.ssh/config` 增加
 
 ```sshconfig
 Host woot woot.tailbb1446.ts.net
+  # HostName 填 `tailscale ip -4 woot` 的当前输出（示例曾验：100.86.243.3）；短名 SSH 超时必核对此行
+  HostName 100.86.243.3
   User woot
   IdentityFile ~/.ssh/id_ed25519
 ```
 
-（若你的私钥路径不同，改 `IdentityFile`。）
+（若你的私钥路径不同，改 `IdentityFile`。**`HostName` 随 tailnet 节点重建会变**，以 **`tailscale ip -4 woot`** 为准。）
 
-自检：
+自检（短名）：
 
 ```bash
 ssh woot "hostname -s; git config --show-origin user.name"
+```
+
+**自检（不经短名 DNS，与 NetOps 一致）**：
+
+```bash
+WOOT_TS_IP="$(tailscale ip -4 woot)"
+ssh -o BatchMode=yes "woot@${WOOT_TS_IP}" "hostname -s; git config --show-origin user.name"
 ```
 
 在 `~/Dev` 下任一仓库内应显示 `woot-cursor` 来源为 `~/.gitconfig-fragment-cursor`；在 `/tmp` 新 `git init` 仓库内应为人类 `Epix`。
@@ -141,6 +150,7 @@ ssh glab "cd /d E:\DEV\GitNet && git config --show-origin user.name"
 
 ## 4. 修订记录
 
+- 2026-05-14：§1.0 增补 **`tailscale ip -4`** 为权威 IPv4、**`ssh woot@<100.x>` 实机可登** 之自检；§1.1 示例 `HostName` 与 **不经短名 DNS** 的 `WOOT_TS_IP` 自检块；互指 NetOps `network_facts.env` / `scripts/tailscale-peer-ipv4.sh`。
 - 2026-05-14：新增 **§1.0** — SSH 前先 **`tailscale status` / `tailscale ping`**；**DNS 解析 100.x 与 status 表不一致** 可导致「Tailscale 在线但 `ssh woot` 超时」；附 flushcache / `HostName` 处置要点。
 - 2026-05-13：首版；记录 woot 实装与 glab 人类配合门槛。
 - 2026-05-13：glab 增补 `setup-glab-openssh-for-epix.ps1`、`epix-ssh-config-glab.fragment.conf`；`windows-glab-git-includeIf.ps1` 用 `git rev-parse` 对齐 `gitdir` 大小写；epix `User` 定稿为 **GG**。
