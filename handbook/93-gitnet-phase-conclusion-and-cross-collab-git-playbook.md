@@ -8,8 +8,7 @@
 - **本阶段完成**：`handbook/` 定稿骨架、多节点多 Agent 身份矩阵（`40`/`55`）、epix↔woot/glab 的 SSH/Git 操作手册（`46`/`22`/`91`）、GitHub 从镜像与分支保护指引（`06`/`10`）、公钥信源与 glab OpenSSH/ACL 脚本链、Issue #1 式 **Handoff + 证据文件**、备选数据面 `92`、北极星 **Agent-first + 全链路认证**（`08`）、以及 **「写集成与默认 push 在 epix bare」** 的目标规范（`10` 新增节）。
 - **协作形态**：**epix 上 Cursor Agent** 与 **glab 上 Cursor Agent** 主要通过 **同一 Git 对象（GitHub `main` 镜像 + 本仓 pull/push）** 与 **Issue #1 / `published/` 证据** 对齐；**硬边界**（Windows 管理员、UAC、本机 Terminal 口令会话）由人类按 [AGENTS.md](../AGENTS.md) 交接格式补全。
 - **外推价值**：下文 **§7** 将上述经验抽象为 **复杂大型、多跨协作** 项目可复用的 **Git 体系、规范与流程清单**（可移植到其它 mono-repo 或平台仓，按需裁剪）。
-
----
+- **v0.1 封存索引（规范/配置/脚本清单 + 三机验收矩阵）**：[97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)（**97 = 交付包索引**；本文 **93** 侧重过程复盘，二者互补）。
 
 ## 2. 目标（从意图到可验收）
 
@@ -26,12 +25,12 @@
 ## 3. 方案（架构决策摘要）
 
 1. **单一 Git 业务权威**：epix 上 **bare**（路径见 `30` / `90` 实填）；禁止在第二台机器再立「第二 bare」作为业务主线。
-2. **GitHub 角色**：**从镜像** + 人类可读 + Handoff 讨论（Issue）；**不推荐**日常把 GitHub 当作多端合并枢纽；过渡用法须在 [90-process-log.md](90-process-log.md) 记录。
+2. **GitHub 角色**：**从镜像** + 人类可读 + Handoff 讨论（Issue）；**不推荐**日常把 GitHub 当作多端合并枢纽；过渡用法须在 [90-process-log.md](90-process-log.md) 记录。**例外**：**GitNet 本元仓库** 的 **`main`** 以 **GitHub PR 为合入闸**、bare **ff-only** 跟随，见 [10-topology.md](10-topology.md)、[56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)、[97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)。
 3. **身份与目录解耦**：**谁提交**（`includeIf`）与 **推到哪里**（`origin` = bare）分离；`55` §5.1 链到 `10`。
 4. **Handoff 模式**：对「对端 Agent 无法代劳」的事项，用 **Issue + 固定证据 Markdown（`published/`）+ PowerShell 证据脚本**（如 `91-glab-section-A-evidence.ps1`）减少聊天漂移。
 5. **认证分层**：公钥优先；口令/PAT 仅经 OS 凭据管理器 / 机外路径 / 会话环境变量；**禁止**秘密明文进 Git、Issue 正文、`handbook/` 定稿段落（`08`）。
 6. **数据面备选**：`92` + `gitnet-watch-github-sync.*` — **ff-only** 感知与拉取，**不替代** bare 写权威；与 Hermes/OpenClaw **并行互备**。
-7. **分支治理**：GitHub 对 `main` **分支保护**（`06`），与「仅 epix 推镜像」策略对齐；**feature 分支 + 集成者** 可作为流程叠层，仍应对 **bare** 操作（见前序对话结论，可后续写入 `90`）。
+7. **分支治理**：GitHub 对 `main` **分支保护**（`06`）。**组织默认**：业务仓仍以 **bare 写集成** 为主、镜像叠层；**GitNet 本仓**：**PR 合入 `main`** + **`github→bare`**，见 **`10`/`56`/`97`**。历史句「仍应对 bare 操作」仅适用于**非 GitNet 本仓**或已登记迁回 bare 先写的流程。
 
 ---
 
@@ -147,6 +146,7 @@
 | 用途 | 路径或 URL |
 |------|----------------|
 | 本阶段结论（本文） | `handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md` |
+| **初版封存索引（v0.1）** | `handbook/97-initial-gitnet-v0.1-deliverable.md` |
 | 手册目录 | `handbook/README.md` |
 | 进程日志 | `handbook/90-process-log.md` |
 | 协作收口 | `handbook/published/collaboration-closeout-status.md` |
@@ -159,5 +159,6 @@
 
 ## 修订记录
 
+- 2026-05-13：§1 增 **`97` v0.1 封存索引** 指针；§3 项 **2/7** 与 **GitHub PR 闸 + bare ff-only** 对齐（组织默认与本仓例外分述）。
 - 2026-05-13：`08` 已吸收 **全生命周期 × Git** 与 **主分支/特性分支** 的产品化叙述；本文 §7 仍为 **外推清单与流程表**；生命周期阶段粒度与矩阵以 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) 为准，与本节互补。
 - 2026-05-13：首版；GitNet 元仓库 **阶段成果** + **跨大型协作 Git 体系建议**（回顾 epix/glab Cursor Agent 协作与全手册脉络）。
