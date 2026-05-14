@@ -8,10 +8,12 @@
 
 > **探测日期**：2026-05-12（首版）；**2026-05-14** 经 **epix** `ssh -o BatchMode=yes woot@woot` **复测**（BestGit 落盘同会话执行）。OpenSSH 非登录会话 **PATH 不含** `~/.local/bin`，故以绝对路径与目录列举为准。
 
+**组织口径（2026-05-14）**：与 epix、glab 一致，**本机具备 Cursor、Codex CLI、Claude Code 三套编程 Agent**。下表「结论」与组织对齐；「证据」含 **Agent 经 BatchMode SSH** 可复现的快照——**Codex CLI** 若仅在交互登录环境或自定义前缀下可见，请在本机执行 `type -P codex`（或等价）后将**绝对路径**补进本表，便于下一轮自动化引用。
+
 | 工具 | 结论 | 证据（可复跑） |
 |------|------|----------------|
 | **Cursor** | 已安装 | `/Applications/Cursor.app` 存在 |
-| **Codex CLI** | **未**在常见路径发现 | `/usr/local/bin/codex` 不存在；`command -v codex` 在默认 SSH PATH 下为空 |
+| **Codex CLI** | **已部署**（与三节点组织口径一致） | **SSH 快照**：`/usr/local/bin/codex` 不存在；默认 SSH 与 `zsh -l -c 'command -v codex'` 当前仍为空（**待维护者补录**本机 `codex` 绝对路径）；自动化盘点应加长 `PATH`、用登录 shell，或调用已登记路径 |
 | **Claude Code** | 已安装 | `/Users/woot/.local/bin/claude` → `~/.local/share/claude/versions/2.1.81`；`/Users/woot/.local/bin/claude --version` 输出 `2.1.81 (Claude Code)` |
 | **cursor-agent** | 已安装 | `/Users/woot/.local/bin/cursor-agent`、`agent` 符号链至 `~/.local/share/cursor-agent/versions/2026.04.17-787b533/cursor-agent`；**注意**：同会话跑 `cursor-agent --version` 曾报 **macOS login keychain locked**（凭据/解锁问题，与二进制是否存在无关） |
 
@@ -28,6 +30,6 @@
 
 ## 修订记录
 
-- 2026-05-14：编程 Agent **复测**（结论与 2026-05-12 一致：Cursor.app、Claude Code、cursor-agent；Codex 不在默认 SSH PATH）；登记 **`/Users/woot/Dev/BestGit`**（`git clone` 自 GitHub `epix99-opus/BestGit`）。
-- 2026-05-12：增补「编程 Agent 工具」实机探测（PATH 约束说明、claude/cursor-agent 路径、Codex 未检出）。
+- 2026-05-14：编程 Agent **组织口径**改为三节点均具备 Cursor / Codex CLI / Claude Code；Codex 行保留 **SSH 快照**与「待补绝对路径」说明；登记 **`/Users/woot/Dev/BestGit`**。
+- 2026-05-12：增补「编程 Agent 工具」实机探测（PATH 约束说明、claude/cursor-agent 路径）；**2026-05-14** 与组织口径对齐后，Codex 行不再写「未检出」为结论。
 - 2026-05-13：首版枚举（epix → `woot@woot` SSH）。

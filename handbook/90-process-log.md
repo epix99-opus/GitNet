@@ -17,7 +17,7 @@
 ### 2026-05-14 — 三节点 BestGit 落盘与编程 Agent 复测（woot / glab SSH）
 
 - 参与：Agent（Cursor，epix）
-- 变更摘要：在 **epix** 确认 `~/Dev/BestGit`；经 **`ssh -o BatchMode=yes woot@woot`** 复测 Cursor.app / Claude Code / cursor-agent（Codex 仍不在默认 SSH PATH）、并 **`git clone https://github.com/epix99-opus/BestGit.git`** 至 **`/Users/woot/Dev/BestGit`**；经 **`ssh glab` + PowerShell** 复测 `where.exe cursor`/`claude`（codex 未命中）、并克隆至 **`E:\Dev\BestGit`**。已更新 GitNet `published/inventory-woot-enumerated-agent.md`、`inventory-glab-enumerated-agent.md`；CAMA `regulations/cama-git-inventory.md` 另仓提交。`AGENTS.md` 与 `.cursor/rules/gitnet-collaboration.mdc` 增补「新开仓先跑 BestGit NEW_PROJECT_CHECKLIST」。
+- 变更摘要：在 **epix** 确认 `~/Dev/BestGit`；经 **`ssh -o BatchMode=yes woot@woot`** 克隆 BestGit 至 **`/Users/woot/Dev/BestGit`**；经 **`ssh glab` + PowerShell** 克隆至 **`E:\Dev\BestGit`**。编程 Agent：**组织口径**为 **epix / woot / glab 三节点均具备 Cursor、Codex CLI、Claude Code**；inventory 与 CAMA §1 已与此对齐，并保留 **BatchMode SSH** 下对 `codex` 的探测快照（**不得**据此写成整机未装）。已更新 GitNet `published/inventory-*-enumerated-agent.md`；CAMA `cama-git-inventory.md` 另仓提交。`AGENTS.md` 与 `.cursor/rules/gitnet-collaboration.mdc` 已链 BestGit `NEW_PROJECT_CHECKLIST`。
 - 涉及信源：`90`、`published/inventory-*`、`AGENTS`、`.cursor/rules`、BestGit `docs/rollout-epix-glab-woot.md`、CAMA `cama-git-inventory`
 - 回顾：glab 上 BestGit 当前 `user.name` 解析为 **Epix**（默认 gitconfig）；若要以 **glab-cursor** 提交，按 `55` 为 `E:/Dev/BestGit` 增加 `includeIf` 覆盖。
 

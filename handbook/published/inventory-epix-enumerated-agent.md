@@ -8,6 +8,8 @@
 
 > **探测日期**：2026-05-12；在 **epix** 本机执行（非仅凭 Git `user.name` 推断）。
 
+**组织口径（2026-05-14）**：**三编程 Agent** = **Cursor（IDE）** + **OpenAI Codex CLI（终端 `codex`）** + **Claude Code（`claude` CLI）**。**epix / woot / glab 三台节点均纳入该三套能力**（与 CAMA `regulations/cama-git-inventory.md` §1 对齐）。下表为 **epix 本机**可点名路径；woot/glab 的逐条证据见对应 `inventory-*` 文件——**不得**仅凭「BatchMode SSH 里 `command -v` / `where` 为空」认定整机未装 Codex CLI。
+
 | 工具 | 结论 | 证据（可复跑） |
 |------|------|----------------|
 | **Cursor** | 已安装 | `/Applications/Cursor.app` 存在；默认 shell **无** `cursor` 于 `PATH`；`~/.local/bin/cursor-agent`、`agent` 为 **cursor-agent** 符号链 |
@@ -40,6 +42,7 @@
 
 ## 修订记录
 
+- 2026-05-14：编程 Agent 节增补 **组织口径**（三节点均具备 Cursor / Codex CLI / Claude Code），与 CAMA §1 及 woot/glab inventory 互指。
 - 2026-05-13：仓库表追加 **`/Users/epix/Dev/BestGit`**；`origin` 更新为 GitHub **`epix99-opus/BestGit`**；与 `96` / CAMA `cama-git-inventory` 对齐。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（Cursor.app / codex / claude 路径）。
 - 2026-05-13：首版全表（Agent 本机枚举）。
