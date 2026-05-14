@@ -38,11 +38,12 @@
 ## 与 [10-topology.md](../10-topology.md) 的对照（摘要）
 
 - 表中 **`origin` 为 GitHub 或其它远端** 的仓库：相对「**写集成在 epix bare**」目标，属 **L2 待对齐** 或已登记例外；请在 [90-process-log.md](../90-process-log.md) 按需记录迁移动作。
-- **`/Users/epix/Dev/GitNet`（本表 epix 行）**：**`origin` → `file:///Users/epix/git/GitNet.git`**（bare），**`github` → HTTPS**；**`main` 合入权威在 GitHub PR**（2026-05-14 起，`10`/`56`/`90`）。
+- **`/Users/epix/Dev/GitNet`（本表 epix 行）**：**`origin` → `file:///Users/epix/git/GitNet.git`**（bare），**`github` → HTTPS**；**`main` 合入权威在 GitHub PR**（2026-05-14 起，`10`/`56`/`90`）。**v0.1 周知**：epix 侧已读本仓 **`97`** 并按 CAMA **`docs/gitnet-v0.1-rollout-verification.zh-CN.md`** 自检（2026-05-13，Agent）。
 - **`(无) origin`**：可能为纯本地或后续再绑 remote；不视为已纳入对象层规范。
 
 ## 修订记录
 
+- 2026-05-13：**GitNet v0.1 周知**：`97` + CAMA 检验文；本表 GitNet 行摘要更新。
 - 2026-05-14：与 GitNet **GitHub PR 合入闸** 叙述对齐（`main` 权威在 GitHub；bare ff-only）。
 - 2026-05-14：**GitNet** 工作副本 `origin` 改为 **`file:///Users/epix/git/GitNet.git`**（bare），`github` 保留；与 `10`/`90` 对齐。
 - 2026-05-14：编程 Agent 节增补 **组织口径**（三节点均具备 Cursor / Codex CLI / Claude Code），与 CAMA §1 及 woot/glab inventory 互指。
