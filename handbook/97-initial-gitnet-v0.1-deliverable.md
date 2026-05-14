@@ -111,6 +111,7 @@
 - **含义**：标记「v0.1 文面已冻结」的 **GitHub `main` 提交**，便于三机对照是否已 pull 到该点之后。
 - **语义化版本**：根目录 **`VERSION`** 当前为 **`0.1.0`**；发布后在 GitHub 上打附注标签 **`v0.1.0`** 并可选建 **Release**（与本节提交锚点一致）。
 - **本轮（2026-05-13，PR #7 合入 + bare 同步后）**：GitHub `main` 与 `~/git/GitNet.git` **refs/heads/main** 均为 **`2aab83c77940069d6fdafa9bbb1c00736816b094`**（与 [90-process-log.md](90-process-log.md)「v0.1 封存发布」条一致）。
+- **当前 `main` 头（动态）**：随 PR 合入而前进；与 bare 是否对齐以 **`gh api repos/epix99-opus/GitNet/commits/main --jq .sha`** 与 **`git -C ~/git/GitNet.git rev-parse refs/heads/main`** 对账为准；进程摘要见 **`90`** 最新条（R2 合成结论见 [published/gitnet-r2-review-conclusions.md](published/gitnet-r2-review-conclusions.md)）。
 
 ## 修订记录
 
@@ -119,3 +120,4 @@
 | 2026-05-13 | 首版：v0.1 封存索引、对照表、配置/脚本索引、验收矩阵、CAMA pilot 指针。 |
 | 2026-05-13 | **文面基线**：PR #7 后 GitHub `main` 与 bare 对齐 **`2aab83c…`**（见 `90` 同条）。 |
 | 2026-05-13 | **VERSION 0.1.0**、Git 标签 **`v0.1.0`** 与 GitHub Release 与初版成果对齐。 |
+| 2026-05-14 | §9 增 **动态 `main` 头**指针：对账命令链 `90` 与 [gitnet-r2-review-conclusions.md](published/gitnet-r2-review-conclusions.md)（R2 落地）。 |

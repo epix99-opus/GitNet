@@ -64,6 +64,7 @@
 - [published/inventory-epix-enumerated-agent.md](published/inventory-epix-enumerated-agent.md)（**epix** 本机 `~/Dev` + `~/agent-work` 枚举表）
 - [published/inventory-woot-enumerated-agent.md](published/inventory-woot-enumerated-agent.md)（**woot**，经 `ssh woot@woot`）
 - [published/inventory-glab-enumerated-agent.md](published/inventory-glab-enumerated-agent.md)（**glab**，经 `ssh glab` + PowerShell）
+- **published 主题索引（R2）**：[gitnet-r2-review-conclusions.md](published/gitnet-r2-review-conclusions.md)（总表；§1 链各 `review-r2-*.md`）；首轮 Git 总线周知草案见 `retro-multi-agent-woot-2026-05.md` / `retro-multi-agent-glab-2026-05.md`（Issue #11）
 
 ## 仓库内 Agent 约定
 
