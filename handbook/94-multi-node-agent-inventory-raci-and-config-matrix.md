@@ -159,11 +159,13 @@ ssh -o BatchMode=yes -o ConnectTimeout=20 glab 'powershell -NoProfile -Command "
 - 阶段复盘与外推清单：`93` §7
 - glab Handoff 与 Issue：`91`、[Issue #1](https://github.com/epix99-opus/GitNet/issues/1)
 - 进程与实值：`90`
+- **组织模板 BestGit**：`96`（独立仓路径与三节点周知）
 
 ---
 
 ## 修订记录
 
+- 2026-05-13：GitNet [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) 增补 **BestGit** 组织模板仓入口；盘点与 L1～L3 自检可配合 BestGit `docs/NEW_PROJECT_CHECKLIST.md` / `scripts/bestgit-doctor.sh`。
 - 2026-05-13：`AGENTS.md` 条文扩展至 **1～7**（规划/可验证信号、人类对话提示）；`.cursor/rules/gitnet-collaboration.mdc` 以 **`AGENTS.md` 为全文**、本文件仅索引（与 Cursor 官方「避免规则重复」一致）。
 - 2026-05-13：§1 信息边界增「回合前/末（目标与检索）」行，指向 `AGENTS.md`「回合前与回合末」。
 - 2026-05-13：§1 信息边界增「Agent 回合完成定义」行，指向 `AGENTS.md`「多机与盘点：实测完成定义」。

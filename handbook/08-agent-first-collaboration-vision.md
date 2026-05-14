@@ -30,7 +30,7 @@
 | 5 | **GitHub 分支保护**：保护**镜像**上的集成分支，防「习惯直推 GitHub」与 bare 主线冲突 | [06-github-branch-protection.md](06-github-branch-protection.md) |
 | 6 | **Handoff 与证据**：跨机硬边界用 Issue + `published/` + 脚本输出，减少聊天漂移 | [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md)、[published/collaboration-closeout-status.md](published/collaboration-closeout-status.md)；复盘结构见 [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) §5 |
 | 7 | **Agent 回合与多机实测**：能 SSH 则实测落盘，禁止「只写流程」冒充完成 | [AGENTS.md](../AGENTS.md)、[94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) |
-| 8 | **外推清单**：复杂多跨项目可裁剪复用 | `93` §7 |
+| 8 | **外推清单**：复杂多跨项目可裁剪复用 | `93` §7；**组织模板**见 [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) |
 | 9 | **SSH 公钥信源与 glab 落地** | [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)、`handbook/scripts/setup-glab-openssh-for-epix.ps1`（见 `46`） |
 | 10 | **GitHub API / `gh`** | token **不入库**；凭据管理器或会话环境注入 |
 
