@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — epix：GitNet bare 路径探测（无常见路径）+ CAMA-concept 落盘跨 epix 工作规条
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：在本机探测 **`/srv/git/GitNet.git`**、**`$HOME/git/GitNet.git`**、**`/Users/epix/git/GitNet.git`** —— **均不存在**，故 **无法**代执行 `git -C <bare> push github`；若 bare 实装在其它路径，由后续会话在 `30`/`90` 填实值后再验。已在 **`/Users/epix/Dev/CAMA/CAMA-concept`** 新增 **`regulations/gitnet-cross-node-work-on-epix-cama.md`**、**`.zh-CN.md`**，并更新 **`AGENTS.md`**、**`README*.md`**、**`doctrine/CAMA-git手册.md`**（§6/§7）、**`doctrine/CAMA-git方案.md`**、**`regulations/cama-git-inventory.md`**（§3 指针 + Last sync 对齐 GitNet **`ddc6e32`**）。**措辞**：凡「须有人类执行」的镜像/bare 同步，**默认由 Agent 先做**本机可做的探测与推送；仅硬边界才交接——不再使用模糊「你们」指代维护者。
+- 涉及信源：`54`、`90`、`CAMA-concept`、`30`
+- 回顾：CAMA 提交与 push 在 **CAMA** 仓单独执行（本条目仅 GitNet 留证）。
+
 ### 2026-05-14 — handbook：`51`～`54` 四文档落盘（Git 人类指南、体系边界、多 Agent 冲突、epix CAMA 远程）
 
 - 参与：Agent（Cursor，epix）
