@@ -66,7 +66,9 @@
 - **人类**全局兜底：`user.name` / `user.email` 与 **GitHub 账号一致**（邮箱 `epix99@icloud.com`；用户名与 GitHub 展示策略一致即可）。
 - **Agent**：在 `includeIf` 指定的 Agent 工作目录下，作者名 **`{HOSTNAME}-{tool}`**（如 `epix-cursor`），邮箱 **`epix99@icloud.com`**。详见 [handbook/40-identity-and-includeIf.md](handbook/40-identity-and-includeIf.md) 与 [handbook/55-multi-node-multi-agent-git.md](handbook/55-multi-node-multi-agent-git.md)（多节点总表）。
 
-## 日常工作流
+## 提交信息（语言）
+
+本仓 **`git commit` 首行摘要**（约定式里 **`<简短描述>`** 段）与**提交正文**须为**中文**；**`type`/`scope`** 仍用英文关键字（见 [CONTRIBUTING.md](CONTRIBUTING.md)、[handbook/56-git-workflow-quality-practices.md](handbook/56-git-workflow-quality-practices.md) §4）。**例外**：`Co-authored-by:` 等 trailer、工具链固定字段、须原文照录的上游标识。
 
 1. 开发、提交在**工作克隆**上进行；**新开业务仓**在首次推送前须按 BestGit **`docs/NEW_PROJECT_CHECKLIST.md`** 自检（本机路径见 GitNet `96` / BestGit `docs/rollout-epix-glab-woot.md`；全工作区习惯可同步写入 Cursor **User Rules**）。
 2. **本仓（GitNet）合入 `main`**：**必须**走 **GitHub PR**（**`git push github <特性分支>`** → PR → merge）；**禁止** **`git push origin main`** 绕过 PR。PR merge 后须 **`gitnet-sync-github-main-to-bare.sh`** 对齐 bare（见 [CONTRIBUTING.md](CONTRIBUTING.md)、[handbook/56-git-workflow-quality-practices.md](handbook/56-git-workflow-quality-practices.md)、[handbook/10-topology.md](handbook/10-topology.md)）。

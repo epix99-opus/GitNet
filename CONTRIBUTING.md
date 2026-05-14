@@ -8,9 +8,11 @@
 <type>(<scope>): <简短描述>
 ```
 
+**语言（铁律）**：**首行摘要**中 **`<简短描述>`** 与 **提交正文**（`-m` 多段、`git commit` 编辑器中的说明段落）**须使用中文**。**`type` / `scope`** 仍用约定式提交的**英文关键字**（如 `docs(handbook): …`）。**例外**：`Co-authored-by:` 等 trailer、工具链要求的固定字段、须原文照录的上游标识，可保留必要英文行。
+
 示例：`docs(handbook): 同步 06 分支保护说明`、`chore(scripts): 增加 github→bare 同步脚本`。
 
-**类型**常用：`feat`、`fix`、`docs`、`chore`、`refactor`、`test`、`ci`。**范围**建议用手册章、目录或子系统名（如 `handbook`、`90`、`glab`）。
+**类型**常用：`feat`、`fix`、`docs`、`chore`、`refactor`、`test`、`ci`。**范围**建议用手册章、目录或子系统名（如 `handbook`、`90`、`glab`）。**Pull Request 的标题与说明**与本条对齐，**默认中文**。
 
 ## 合入流程（GitNet 本仓，2026-05-14 起）
 

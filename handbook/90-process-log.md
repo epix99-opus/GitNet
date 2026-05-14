@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — 定稿：**`git commit` 首行摘要与正文铁律中文**
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：根 **`CONTRIBUTING.md`**、**`56` §4**、**`AGENTS.md`** 新增「提交信息（语言）」、**`.cursor/rules/gitnet-collaboration.mdc`** 索引条：首行 **`<简短描述>`** 与提交**正文**须中文；**`type`/`scope`** 仍为约定式英文关键字；**PR 标题与说明**默认中文；保留 **trailer / 工具字段 / 上游原文** 例外。
+- 涉及信源：`CONTRIBUTING`、`56`、`AGENTS`、`.cursor/rules/gitnet-collaboration.mdc`、`90`
+- 回顾：与历史「中文描述为主」一致并升格为硬条文。
+
 ### 2026-05-14 — **GitNet 本仓治理升级**：GitHub `main` 为 PR 合入闸 + bare `ff-only` 跟随
 
 - 参与：人类 / Agent（Cursor，epix）
