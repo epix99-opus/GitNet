@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — BestGit：三工具周知落盘、推送、woot/glab `pull` 与自检 **MISS=0**
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：BestGit 提交 **`47a30a2`**（`docs/PROGRAMMING_AGENTS_WEEKLY_BRIEF.zh-CN.md`、`.cursor/rules/bestgit-agent-ironlaw.mdc`、`CLAUDE.md`、`AGENTS.md`、`scripts/verify-programming-agents-weekly-brief.sh` 等）；**`git push origin main`** 至 GitHub。**woot**（`ssh woot@$(tailscale ip -4 woot)`）与 **glab**（`ssh glab` + PowerShell + Git Bash）在 BestGit 根 **`git pull --ff-only`** 后执行 **`bash scripts/verify-programming-agents-weekly-brief.sh`**，均为 **OK=4 MISS=0**。说明：Cursor 打开 BestGit 工作区即加载 `.cursor/rules`；Codex/Claude 依赖人类把周知卡链进提示词或各业务仓 `CLAUDE.md`，Git 作者仍按各机 `includeIf`。
+- 涉及信源：BestGit `docs/rollout-epix-glab-woot.md`、`README.md`、`90`
+- 回顾：三节点工作副本已与 **`47a30a2`** 对齐；后续改周知卡须再 push 并三机 pull。
+
 ### 2026-05-14 — 三机 × 三工具 Git `includeIf` 核对与 glab 宽路径修复
 
 - 参与：Agent（Cursor，epix）
