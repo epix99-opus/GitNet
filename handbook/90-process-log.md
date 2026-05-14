@@ -21,6 +21,7 @@
 - 涉及信源：`97`、`93`、`96`、`90`、BestGit、CAMA、`published/inventory-*`
 - 三机验收：**epix** 于 `inventory-epix` 或本条目补一句；**woot/glab** 于对应 inventory 或本条目记 **OK/阻塞**（SSH 硬边界按 `AGENTS`）。
 - 回顾：与 **`97` §9** 基线锚点互指；勿与 `93` 全文双写操作细节。
+- **VERSION / GitHub Release**：根目录 **`VERSION`** 写入 **`0.1.0`**；合并后于 **`main`** 打附注标签 **`v0.1.0`** 并创建 GitHub **Release**（与 `97` §9 语义化版本段一致）。
 
 ### 2026-05-14 — **GitNet 本仓治理升级**：GitHub `main` 为 PR 合入闸 + bare `ff-only` 跟随
 

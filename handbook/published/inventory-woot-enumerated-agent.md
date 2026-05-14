@@ -31,16 +31,16 @@
 |------|------|----------|---------------------|
 | `/Users/woot/Dev/ccdev/everything-claude-code` | main | `https://github.com/affaan-m/everything-claude-code.git` | `~/.gitconfig-fragment-cursor` → **`woot-cursor`** |
 | `/Users/woot/Dev/BestGit` | main | `https://github.com/epix99-opus/BestGit.git` | `~/.gitconfig-fragment-cursor` → **`woot-cursor`** |
+| `/Users/woot/Dev/GitNet` | main | `https://github.com/epix99-opus/GitNet.git`（**仅 GitHub**；与 epix bare 权威之 L2 副机克隆） | `~/.gitconfig-fragment-cursor` → **`woot-cursor`** |
 
 ## 备注
 
 - `~/Dev/BestGit` 已按 BestGit `docs/rollout-epix-glab-woot.md` 经 SSH **克隆**（2026-05-14）；若后续扩大 `find` 根路径可能发现更多仓。
-
-- **GitNet v0.1 周知**：本 inventory **未枚举** `~/Dev/GitNet`；对 GitNet `97` 的全量矩阵 **待 woot 本机或经 SSH 补验**（见 GitNet `97` §6 与 CAMA **`docs/gitnet-v0.1-rollout-verification.zh-CN.md`**）。
+- **GitNet v0.1 周知（2026-05-13）**：经 epix **`ssh -o BatchMode=yes woot@woot`** 在 **`~/Dev/GitNet`** **新克隆** GitHub `main`，**`HEAD=73bd90e…`**，`git config --show-origin user.name` → **`woot-cursor`**；与 `97` §6 / CAMA 检验文一致。
 
 ## 修订记录
 
-- 2026-05-13：**GitNet v0.1 周知**：woot 侧 GitNet 克隆与矩阵 **待补**（见上节备注）。
+- 2026-05-13：**GitNet v0.1**：**`~/Dev/GitNet`** 已克隆、`HEAD` 与 GitHub `main` 对齐 **`73bd90e…`**，`user.name` **`woot-cursor`**（经 epix SSH 实跑）。
 - 2026-05-14：inventory **二次核对**：本机 **`tailscale status`/`tailscale ping woot` 正常** 而 **`ssh woot@woot` 超时** 时，根因常为 **DNS 100.x 与 status 表不一致**（见 `46` 新增 **§1.0**）；**更正**此前「Agent 不在 tailnet」之误述；表结构修复见前条。
 - 2026-05-14：增补 **「为何 `zsh -l -c` 探不到已安装之 codex」**（zsh 非交互不读 `.zshrc`、SSH PATH）；Codex 证据列改为建议 **`zsh -lic`** 或补绝对路径。
 - 2026-05-14：编程 Agent **组织口径**改为三节点均具备 Cursor / Codex CLI / Claude Code；Codex 行保留 **SSH 快照**与「待补绝对路径」说明；登记 **`/Users/woot/Dev/BestGit`**。

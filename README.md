@@ -1,6 +1,6 @@
 # GitNet
 
-多设备、多编程 Agent 与人类协作的 **Git 与治理** 元仓库。**拓扑与身份**以 **[handbook/README.md](handbook/README.md)** 为准（组织默认：**epix bare 写权威**、GitHub 定时镜像）。**本仓 `epix99-opus/GitNet` 例外**：**`main` 经 GitHub Pull Request 合入**，bare 由 **`github/main` ff-only** 跟随；勿 **`git push origin main` 绕过 PR**。
+多设备、多编程 Agent 与人类协作的 **Git 与治理** 元仓库。**语义化版本**见根目录 **`VERSION`**（与 **`handbook/97`**、Git 标签 **`v0.1.0`** 及 GitHub **Releases** 对齐）。**拓扑与身份**以 **[handbook/README.md](handbook/README.md)** 为准（组织默认：**epix bare 写权威**、GitHub 定时镜像）。**本仓 `epix99-opus/GitNet` 例外**：**`main` 经 GitHub Pull Request 合入**，bare 由 **`github/main` ff-only** 跟随；勿 **`git push origin main` 绕过 PR**。
 
 **项目本意（北极星）**：在硬边界（法律与授权、**凭据明文不进 Git/Issue** 等）之内，**最大化 Agent 可执行范围**，用 Git、手册与脚本把多机多 Agent 协作尽量做到**可无人值守**；**全链路认证**（公钥默认优先 + 人类提供的口令/PAT 须经 OS 凭据库等安全存储后使用）见 **[handbook/08-agent-first-collaboration-vision.md](handbook/08-agent-first-collaboration-vision.md)**。
 
