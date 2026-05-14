@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-13 — `08`：Agent 驱动开发的 Git 宗旨与全生命周期校准
+
+- 参与：Agent（Cursor）
+- 变更摘要：扩充 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — **双重角色**（运维宿主 / 可移植母版）、**全局共用 Git 规定** 清单、**全生命周期 × Git** 矩阵、**主分支与特性分支**、**每项目/Agent/节点** 表、**多智能体信源仲裁**；与 `05`/`07`/`10`/`40`/`55`/`06`/`90`/`93`/`94`/`AGENTS` 交叉引用；原「为实现北极星」四行表并入清单。[handbook/README.md](README.md) 北极星与阅读顺序第 3 项同步；[93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) 修订记录互指 `08`。
+- 涉及信源：`08`、`README`、`93`、`90`
+- 回顾：操作命令与路径仍以 `10`/`46`/`30` 为准，不在 `08` 展开。
+
 ### 2026-05-13 — AGENTS / Cursor 规则：对齐官方习惯、去冗与本机细节迁出
 
 - 参与：Agent（Cursor）

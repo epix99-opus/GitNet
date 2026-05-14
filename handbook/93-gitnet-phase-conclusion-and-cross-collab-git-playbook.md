@@ -159,4 +159,5 @@
 
 ## 修订记录
 
+- 2026-05-13：`08` 已吸收 **全生命周期 × Git** 与 **主分支/特性分支** 的产品化叙述；本文 §7 仍为 **外推清单与流程表**；生命周期阶段粒度与矩阵以 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) 为准，与本节互补。
 - 2026-05-13：首版；GitNet 元仓库 **阶段成果** + **跨大型协作 Git 体系建议**（回顾 epix/glab Cursor Agent 协作与全手册脉络）。
