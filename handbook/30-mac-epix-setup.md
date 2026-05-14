@@ -59,7 +59,7 @@ mkdir -p ~/Library/Logs/GitNet
 tail -n 30 ~/Library/Logs/GitNet/sync-github-to-bare.log
 ```
 
-环境变量：`BARE`（默认 **`$HOME/git/GitNet.git`**）、`LOG`（默认 **`~/Library/Logs/GitNet/sync-github-to-bare.log`**）。
+环境变量：`BARE`（默认 **`$HOME/git/GitNet.git`**）、`LOG`（默认 **`~/Library/Logs/GitNet/sync-github-to-bare.log`**）。**预演**：`GITNET_SYNC_DRY_RUN=1` 与脚本同路径执行，仅打印将运行的 `git fetch`、**不写日志、不拉取**（见 `98` §5）。
 
 ### 4.1 停用「bare 直推 GitHub `main`」旧脚本
 
