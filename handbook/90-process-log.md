@@ -17,7 +17,7 @@
 ### 2026-05-13 — **GitNet v0.1 封存发布**（`97` + 三节点周知链 + CAMA 检验）
 
 - 参与：Agent（Cursor，epix）
-- 变更摘要：新增 [97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)（规范/配置/脚本索引、组织默认与本仓对照表、三节点×三 Agent 验收矩阵、CAMA pilot 指针）；[scripts/gitnet-v0.1-rollout-print-checks.sh](scripts/gitnet-v0.1-rollout-print-checks.sh)；更新 [handbook/README.md](README.md) 阅读顺序、[93](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) §1/§3、[96](96-bestgit-org-template-and-rollout.md) 周知步骤与关系表；BestGit / CAMA-concept **另仓提交**周知与检验文。文面基线 SHA 于本条目合并后补：`gh api repos/epix99-opus/GitNet/commits/main --jq .sha` 与 `git -C ~/git/GitNet.git rev-parse refs/heads/main`。
+- 变更摘要：新增 [97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)（规范/配置/脚本索引、组织默认与本仓对照表、三节点×三 Agent 验收矩阵、CAMA pilot 指针）；[scripts/gitnet-v0.1-rollout-print-checks.sh](scripts/gitnet-v0.1-rollout-print-checks.sh)；更新 [handbook/README.md](README.md) 阅读顺序、[93](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) §1/§3、[96](96-bestgit-org-template-and-rollout.md) 周知步骤与关系表；BestGit / CAMA-concept **另仓提交**周知与检验文。**文面基线（PR #7 merge + sync）**：`gh api …/commits/main` 与 `git -C ~/git/GitNet.git rev-parse refs/heads/main` 均为 **`2aab83c77940069d6fdafa9bbb1c00736816b094`**。
 - 涉及信源：`97`、`93`、`96`、`90`、BestGit、CAMA、`published/inventory-*`
 - 三机验收：**epix** 于 `inventory-epix` 或本条目补一句；**woot/glab** 于对应 inventory 或本条目记 **OK/阻塞**（SSH 硬边界按 `AGENTS`）。
 - 回顾：与 **`97` §9** 基线锚点互指；勿与 `93` 全文双写操作细节。

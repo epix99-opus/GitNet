@@ -107,14 +107,11 @@
 ## 9. 文面基线锚点
 
 - **含义**：标记「v0.1 文面已冻结」的 **GitHub `main` 提交**，便于三机对照是否已 pull 到该点之后。
-- **填写方式**：在本文件随 **PR 合入 GitHub `main`** 后，由维护者在 [90-process-log.md](90-process-log.md) **「v0.1 封存发布」** 条目中记录一行：  
-  `gh api repos/epix99-opus/GitNet/commits/main --jq .sha`  
-  与  
-  `git -C ~/git/GitNet.git rev-parse refs/heads/main`  
-  两输出应 **一致**（ff-only 同步后）。
+- **本轮（2026-05-13，PR #7 合入 + bare 同步后）**：GitHub `main` 与 `~/git/GitNet.git` **refs/heads/main** 均为 **`2aab83c77940069d6fdafa9bbb1c00736816b094`**（与 [90-process-log.md](90-process-log.md)「v0.1 封存发布」条一致）。
 
 ## 修订记录
 
 | 日期 | 摘要 |
 |------|------|
 | 2026-05-13 | 首版：v0.1 封存索引、对照表、配置/脚本索引、验收矩阵、CAMA pilot 指针。 |
+| 2026-05-13 | **文面基线**：PR #7 后 GitHub `main` 与 bare 对齐 **`2aab83c…`**（见 `90` 同条）。 |
