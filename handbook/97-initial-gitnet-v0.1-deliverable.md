@@ -2,6 +2,8 @@
 
 > **文档性质**：**v0.1 封存清单**——把截至本版已形成并定稿的 **Git 使用规范、配置入口、脚本与自动化** 收敛为**单页索引**，供三节点人类与编程 Agent 对齐。**过程复盘与可外推长篇**仍以 [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) 为准；**93 = 叙事与复盘，97 = v0.1 交付包索引**。若与逐条操作冲突，以 [00-truth-sources.md](00-truth-sources.md) 及被引用章节的最新修订为准。
 
+**语义化版本**：根目录 **[`VERSION`](../VERSION)** 为当前仓库对外宣称的 **SemVer**（与 Git 标签 **`v0.1.0`**、GitHub **Releases** 对齐；见 §9）。
+
 ## 1. 范围声明
 
 | 包含 | 不包含 |
@@ -107,6 +109,7 @@
 ## 9. 文面基线锚点
 
 - **含义**：标记「v0.1 文面已冻结」的 **GitHub `main` 提交**，便于三机对照是否已 pull 到该点之后。
+- **语义化版本**：根目录 **`VERSION`** 当前为 **`0.1.0`**；发布后在 GitHub 上打附注标签 **`v0.1.0`** 并可选建 **Release**（与本节提交锚点一致）。
 - **本轮（2026-05-13，PR #7 合入 + bare 同步后）**：GitHub `main` 与 `~/git/GitNet.git` **refs/heads/main** 均为 **`2aab83c77940069d6fdafa9bbb1c00736816b094`**（与 [90-process-log.md](90-process-log.md)「v0.1 封存发布」条一致）。
 
 ## 修订记录
@@ -115,3 +118,4 @@
 |------|------|
 | 2026-05-13 | 首版：v0.1 封存索引、对照表、配置/脚本索引、验收矩阵、CAMA pilot 指针。 |
 | 2026-05-13 | **文面基线**：PR #7 后 GitHub `main` 与 bare 对齐 **`2aab83c…`**（见 `90` 同条）。 |
+| 2026-05-13 | **VERSION 0.1.0**、Git 标签 **`v0.1.0`** 与 GitHub Release 与初版成果对齐。 |
