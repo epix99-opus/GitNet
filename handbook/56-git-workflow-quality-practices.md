@@ -1,6 +1,6 @@
 # 高价值 Git 工作流：业界共识与本项目分层落地
 
-本文把「提交信息规范、小步提交、分支与 PR、交互式变基、部分暂存、分支清理」六条**可复用实践**写进定稿，并与现有 **`08`/`10`/`51`/`53`/`06`** 对齐，避免与 **GitNet 元仓库** 既有惯例无解释地冲突。
+本文把「提交信息规范、小步提交、分支与 PR、交互式变基、部分暂存、分支清理」六条**可复用实践**写进定稿，并与 **`08`/`10`/`51`/`53`/`06`/`30`** 对齐。**GitNet 本元仓库**自 **2026-05-14** 起实行 **GitHub PR 合入闸**（见 §3）。
 
 ## 1. 为何此前「有碎片、无总账」
 
@@ -8,7 +8,7 @@
 |------|------|
 | **条文分散** | 分支与 PR、rebase 节律、合并策略等已在 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) 矩阵与 [10-topology.md](10-topology.md)；`git add -p` 已在 [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md) 最小闭环中出现。 |
 | **未显式命名「约定式提交」** | 仓库内提交已多次使用 **`type(scope): subject`** 形态（如 `docs(handbook): …`），但未在定稿中写成**团队默认格式**，不利于新成员与 Agent 对齐。 |
-| **元仓库例外未写成「分层」** | `08` 写明 **GitNet 本元仓库** 日常文档/脚本可在 **`main`** 小步提交；若不与「业务仓勿在 main 开发」区分，易被误读成「全盘允许 main 开发」。 |
+| **元仓库例外已升格** | 自 **2026-05-14** 起 GitNet 本仓已采用 **§3 全 PR**；旧「main 小步」叙述见 `90` 迁移条。 |
 
 ## 2. 六条共识 ↔ 本仓库定稿索引
 
@@ -16,37 +16,30 @@
 |---|----------|----------------|
 | 1 | **约定式提交** `type(scope): subject` | 本文 **§4**；根目录 [CONTRIBUTING.md](../CONTRIBUTING.md) |
 | 2 | **小步、一事一提交** | `08` 编程阶段「小步、可回滚」；本文 **§5** |
-| 3 | **集成分支上不用 main 直接堆功能** | `08` 特性分支 + **PR/MR**；[06-github-branch-protection.md](06-github-branch-protection.md)；本文 **§6** 与 **§3 分层** |
+| 3 | **集成分支上不用 main 直接堆功能** | **GitNet 本仓**：§3、§6；**其它仓**：`08` + `06` |
 | 4 | **`git rebase -i` 整理历史** | 本文 **§7**；与 `08`「合入前 rebase」互补（一个管**合入前**，一个管**推送前整理本地**） |
 | 5 | **`git add -p` 部分暂存** | `51` §1；本文 **§5** |
 | 6 | **合并后删分支、清理远端** | 本文 **§8** |
 
-## 3. 分层策略（必须二选一语境）
+## 3. GitNet 本元仓库（现行）：GitHub 合入闸 + bare ff-only 跟随
 
-### A. GitNet **元仓库**（本 `handbook/`、`scripts/`、`published/` 等）
+自 **2026-05-14** 起（迁移决议与验收见 [90-process-log.md](90-process-log.md)），**仅对仓库 `epix99-opus/GitNet`**：
 
-- **允许**：在 **`main`** 上做**小步、可审、可回滚**的文档与脚本修正（与 `08`「GitNet 本元仓库惯例」一致），且 **提交信息仍须**遵守 §4 约定式格式。
-- **仍建议**：跨阶段大结构调整、多文件重命名、有争议的规范改写，使用 **`docs/<topic>`** 或 **`chore/handbook-<topic>`** 等**短生命周期分支**，经 **PR**（GitHub 镜像上）或等价评审后再合入，降低主线噪声。
-- **禁止**：把凭据、token、私钥写入任何提交。
+### A. 必须遵守
 
-### B. **业务仓**（产品代码、多 Agent 并行）
+1. **禁止**为更新 **`main`** 而 **`git push origin main`**（bare）以绕过 GitHub **分支保护**与审计链。
+2. **必须**在 **`docs/*` / `chore/*` / `fix/*` / `feat/*`** 等分支上开发；**`git push -u github <分支>`** 后在 GitHub 开 **Pull Request**，合并进 **`github/main`**。
+3. **必须**在 PR merge 后（或由定时任务）在 epix 执行 **`gitnet-sync-github-main-to-bare.sh`**，使 **bare `refs/heads/main`** 与 **`github/main`** **fast-forward** 一致（脚本见 [30-mac-epix-setup.md](30-mac-epix-setup.md) §4）。
+4. **提交信息**：仍遵守本文 **§4** 约定式提交。
+5. **秘密**：禁止凭据明文进任何提交。
 
-- **默认**：**不在 `main`（或团队定义的集成分支）上直接开发功能**；使用 **`feature/…`** 或 **`agent/<host>-<tool>/…`**（二选一命名，在业务仓进程日志首次固化），**PR/MR → 集成分支**；与 `08` 矩阵、`06` 分支保护一致。
-- **合入前**：`fetch` + **`pull --rebase`**（或等价），减少分叉；合并策略（merge / squash）在业务仓书面选一种，见 `08`。
+### B. 其它业务仓（组织默认）
 
-### 3.5 「元仓 main 小步」是不是全局最优？
+仍按 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) 与 [10-topology.md](10-topology.md)：**bare 集成**、**定时 `push github`** 镜像，除非该仓在自身 **`90`** 登记与本节 **§3.A** 同构的例外。
 
-**不是**单一意义上的「对所有仓库、所有团队都最优」。Git 工作流的最优解依赖**目标函数**：
+### 3.5 已选模式与迁回
 
-| 若你最看重…… | 更偏「优」的做法 |
-|--------------|------------------|
-| **合规与审计**（每一条上集成分支的变更都可追溯到评审/CI） | **含 GitNet 元仓在内**也实行 **「全变更走 PR」**；`main` 受保护、禁止直推；PR 在 **GitHub 镜像**（或等价平台）上开，与 `06` 一致。代价：小编辑也要走分支与评审，**摩擦更高**。 |
-| **吞吐与 Agent 自动化**（大量小文档修正尽快进 bare、减少人类卡点） | 当前 **§3.A**：元仓在 **`main` 上小步提交**，靠 **约定式提交 + 小步 + 可 `revert`** 控制风险；**大改**再走短分支 + PR。这是在 **epix bare 为写权威** 前提下、与 `08` 已写惯例对齐的 **折中最优（帕累托较好点）**，不是「治理上的最严档」。 |
-| **主线永远绿**（手册/脚本错误也不上 main） | 元仓也 **默认特性分支 + CI 通过才合入**；与上表第一行接近。 |
-
-**何时应从 §3.A 升级到「元仓也全 PR」**（建议在 `90` 记一条迁移决议）：例如 **多人频繁在 `main` 上互相覆盖**、**回归难以 bisect**、**组织要求 GitHub 上必有 PR/审查记录**、或 **CI 必须在合入前必跑** 且仅挂在 PR 上。
-
-**升级时的工程要点**（与 `10` 一致）：开发克隆的 **`push` 目标仍是 epix bare**；PR 可在 **指向 GitHub 的第二克隆**、或 **CI/bot 从 bare 镜像拉取后只对 GitHub 开 PR** 等方式实现——团队**选一种**并在 `90` 写清，避免「bare 与 GitHub 双写口」长期分裂。
+本仓已**锁定**为 **§3.A 全 PR**（GitHub 合入闸）。若将来迁回「bare 先写 `main` 再镜像 GitHub」，须：**解除/放宽 GitHub 保护**、恢复 **`gitnet-push-github.sh`** 语义、更新 **`10`/`06`/`30`/`08`** 与本章，并在 **`90`** 写原因与双端 SHA 验收。
 
 ## 4. 约定式提交（Conventional Commits）— 本项目默认
 
@@ -69,11 +62,15 @@
 - **小步**：一次提交只解决**一类**问题（单文档修正、单脚本修复、单章交叉引用），便于 `revert` 与评审。
 - **部分暂存**：同一文件含两类改动时，优先 **`git add -p`** 拆成两次提交，避免「一条提交里夹无关 diff」。详见 `51` §1。
 
-## 6. 分支与 PR（与 bare/GitHub 双远程一致）
+## 6. 分支与 PR（GitNet 本仓）
 
-- **开发**：在 **特性分支** 上 `push` 到 **写集成远程**（GitNet 场景为 **epix bare**，`origin`），见 `10`。
-- **评审**：在 **GitHub 镜像** 上开 **PR**（若 `origin` 已是 bare，可用 **第二克隆** 或 CI 只读镜像向 GitHub 提 PR；团队流程须在 `90` 写清一种默认）。**分支保护**见 `06`。
-- **多 Agent**：仍遵守 [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md)（同 ref 并发与冲突）。
+- **开发**：在 **特性分支** 上提交；**`git push -u github <分支>`** 打开 PR，**base = `main`**。
+- **合入**：在 GitHub 完成 **PR merge**（单人仓库可用 **`gh pr merge --admin`** 满足 **1 人审批** 规则，见 [06-github-branch-protection.md](06-github-branch-protection.md)）。
+- **对齐 bare**：merge 后执行 **`~/bin/gitnet-sync-github-main-to-bare.sh`**（或等待 launchd），再在工作副本 **`git fetch origin`**，使本地 **`main`** 与 **bare / GitHub** 一致。
+- **禁止**：为更新 **`main`** 而 **`git push origin main`**（除非 `90` 登记的紧急流程）。
+- **多 Agent**：仍遵守 [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md)。
+
+**其它业务仓**：仍可按「特性分支 → **推 bare（`origin`）** → 镜像 GitHub」的默认；见 `10` 默认节。
 
 ## 7. 交互式变基 `git rebase -i` — 使用边界
 
@@ -82,13 +79,13 @@
 **慎用 / 须团队规则**：
 
 - 已 **`push`** 且他人可能已基于其工作的提交，**改写历史**须 **`--force-with-lease`** 且仅限**约定窗口**（例如个人特性分支），**禁止**对 **`main`** 强推重写，除非灾备流程并记入 `90`。
-- 与 **bare 作为权威** 不冲突：变基发生在**克隆侧**；推 bare 后仍以 bare 对象为准。
+- **GitNet 本仓**：合入 **`main`** 的唯一权威为 **GitHub PR merge**；bare 仅 **ff-only 跟随**（见 §3）。
 
 **示例**（整理最近 5 条未推送提交，仅作说明）：
 
 ```bash
-git fetch origin
-git rebase -i HEAD~5   # 在编辑器中 squash/reword/fixup
+git fetch github
+git rebase -i HEAD~5   # 在编辑器中 squash/reword/fixup；推送用 github 远程分支
 ```
 
 ## 8. 分支清理
@@ -96,7 +93,7 @@ git rebase -i HEAD~5   # 在编辑器中 squash/reword/fixup
 合并并删除远程特性分支后，本地执行：
 
 ```bash
-git fetch --prune origin
+git fetch --prune github
 git branch -d feature/old-topic    # 已合并的本地分支
 ```
 
@@ -114,4 +111,5 @@ git branch -d feature/old-topic    # 已合并的本地分支
 
 | 日期 | 摘要 |
 |------|------|
-| 2026-05-14 | 初版（六条、分层、约定式提交、rebase -i）；**§3.5** 补「非全局唯一最优」与全 PR 升级条件。 |
+| 2026-05-14 | 初版（六条、约定式提交、rebase -i）。 |
+| 2026-05-14 | **§3 锁定**：GitHub 合入闸 + bare ff-only；**§6** 改 GitNet 流程；**§3.5** 改为迁回说明；§7/§8 示例 fetch 目标调整。 |

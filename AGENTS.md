@@ -57,9 +57,9 @@
 
 ## 仓库角色（必须遵守）
 
-- **权威 Git 对象**：**epix** Mac 上的 **bare** 仓库。
-- **GitHub**（`https://github.com/epix99-opus/GitNet`）：**从镜像**；由 epix 侧定时任务推送更新。Agent **不要**假设「以 GitHub 为主进行双向合并」。
-- **例外**：灾备演练或人类明确指令，且须在 `handbook/90-process-log.md` 记录。
+- **权威 Git 对象**：**epix** Mac 上的 **bare** 仓库（**`main`** 与 **`github/main` ff-only 对齐**，见 [handbook/10-topology.md](handbook/10-topology.md)「本元仓库与全局图」）。
+- **GitHub**（`https://github.com/epix99-opus/GitNet`）：对本仓 **`main`** 为 **Pull Request 合入闸**（分支保护见 [handbook/06-github-branch-protection.md](handbook/06-github-branch-protection.md)）；**禁止**把本仓当作「可随意直推 `main` 的双向合并枢纽」。
+- **例外**：迁回 bare 先写 `main`、灾备演练或人类明确指令，且须在 [handbook/90-process-log.md](handbook/90-process-log.md) 记录。
 
 ## 提交身份
 
@@ -69,9 +69,9 @@
 ## 日常工作流
 
 1. 开发、提交在**工作克隆**上进行；**新开业务仓**在首次推送前须按 BestGit **`docs/NEW_PROJECT_CHECKLIST.md`** 自检（本机路径见 GitNet `96` / BestGit `docs/rollout-epix-glab-woot.md`；全工作区习惯可同步写入 Cursor **User Rules**）。
-2. `git push` 默认指向 **epix**（`origin` 或团队约定的 `lan`），即 **epix bare** 为写集成权威；**多设备多 Agent** 的节律、并发与 GitHub 次优路径见 [handbook/10-topology.md](handbook/10-topology.md)「规范状态与演进」「多设备 × 多 Agent」。
-3. **提交信息、小步提交、分支与 PR、`rebase -i`、`add -p`、分支清理**：见根目录 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [handbook/56-git-workflow-quality-practices.md](handbook/56-git-workflow-quality-practices.md)（**元仓库**与**业务仓**分层说明在 `56` §3）。
-4. 不在未记录流程下从 GitHub 强推覆盖 epix 上的历史。
+2. **本仓（GitNet）合入 `main`**：**必须**走 **GitHub PR**（**`git push github <特性分支>`** → PR → merge）；**禁止** **`git push origin main`** 绕过 PR。PR merge 后须 **`gitnet-sync-github-main-to-bare.sh`** 对齐 bare（见 [CONTRIBUTING.md](CONTRIBUTING.md)、[handbook/56-git-workflow-quality-practices.md](handbook/56-git-workflow-quality-practices.md)、[handbook/10-topology.md](handbook/10-topology.md)）。
+3. **其它业务仓**仍默认 **`git push` → epix bare**；多设备节律见 [handbook/10-topology.md](handbook/10-topology.md)。
+4. 不在未记录流程下从 GitHub **强推**覆盖 epix 上的历史。
 
 ## 文档与清理
 

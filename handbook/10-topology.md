@@ -6,10 +6,22 @@
 |------|------|
 | 权威源 | **epix** Mac 上的 **bare** 仓库 |
 | 从镜像 | **GitHub** `epix99-opus/GitNet`（HTTPS：<https://github.com/epix99-opus/GitNet>） |
-| 同步方向 | 各端 ↔ epix；epix → GitHub 定时推送（**不在手册中推荐**从 GitHub 回写主线至 epix，除非灾备演练并记录在进程日志） |
+| 同步方向 | **默认**：各端 ↔ epix；epix → GitHub 定时推送（**不在手册中推荐**从 GitHub 回写主线至 epix，除非灾备演练并记录在进程日志）。**GitNet 本仓**：见上表「本元仓库例外」。 |
 | 多设备多 Agent 汇合点 | **epix bare** 为唯一写集成与默认 **push** 目标；GitHub 为从镜像（**非**日常多机合并枢纽）。规范演进与落地步骤见下文「规范状态」「多设备 × 多 Agent」 |
+| **GitNet 本元仓库例外**（`epix99-opus/GitNet`） | **GitHub `main` 为 PR 合入闸**；epix bare 上 **`main`** 仅允许由 **`github/main` → bare ff-only** 同步（脚本见 `30`、`handbook/scripts/gitnet-sync-github-main-to-bare.sh`）；**禁止**工作副本为合入 `main` 而 **`git push origin main`** 跳过 PR。决策与验收见 [90-process-log.md](90-process-log.md)。 |
 | 人类身份 | `user.name` / `user.email` 与 GitHub 账号一致 |
 | Agent 提交作者名 | `{HOSTNAME}-{tool}`（例：`epix-cursor`），邮箱统一 `epix99@icloud.com` |
+
+## GitNet 本元仓库（`epix99-opus/GitNet`）与全局图的关系
+
+上文「关系图」与 **§多设备 × 多 Agent** 描述的是**组织默认**（bare 集成、GitHub 镜像）。**仅对本 GitNet 元仓库**，自 **2026-05-14** 起登记如下**例外**（仍须在其它业务仓保持默认，除非另行 `90` 登记）：
+
+1. **合入闸**：对 **`main`** 的变更**必须**经 **GitHub Pull Request** 合并进 **`github/main`**（分支保护：`required_pull_request_reviews` 等，见 [06-github-branch-protection.md](06-github-branch-protection.md)）。
+2. **特性分支**：在本地从 **`main`** 分出 **`chore/*` / `docs/*` / `fix/*` / `feat/*`** 等，**`git push github <分支>`**；**勿**将未过 PR 的 `main` 直接 **`git push origin main`** 写入 bare。
+3. **bare 对齐**：epix 上定时或人工执行 **`gitnet-sync-github-main-to-bare.sh`**，使 **`refs/heads/main`（bare）** 与 **`github/main`** **fast-forward 一致**。
+4. **迁回默认拓扑**：若团队决定回到「bare 先集成、定时 `push github`」，须在 **`90`** 记原因、停保护规则或改规则、恢复脚本与验收后再删本例外段。
+
+---
 
 ## 关系图
 
@@ -69,7 +81,7 @@ flowchart LR
 与 [30-mac-epix-setup.md](30-mac-epix-setup.md) 配套，此处只列 **与多机协作相关的要点**：
 
 1. **唯一业务 bare**：全团队一个路径（例如 `BARE=/srv/git/GitNet.git`），不在 Windows / 其它 Mac 上再建第二个「权威」裸仓。
-2. **`github` remote 挂在 bare 上**；**仅** epix 本机服务账户（launchd / cron）执行 **`git -C "$BARE" push github <branch>`**；凭据与日志见 `30`。
+2. **`github` remote 挂在 bare 上**。**GitNet 本元仓库例外**（见上文「本元仓库与全局图」）：**禁止**再依赖「bare **直推** `github/main`」作为主线更新手段；应使用 **`gitnet-sync-github-main-to-bare.sh`** 做 **GitHub→bare**。其它业务 bare 仍可按 **`push github`** 镜像（与 `30` 一致），除非该仓另有 `90` 登记。
 3. **提交作者**：由各工作克隆在 `commit` 时写入（`{HOSTNAME}-{tool}` 等，见 [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md)）；bare **不改写**作者字段。
 4. **接收策略**（可选进阶）：若团队希望在 bare 上强制快进、或规定唯一可写分支名，在 bare 配置 hook / `receive.denyNonFastForwards` 等，并在 [90-process-log.md](90-process-log.md) 记录决策与例外账号。
 
@@ -78,7 +90,7 @@ flowchart LR
 1. **`origin` → epix bare**（经 Tailscale SSH；主机别名与路径见 [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md)、`30`、`46`）。
 2. **`github` remote**（可选）：仅用于 **`git fetch`**、对照镜像、灾备 clone；**默认 `push` 不指向 GitHub**（除非 `90` 已登记例外）。
 3. **开工节律**：`git fetch origin`，再 **`git merge origin/main`** 或 **`git pull --rebase origin main`**（按团队约定分支名），减少本地与 bare 分叉。
-4. **收工节律**：本地自检通过后 **`git push origin main`**（或 **`git push origin <topic-branch>`** 再在 bare/第二克隆完成合并——若采用 feature 分支流，**汇合动作仍应对 bare 执行**，规则在 `90` 写清）。
+4. **收工节律**：本地自检通过后 **`git push origin main`**（或 **`git push origin <topic-branch>`** 再在 bare/第二克隆完成合并——若采用 feature 分支流，**汇合动作仍应对 bare 执行**，规则在 `90` 写清）。**GitNet 本元仓库**：合入 **`main`** 须走 **GitHub PR**，**不得**为更新主线而直推 **`origin/main`**；见上文例外与 [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)。
 5. **身份与目录**：与 push 目标正交；一律用 `includeIf` 命中正确片段，见 `55`、`40`。
 
 ### 3. 多 Agent 同时协作时的并发模型
@@ -94,18 +106,20 @@ flowchart LR
 
 | 路径 | 定位 |
 |------|------|
-| **主路径** | bare 集成 → epix 定时 `push github` → 公网只读镜像 |
+| **主路径（组织默认）** | bare 集成 → epix 定时 `push github` → 公网只读镜像 |
+| **GitNet 本元仓库** | **GitHub PR 合入 `main`** → **`gitnet-sync-github-main-to-bare.sh`** → bare `main` 与 `github/main` ff-only 对齐（见上文「本元仓库与全局图」） |
 | **次优 / 过渡** | 多端直接对 GitHub `main` **fetch/pull/push**（例如 bare SSH 未通、bootstrap） |
 | **迁回主路径** | 在 `90` 记迁移；各端将 `origin` 改回 bare 后，对比 **`git ls-remote origin`**（bare）与 **`git ls-remote github`** 直至一致，再停止对 GitHub 的直推习惯 |
 
-[06-github-branch-protection.md](06-github-branch-protection.md) 用于避免「人类习惯直推 GitHub」与 **epix 镜像推送账号** 冲突；若对推送机器人使用规则例外，在 `90` 写明。
+[06-github-branch-protection.md](06-github-branch-protection.md) 用于避免「人类习惯直推 GitHub」与 **epix 镜像推送账号** 冲突；**GitNet 本仓**以 **PR 合入闸** 为主；若对推送机器人使用规则例外，在 `90` 写明。
 
 ### 5. 感知层（不替代权威）
 
-[92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) 与 `handbook/scripts/gitnet-watch-github-sync.sh` 等：**只**解决「尽早知道远端有更新」与 **ff-only 拉取**，**不改变**「写集成只在 bare」的规范；与 OpenClaw / Hermes 等控制面关系见 `92` 文内对比。
+[92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) 与 `handbook/scripts/gitnet-watch-github-sync.sh` 等：**只**解决「尽早知道远端有更新」与 **ff-only 拉取**，**不改变**「写集成只在 bare」的规范（**GitNet 本元仓库**已登记 **GitHub 合入闸** 例外的，以 **`90`** 与 **`56`** 为准）；与 OpenClaw / Hermes 等控制面关系见 `92` 文内对比。
 
 ---
 
 ## 修订记录
 
+- 2026-05-14：**GitNet 本元仓库例外**（GitHub PR 合入闸、`github→bare` 同步）；摘要表、`§1` bare 侧、`§2` 收工节律、`§4` 路径表、`§5` 与 `92` 边界句同步；链 `06`/`30`/`56`/`90`。
 - 2026-05-13：摘要表增「多设备多 Agent 汇合点」；新增 **规范状态与演进**、**多设备 × 多 Agent：bare 最优实现**（与 `55` / `AGENTS` 交叉引用）；明确 GitHub 次优路径与 `90` 记录义务。

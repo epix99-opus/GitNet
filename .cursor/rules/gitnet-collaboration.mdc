@@ -10,7 +10,7 @@ alwaysApply: true
 - **Agent 行为（全文不重复）**：铁律、上抛格式、回合前/末、多机盘点 DoD、规划与可验证信号等 **一律以仓库根 `AGENTS.md` 为准**；本文件仅作 Cursor 注入时的**索引**，与 `AGENTS` 冲突时以 **`AGENTS.md`** 为准。全工作区默认生效请用 **User Rules** / **Team Rules**（见 `AGENTS.md`「全局」节）。
 - **唯一定稿信源**：`handbook/`。拓扑、SSH、bare 路径、launchd 步骤以 handbook 为准。
 - **内容落盘**：事实 / 过程 / 草稿 / NetOps 网络事实边界见 `handbook/07-documentation-placement.md`。
-- **Git 权威**：epix 上 bare；GitHub `epix99-opus/GitNet` 为从镜像。默认不向 GitHub 作为主线推送除非人类在 `handbook/90-process-log.md` 记录例外。
+- **Git 权威**：**组织默认** epix 上 bare、GitHub 为从镜像。**本仓 `GitNet`**：GitHub **`main`** 为 **PR 合入闸**，bare **ff-only** 跟随 `github/main`（`handbook/10` 例外节、`handbook/90` 迁移决议）。勿再假定「仅定时 bare→github 推 `main`」适用于本仓主线。
 - **提交身份**：人类与 GitHub 一致；Agent 目录下为 `{HOSTNAME}-{tool}` + `epix99@icloud.com`。详见 `handbook/40-identity-and-includeIf.md`。
 - **新开业务仓**：在首次推送前按本机或三节点已克隆的 BestGit 路径执行 **`docs/NEW_PROJECT_CHECKLIST.md`**（epix `~/Dev/BestGit`；woot `~/Dev/BestGit`；glab `E:\Dev\BestGit`）；未落盘则先按 BestGit **`docs/rollout-epix-glab-woot.md`** 克隆。全 Cursor 默认生效请写在 **User Rules** 一句同义提醒亦可。
 - **最小改动**：只改任务所需文件；不扩大范围重构。
