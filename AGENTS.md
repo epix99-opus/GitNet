@@ -68,7 +68,7 @@
 
 ## 日常工作流
 
-1. 开发、提交在**工作克隆**上进行。
+1. 开发、提交在**工作克隆**上进行；**新开业务仓**在首次推送前须按 BestGit **`docs/NEW_PROJECT_CHECKLIST.md`** 自检（本机路径见 GitNet `96` / BestGit `docs/rollout-epix-glab-woot.md`；全工作区习惯可同步写入 Cursor **User Rules**）。
 2. `git push` 默认指向 **epix**（`origin` 或团队约定的 `lan`），即 **epix bare** 为写集成权威；**多设备多 Agent** 的节律、并发与 GitHub 次优路径见 [handbook/10-topology.md](handbook/10-topology.md)「规范状态与演进」「多设备 × 多 Agent」。
 3. 不在未记录流程下从 GitHub 强推覆盖 epix 上的历史。
 

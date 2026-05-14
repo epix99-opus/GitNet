@@ -6,7 +6,7 @@
 
 ## 编程 Agent 工具（实机探测）
 
-> **探测日期**：2026-05-12；从 **epix** 执行 `ssh -o BatchMode=yes glab`，远端 **`cmd.exe`**：`where <tool>`。
+> **探测日期**：2026-05-12（首版）；**2026-05-14** 经 **epix** `ssh -o BatchMode=yes glab` **复测**（BestGit 落盘同批）；远端 **`cmd.exe` / PowerShell**：`where.exe`。
 
 | 工具 | 结论 | 证据（可复跑） |
 |------|------|----------------|
@@ -20,8 +20,10 @@
 |------|---------------|----------|---------------------|
 | `E:\Dev\GitNet` | main | `https://github.com/epix99-opus/GitNet.git` | `C:/Users/GG/.gitconfig-fragment-cursor` → **`glab-cursor`** |
 | `E:\Dev\3399` | 空仓库 / 无提交（`HEAD` 不可用） | *(无)* | `C:/Users/GG/.gitconfig` → **`Epix`**（**未**命中 `glab-*`；应按 `55` §3.3 增加覆盖 `E:/Dev/` 或该路径的 `includeIf`，或明确本仓为人类维护并记入 `90`） |
+| `E:\Dev\BestGit` | main | `https://github.com/epix99-opus/BestGit.git` | `C:/Users/GG/.gitconfig` → **`Epix`**（新克隆；可按 `55` 将 `E:/Dev/BestGit` 纳入 fragment 以使用 **`glab-cursor`**） |
 
 ## 修订记录
 
+- 2026-05-14：编程 Agent **复测**（结论同前：`where.exe cursor` / `claude`；`codex` 未命中）；登记 **`E:\Dev\BestGit`**（按 BestGit `docs/rollout-epix-glab-woot.md` 克隆）。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（`where` 输出摘要）。
 - 2026-05-13：首版枚举（epix → `glab` SSH + PowerShell）。
