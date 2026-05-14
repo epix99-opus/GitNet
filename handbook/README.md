@@ -33,6 +33,7 @@
 | 23 | [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md) | **多 Agent × 主分支 × 根配置**：`AGENTS.md`/`CLAUDE.md` 等与合并冲突关系；`includeIf` 不解决冲突 |
 | 24 | [54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md) | **副机在 epix 上干 CAMA**：Remote-SSH、SSH+CLI、副机克隆三模式与前置条件 |
 | 25 | [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md) | **人类操作**：Git CLI 最小闭环、冲突处理、`git log --graph`、Cursor/VS Code **Git Graph** 扩展 |
+| 26 | [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md) | **工作流质量**：约定式提交、小步与 `add -p`、特性分支与 PR、**`rebase -i` 边界**、分支清理；**元仓 vs 业务仓**分层 |
 
 ## 模板与脚本
 

@@ -33,6 +33,7 @@
 | 8 | **外推清单**：复杂多跨项目可裁剪复用 | `93` §7；**组织模板**见 [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) |
 | 9 | **SSH 公钥信源与 glab 落地** | [templates/epix-id_ed25519.pub](templates/epix-id_ed25519.pub)、`handbook/scripts/setup-glab-openssh-for-epix.ps1`（见 `46`） |
 | 10 | **GitHub API / `gh`** | token **不入库**；凭据管理器或会话环境注入 |
+| 11 | **提交信息与工作流质量**（约定式提交、小步、`add -p`、分支/PR、rebase -i 边界、分支清理） | [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)；根 [CONTRIBUTING.md](../CONTRIBUTING.md) |
 
 ## 全生命周期 × Git（框架矩阵）
 
@@ -48,7 +49,7 @@
 | **交付上线** | 版本可指向唯一提交 | **`vX.Y.Z` 附注标签**（annotated tag）指向集成分支上已发布提交；**热修复**从标签分 **`hotfix/…`** | 发布说明可 `CHANGELOG` + Git 附注；GitNet 大阶段回顾进 `93` | 人类发版按钮与合规；Agent 填 changelog 草案 | 业务仓自定；GitNet 见 `93` |
 | **运行维护** | 生产修复可 cherry-pick 回开发线 | **`hotfix/*` → 集成分支 → 必要时 cherry-pick 到 `develop`/`main`**；镜像只读，回写仍走集成远程 | 事故时间线进 `90`；根因与补丁链 commit | 人类批准 hotfix；Agent 准备分支与 diff | `10`、`90`、`93` §7.1 |
 
-**GitNet 本元仓库惯例**：日常文档与脚本变更多在 **`main`** 上小步提交；跨阶段大复盘写入 **`93`**；进程与例外写入 **`90`**。其它业务仓**不必**强制单分支，但必须**写清**默认集成分支名与上表选中策略。
+**GitNet 本元仓库惯例**：日常文档与脚本变更多在 **`main`** 上小步提交；跨阶段大复盘写入 **`93`**；进程与例外写入 **`90`**。**提交信息格式、元仓与业务仓分层、rebase -i 边界** 见 [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)。其它业务仓**不必**强制单分支，但必须**写清**默认集成分支名与上表选中策略。
 
 ## 跨设备、多 Agent：主分支与特性分支协作
 
@@ -113,6 +114,7 @@
 
 ## 修订记录
 
+- 2026-05-14：全局清单增 **#11**（提交信息与工作流质量 → **`56`**）；「GitNet 本元仓库惯例」段链 **`56`**（约定式提交与 rebase -i 边界等）。
 - 2026-05-13：首版（Agent-first 意图定稿；与 AGENTS 铁律、秘密禁令对齐）。
 - 2026-05-13：增补 **全链路认证**（人类提供的口令/PAT 须安全存储与使用；公钥默认优先；禁止明文进 Git/Issue/手册）；与「不因公钥未完成而停摆」的人类意图对齐。
 - 2026-05-13：扩充 **根本目标与双重角色**、**全局共用 Git 规定**清单、**全生命周期 × Git** 矩阵、**主分支/特性分支**、**每项目/Agent/节点** 约定表、**多智能体信源仲裁**；与 `05`/`07`/`10`/`40`/`55`/`06`/`90`/`93`/`94`/`AGENTS` 交叉引用；删除重复的「为实现北极星」四行表（内容并入全局清单）。

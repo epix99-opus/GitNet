@@ -14,6 +14,7 @@
 - [handbook/92-github-auto-sync-collaboration.md](handbook/92-github-auto-sync-collaboration.md)（GitHub 双端自动拉取与通知，见 `launchd`/计划任务）
 - [handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](handbook/93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)（**阶段成果**：目标→方案→实现回顾；可外推的大型多跨协作 Git 体系清单）
 - [handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md](handbook/94-multi-node-agent-inventory-raci-and-config-matrix.md)（**三机盘点与 RACI**、仓库表模板；示例 [handbook/published/inventory-epix-starter.md](handbook/published/inventory-epix-starter.md)）
+- [CONTRIBUTING.md](CONTRIBUTING.md)（**约定式提交**与 [handbook/56-git-workflow-quality-practices.md](handbook/56-git-workflow-quality-practices.md)：工作流六条、元仓/业务仓分层）
 - [AGENTS.md](AGENTS.md)
 
 ## 远端

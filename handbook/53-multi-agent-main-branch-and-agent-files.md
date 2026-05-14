@@ -20,7 +20,7 @@
 
 ## 3. 推荐做法（降低冲突）
 
-1. **一个会话一条分支**（如 `feat/agent-topic`），合入 `main` 前 `pull` + PR/评审或与团队约定合并方式——与 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) 中主分支/特性分支的叙述一致。
+1. **一个会话一条分支**（如 `feat/agent-topic`），合入 `main` 前 `pull` + PR/评审或与团队约定合并方式——与 [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) 中主分支/特性分支的叙述一致；**约定式提交、rebase -i 边界、分支清理**见 [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)。
 2. **若必须在 `main` 上直接改**：养成 **`git pull`（或 `pull --rebase`）→ 编辑 → `commit` → `push`** 的习惯；避免长时间本地分叉。
 3. **共享配置文件分块**：`AGENTS.md` / `CLAUDE.md` 用清晰二级标题分「Cursor / Codex / Claude」或「通用 / 各工具」，减少多人改同一小段。
 4. **大改前沟通或锁文件**：与团队节奏一致即可；Git 本身无「锁」概念，靠流程或外部工具。
@@ -36,4 +36,4 @@
 
 | 日期 | 摘要 |
 |------|------|
-| 2026-05-14 | 初版：主分支、多 Agent、配置文件与冲突关系。 |
+| 2026-05-14 | 初版；§3 链 **`56`**。 |

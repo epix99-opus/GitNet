@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — handbook **`56`** + 根 **`CONTRIBUTING.md`**：约定式提交与工作流六条定稿
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：新增 [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)（六条业界共识、**元仓 `main` 小步**与**业务仓特性分支+PR**分层、`rebase -i` 边界、`git fetch --prune`）；根 [CONTRIBUTING.md](../CONTRIBUTING.md) 为入口；[08](08-agent-first-collaboration-vision.md) 全局表增 #11、[README](README.md) 阅读顺序第 26 项、[51](51-git-cli-and-git-graph-user-guide.md) 互链。
+- 涉及信源：`08`、`51`、`56`、`CONTRIBUTING`
+- 回顾：与既有 `06`/`10`/`53` 不冲突；业务仓若采纳须在各仓 `90`/CONTRIBUTING 复述或链回本 **`56`**。
+
 ### 2026-05-14 — epix：GitNet **bare 实装**（`~/git/GitNet.git`）+ 工作副本 `origin` + 镜像推送
 
 - 参与：Agent（Cursor，epix）

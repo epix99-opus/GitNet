@@ -29,9 +29,10 @@
 - 操作向：终端与图形历史图见 [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md)。
 - 多 Agent 同分支文件冲突见 [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md)。
 - 在 epix 上编辑 CAMA 的跨机方式见 [54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md)。
+- **约定式提交、特性分支、PR、`rebase -i`、`add -p`、分支清理**见 [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)。
 
 ## 修订记录
 
 | 日期 | 摘要 |
 |------|------|
-| 2026-05-14 | 初版：与系统 Git 的边界、叠加层与价值。 |
+| 2026-05-14 | 初版；§4 互链 **`56`**（工作流质量实践）。 |

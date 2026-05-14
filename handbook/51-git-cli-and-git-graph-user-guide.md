@@ -36,7 +36,7 @@ git merge feat/my-topic          # 无冲突则自动产生 merge commit；策�
 - 打开这些文件，搜索 **`<<<<<<<`**：在 **`=======`** 与 **`>>>>>>>`** 之间选择保留内容或合并两边，删除标记行。
 - 保存后：`git add <已解决文件>`，再 `git commit`（merge）或按 rebase 提示 `git rebase --continue`。
 
-更多 Agent/多会话同文件场景见 [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md)。
+更多 Agent/多会话同文件场景见 [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md)。**约定式提交、小步拆分、`rebase -i` 与分支清理**见 [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)。
 
 ## 3. 终端里的「历史图」
 
@@ -66,9 +66,10 @@ git log origin/main..HEAD --oneline
 - 拓扑与默认 push：[10-topology.md](10-topology.md)。
 - 多机身份：[55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md)。
 - 在 epix 上远程开 CAMA：[54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md)。
+- **提交规范与工作流六条（约定式提交、分支、rebase -i 等）**：[56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md)；根 [CONTRIBUTING.md](../CONTRIBUTING.md)。
 
 ## 修订记录
 
 | 日期 | 摘要 |
 |------|------|
-| 2026-05-14 | 初版：CLI 闭环、`git log --graph`、Git Graph 扩展。 |
+| 2026-05-14 | 初版：CLI 闭环、`git log --graph`、Git Graph；§2/§5 链 **`56`** 与根 `CONTRIBUTING.md`。 |
