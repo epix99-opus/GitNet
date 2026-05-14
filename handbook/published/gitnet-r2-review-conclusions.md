@@ -29,7 +29,7 @@
 | 主题 | 分歧点 | 本轮取舍 |
 |------|--------|----------|
 | 阅读顺序表长度 | Claude 稿倾向未来拆「基础/进阶」表 | **不改表结构**（P2 backlog），避免与 `README` 大范围冲突。 |
-| `97` §9 SHA 叙事 | Claude 建议加「动态 HEAD」一句 | **不强制改 `97`**；以 `90` 与 GitHub `main` 为事实源（Issue #16 可跟）。 |
+| `97` §9 SHA 叙事 | Claude 建议加「动态 HEAD」一句 | **已落地**：§9 增「当前 `main` 头」指针链 `90` 与合成结论，**保留** PR #7 文面锚点 `2aab83c…` 不删。 |
 | CI 静态分析 | Codex 提 PSScriptAnalyzer 等 | **不纳入本轮**；需 Windows runner 或本机策略。 |
 
 ## 4. 有效协作模式（执行级）
@@ -42,9 +42,11 @@
 
 ## 5. 下一轮改进（backlog）
 
-- [ ] `97` §9：一句指针链 `90` / GitHub `main`（P2）。  
-- [ ] `handbook/README`：「published 主题索引」一行（P2）。  
-- [ ] 为高频运维脚本增加 **dry-run** 模式（P2）。  
+以下三项已由 **PR（见 `90` 最新条）** 落地；余项仍为 backlog。
+
+- [x] `97` §9：一句指针链 `90` / GitHub `main`（P2）。  
+- [x] `handbook/README`：「published 主题索引」一行（P2）。  
+- [x] 为高频运维脚本增加 **dry-run** 模式（P2）：`GITNET_SYNC_DRY_RUN=1` + `gitnet-sync-github-main-to-bare.sh`。  
 - [ ] 删除 GitHub 上误推的短命分支（若有），保持 remote 整洁。
 
 ## 6. 验收命令（复制）
@@ -53,6 +55,7 @@
 # 本机（epix）GitNet 根
 ./handbook/scripts/gitnet-r2-scope-list.sh
 ./handbook/scripts/gitnet-multi-agent-retro-preflight.sh
+GITNET_SYNC_DRY_RUN=1 ./handbook/scripts/gitnet-sync-github-main-to-bare.sh
 gh api repos/epix99-opus/GitNet/commits/main --jq .sha
 git -C ~/git/GitNet.git rev-parse refs/heads/main
 ```
@@ -62,3 +65,5 @@ git -C ~/git/GitNet.git rev-parse refs/heads/main
 | 日期 | 摘要 |
 |------|------|
 | 2026-05-14 | 首版：R2 合成结论；链 PR #17～#22、Issue #16、`98`、scope 脚本。 |
+| 2026-05-14 | §5 backlog：三项已落地（`97` §9 动态头、`README` published 索引、`GITNET_SYNC_DRY_RUN`）；余「清理短命分支」仍为 backlog。 |
+| 2026-05-14 | §3 表：`97` §9 行更新为已落地；§6 增 `GITNET_SYNC_DRY_RUN` 验收行。 |

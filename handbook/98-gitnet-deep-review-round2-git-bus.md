@@ -33,7 +33,7 @@
 
 ## 5. 合入后必做
 
-1. **`handbook/scripts/gitnet-sync-github-main-to-bare.sh`**（GitHub `main` → epix bare `ff-only`）。  
+1. **`handbook/scripts/gitnet-sync-github-main-to-bare.sh`**（GitHub `main` → epix bare `ff-only`）。预演：`GITNET_SYNC_DRY_RUN=1` 同脚本，仅打印将执行的 `fetch`、**不写日志、不拉取**。  
 2. **`handbook/90-process-log.md`** 一条：Issue #、PR #、对账命令输出或「已与 bare 一致」说明。
 
 ## 修订记录
@@ -42,3 +42,4 @@
 |------|------|
 | 2026-05-14 | 首版：R2 深度评审 Git 总线协作模式；链 Issue #16、`55`/`93`/`94`。 |
 | 2026-05-14 | 链 **`scripts/gitnet-r2-scope-list.sh`**（整仓前缀计数，与合成结论 §5 互指）。 |
+| 2026-05-14 | §5：`gitnet-sync-github-main-to-bare.sh` 支持 **`GITNET_SYNC_DRY_RUN=1`**（R2 结论落地）。 |
