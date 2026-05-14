@@ -13,5 +13,6 @@ alwaysApply: true
 - **Git 权威**：**组织默认** epix 上 bare、GitHub 为从镜像。**本仓 `GitNet`**：GitHub **`main`** 为 **PR 合入闸**，bare **ff-only** 跟随 `github/main`（`handbook/10` 例外节、`handbook/90` 迁移决议）。勿再假定「仅定时 bare→github 推 `main`」适用于本仓主线。
 - **提交身份**：人类与 GitHub 一致；Agent 目录下为 `{HOSTNAME}-{tool}` + `epix99@icloud.com`。详见 `handbook/40-identity-and-includeIf.md`。
 - **新开业务仓**：在首次推送前按本机或三节点已克隆的 BestGit 路径执行 **`docs/NEW_PROJECT_CHECKLIST.md`**（epix `~/Dev/BestGit`；woot `~/Dev/BestGit`；glab `E:\Dev\BestGit`）；未落盘则先按 BestGit **`docs/rollout-epix-glab-woot.md`** 克隆。全 Cursor 默认生效请写在 **User Rules** 一句同义提醒亦可。
+- **提交信息**：本仓 **`git commit` 首行中文摘要 + 正文中文**；`type`/`scope` 英文关键字（见根 `CONTRIBUTING.md`、`56` §4）。**Pull Request 标题与说明**默认中文。
 - **最小改动**：只改任务所需文件；不扩大范围重构。
 - **秘密**：凭据**明文**不得进入 Git 对象、Issue、定稿手册、`published/`；人类提供的口令/PAT 须经 **OS 凭据库 / 机外文件 / 环境变量 / 密钥库** 安全存储后由自动化读取（见 `handbook/08-agent-first-collaboration-vision.md` §全链路认证）。公钥 `BatchMode` 仍为默认优先。
