@@ -17,7 +17,7 @@
 ### 2026-05-13 — BestGit 组织模板仓 + GitNet `96` 归档与 CAMA 落盘
 
 - 参与：Agent（Cursor，epix）
-- 变更摘要：于 **`/Users/epix/Dev/BestGit`** 初始化独立 Git 仓（方案 `docs/scheme-layered-git-governance.md`、新开仓清单、`templates/`、`scripts/bestgit-doctor.sh`、三节点 `rollout` 文档）；GitNet 新增 [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) 与 [README.md](README.md) 阅读顺序第 21 项；建议 GitHub 镜像 `https://github.com/epix99-opus/BestGit.git`（**待人类建仓并 push**）。CAMA-concept 增加 `regulations/bestgit-organization-template-rollout.zh-CN.md` 与 README 链。
+- 变更摘要：于 **`/Users/epix/Dev/BestGit`** 初始化独立 Git 仓（方案 `docs/scheme-layered-git-governance.md`、新开仓清单、`templates/`、`scripts/bestgit-doctor.sh`、三节点 `rollout` 文档）；GitHub 已用 **`gh repo create epix99-opus/BestGit --public --push`** 创建并推送；GitNet 新增 [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) 与 [README.md](README.md) 阅读顺序第 21 项；`published/inventory-epix-enumerated-agent.md` 登记 BestGit 路径与 `origin`。CAMA-concept 增加 `regulations/bestgit-organization-template-rollout.zh-CN.md` 与 README 链；`cama-git-inventory` 更新 Last sync。
 - 涉及信源：`96`、`README`、`90`、BestGit、CAMA
 - 回顾：woot/glab 上的 `git clone` 须在远端 URL 可用后执行；inventory 表可选登记 BestGit 路径。
 
