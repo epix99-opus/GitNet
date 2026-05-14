@@ -23,7 +23,7 @@
 2. **SSH 默认环境**：OpenSSH 非登录远程命令还会带上 **较短的 `PATH`**（此前会话曾见近似 `~/.cargo/bin` + 系统目录），与图形终端登录后的 `PATH` 不一致，进一步放大上述差异。
 3. **更贴近本机的探查方式**（任选其一，在 epix 上经 SSH）：`zsh -lic 'command -v codex; codex --version'`（`-i` = 交互，会读 `.zshrc`）；或在 woot 本机终端执行 `type -P codex` 将**绝对路径**记入上表「证据」列。
 
-> **Cursor Agent 执行环境（二次）**：对 **`woot@woot`** 与 **`woot@woot.tailbb1446.ts.net`**（见 [46-tailscale-remote-git-identity.md](../46-tailscale-remote-git-identity.md)）的 SSH 均 **`connect … port 22: Operation timed out`**（`ConnectTimeout=20`）。**这不表示 woot 未连 Tailscale**——多数情况下是 **本对话所用执行主机不在你的 tailnet 上 / 无法路由到 woot:22**。请在 **已登入 Tailscale 的 epix 本机终端** 复跑：`ssh -o BatchMode=yes woot@woot 'zsh -lic "command -v codex; codex --version"'`，将输出补入本页或 `90`。
+> **Cursor Agent / 人类（二次核对后）**：在 **本机（epix）** 上应先执行 **`tailscale status`** 与 **`tailscale ping woot`**——**woot 在线且 L3 可达** 时，若 **`ssh woot@woot` 仍超时**，常见原因 **不是**「woot 没连 Tailscale」，而是 **系统 DNS / MagicDNS 解析出的 `woot` 之 100.x 与 `tailscale status` 表中该主机行不一致**（陈旧记录会指向 **`tailscale ping` 报 `no matching peer`** 的地址，SSH 即超时；而 **status 表中的当前 100.x** 上 **:22 可连**）。**处置与探查顺序**见 [46-tailscale-remote-git-identity.md](../46-tailscale-remote-git-identity.md) **§1.0**。**此前未先做上述核对即写成「执行主机不在 tailnet」属表述不当，已更正。**
 
 ## 仓库表
 
@@ -38,7 +38,7 @@
 
 ## 修订记录
 
-- 2026-05-14：**Cursor Agent 环境** 对 `woot`/`woot.tail…` SSH **二次** 仍超时；**修复**编程 Agent 表结构（`cursor-agent` 行误在表外）；更新「本轮说明」为 **执行主机未必在 tailnet**。
+- 2026-05-14：inventory **二次核对**：本机 **`tailscale status`/`tailscale ping woot` 正常** 而 **`ssh woot@woot` 超时** 时，根因常为 **DNS 100.x 与 status 表不一致**（见 `46` 新增 **§1.0**）；**更正**此前「Agent 不在 tailnet」之误述；表结构修复见前条。
 - 2026-05-14：增补 **「为何 `zsh -l -c` 探不到已安装之 codex」**（zsh 非交互不读 `.zshrc`、SSH PATH）；Codex 证据列改为建议 **`zsh -lic`** 或补绝对路径。
 - 2026-05-14：编程 Agent **组织口径**改为三节点均具备 Cursor / Codex CLI / Claude Code；Codex 行保留 **SSH 快照**与「待补绝对路径」说明；登记 **`/Users/woot/Dev/BestGit`**。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（PATH 约束说明、claude/cursor-agent 路径）；**2026-05-14** 与组织口径对齐后，Codex 行不再写「未检出」为结论。

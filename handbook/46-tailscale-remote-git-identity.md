@@ -8,6 +8,18 @@
 - **woot** 登录用户名为 **`woot`**（已验证：`woot@woot` 可公钥登录）；**不是** `epix@woot`。
 - `~/.ssh/known_hosts` 含 `woot.tailbb1446.ts.net`（可由 `ssh-keyscan woot.tailbb1446.ts.net >> ~/.ssh/known_hosts` 追加；若在 **macOS** 上遇 **`fdlim_get: bad value`**，与 glab 相同处理：先 `ulimit -n 10240` 或使用 `accept-new`，见 **§3.3**）。
 
+### 1.0 远端在线与 SSH 前核对（避免「ping 通但 ssh 超时」误判）
+
+**Agent 与人类在断言「某节点不可达」之前，应先做下面三步**（本机均在 **epix** 上执行）：
+
+1. **`tailscale status`**：确认目标短名（如 `woot`、`glab`）在表中为 **在线**（非 `offline`）。
+2. **`tailscale ping -c 1 <短名>`**：确认 **L3** 可达（有 `pong`）。
+3. **再 `ssh`**：若此处 **仍** `ssh: connect to host woot port 22: Operation timed out`，在 **macOS** 上核对 **系统 DNS 解析出的 100.x** 是否与 **`tailscale status` 中该机器行一致**：
+   - `dscacheutil -q host -a name woot`（或 `dig woot.tail…`）；
+   - 若解析到的地址 **不是** `tailscale status` 里 **woot** 行的地址（曾出现：解析到 **旧 100.x**，`tailscale ping` 该旧地址为 **`no matching peer`**，而 ping **status 表中的新 100.x** 正常），则 **`ssh woot@woot` 可能在连错误目标**，与「woot 未连 Tailscale」**无关**。处置示例：刷新 DNS（`sudo dscacheutil -flushcache` + `sudo killall -HUP mDNSResponder`）、等待 MagicDNS 收敛，或在 **`~/.ssh/config`** 的 `Host woot` 下临时/长期写 **`HostName <tailscale status 所示的 woot 100.x>`**（以 status 为准），再重试 `ssh`。
+
+**教训**：不得仅凭 **`ssh` 超时** 就妄断 **对端未在线**；须与 **`tailscale status` / `tailscale ping` / DNS 解析** 交叉验证。
+
 ### 1.1 建议在 epix `~/.ssh/config` 增加
 
 ```sshconfig
@@ -129,6 +141,7 @@ ssh glab "cd /d E:\DEV\GitNet && git config --show-origin user.name"
 
 ## 4. 修订记录
 
+- 2026-05-14：新增 **§1.0** — SSH 前先 **`tailscale status` / `tailscale ping`**；**DNS 解析 100.x 与 status 表不一致** 可导致「Tailscale 在线但 `ssh woot` 超时」；附 flushcache / `HostName` 处置要点。
 - 2026-05-13：首版；记录 woot 实装与 glab 人类配合门槛。
 - 2026-05-13：glab 增补 `setup-glab-openssh-for-epix.ps1`、`epix-ssh-config-glab.fragment.conf`；`windows-glab-git-includeIf.ps1` 用 `git rev-parse` 对齐 `gitdir` 大小写；epix `User` 定稿为 **GG**。
 - 2026-05-13：§3.1.1 **Administrators** 与 `administrators_authorized_keys`（BatchMode 根因）；`setup-glab-openssh-for-epix.ps1` 增 ProgramData 公钥写入。

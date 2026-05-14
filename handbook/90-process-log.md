@@ -21,6 +21,13 @@
 - 涉及信源：`90`、`published/inventory-*`、`AGENTS`、`.cursor/rules`、BestGit `docs/rollout-epix-glab-woot.md`、CAMA `cama-git-inventory`
 - 回顾：glab 上 BestGit 当前 `user.name` 解析为 **Epix**（默认 gitconfig）；若要以 **glab-cursor** 提交，按 `55` 为 `E:/Dev/BestGit` 增加 `includeIf` 覆盖。
 
+### 2026-05-14 — `46` §1.0：SSH 前先核对 Tailscale 与 DNS（纠正 inventory 误述）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：此前在 **`ssh woot` 超时** 时未先跑 **`tailscale status` / `tailscale ping`** 与 **DNS 与 status 表 100.x 比对**，误将原因写成「Agent 不在 tailnet」。**实机核对**：`tailscale status` 上 **woot/glab 在线**，`tailscale ping woot` **有 pong**；`dscacheutil -q host -a name woot` 曾给出与 **status 表不一致** 之 **100.x**（旧地址 `tailscale ping` 为 **`no matching peer`**），可解释 **仅 SSH 超时**。已新增 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) **§1.0**；更新 [inventory-woot-enumerated-agent.md](published/inventory-woot-enumerated-agent.md) 说明块与修订记录。
+- 涉及信源：`46`、`published/inventory-woot-enumerated-agent.md`、`90`
+- 回顾：处置见 `46` §1.0（flushcache / `HostName` / 等待 MagicDNS）。
+
 ### 2026-05-12 — `main` 全历史提交说明改为中文（拓扑与树不变）
 
 - 参与：Agent（Cursor，epix）

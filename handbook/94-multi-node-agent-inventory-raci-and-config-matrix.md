@@ -119,7 +119,7 @@ git log -1 --format='%h %ci %s' 2>/dev/null || echo "(empty)"
 
 与 [AGENTS.md](../AGENTS.md) 铁律一致：**在具备 SSH 与网络前提时**，Agent 应自行从 **epix** 经 Tailscale 登录 **woot** / **glab** 执行与 **§5.4** 等价的枚举，将结果写入 `published/inventory-*-enumerated-agent.md` 并 **commit**，而不是将「全机枚举」默认回抛人类。
 
-**前提**：`~/.ssh/config` 已配置 `Host glab`、`Host woot`（`User woot`）等，见 `46`；`ssh -o BatchMode=yes` 成功（glab 公钥与 `administrators_authorized_keys` 等见收口表 T2）。
+**前提**：`~/.ssh/config` 已配置 `Host glab`、`Host woot`（`User woot`）等，见 `46`；`ssh -o BatchMode=yes` 成功（glab 公钥与 `administrators_authorized_keys` 等见收口表 T2）。**若 `ssh` 超时**：**先**按 `46` **§1.0** 执行 **`tailscale status` / `tailscale ping`** 并比对 **DNS 解析之 100.x** 与 **status 表**，**不得**未核对即断言对端未在线。
 
 **woot（在 epix 上执行）**：
 
@@ -170,5 +170,6 @@ ssh -o BatchMode=yes -o ConnectTimeout=20 glab 'powershell -NoProfile -Command "
 - 2026-05-13：§1 信息边界增「回合前/末（目标与检索）」行，指向 `AGENTS.md`「回合前与回合末」。
 - 2026-05-13：§1 信息边界增「Agent 回合完成定义」行，指向 `AGENTS.md`「多机与盘点：实测完成定义」。
 - 2026-05-12：§5.3 增加指向三机 `published/inventory-*`「实机探测」节的链接。
+- 2026-05-14：§5.6 **前提** 增补：SSH 超时须先按 `46` **§1.0** 核对 Tailscale 与 DNS。
 - 2026-05-13：增补 **§5.6**（Tailscale SSH 跨机枚举为 epix Agent 默认路径）；**§1**/**RACI** 与铁律对齐；§5.5 改用 `git branch --show-current`；glab 经 `ssh` 的一行 PowerShell 已实机验证。
 - 2026-05-13：首版（计划 `94` 落盘：盘点模板、RACI、配置矩阵、分层纳入定义）。
