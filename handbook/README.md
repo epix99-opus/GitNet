@@ -29,6 +29,10 @@
 | 19 | [93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md) | **阶段成果**：目标→方案→实现回顾；epix/glab Cursor Agent 协作复盘；**可外推**的大型多跨协作 Git 体系 · 规范 · 流程清单 |
 | 20 | [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) | **三机盘点与 RACI**：工具清单、仓库表模板、纳入分层（L1～L3）、全局/项目配置矩阵；模板 [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md) |
 | 21 | [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) | **BestGit 组织模板仓**：分层 Git 方案归档、三节点周知入口、新开仓清单与 `bestgit-doctor`；独立仓库路径与建议 GitHub 镜像 |
+| 22 | [52-gitnet-git-stack-vs-os-git.md](52-gitnet-git-stack-vs-os-git.md) | **体系 vs 系统 Git**：本栈叠加层（bare、includeIf、Tailscale、镜像角色）与特别价值 |
+| 23 | [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md) | **多 Agent × 主分支 × 根配置**：`AGENTS.md`/`CLAUDE.md` 等与合并冲突关系；`includeIf` 不解决冲突 |
+| 24 | [54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md) | **副机在 epix 上干 CAMA**：Remote-SSH、SSH+CLI、副机克隆三模式与前置条件 |
+| 25 | [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md) | **人类操作**：Git CLI 最小闭环、冲突处理、`git log --graph`、Cursor/VS Code **Git Graph** 扩展 |
 
 ## 模板与脚本
 

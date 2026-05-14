@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — handbook：`51`～`54` 四文档落盘（Git 人类指南、体系边界、多 Agent 冲突、epix CAMA 远程）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：新增 [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md)、[52-gitnet-git-stack-vs-os-git.md](52-gitnet-git-stack-vs-os-git.md)、[53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md)、[54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md)；更新 [README.md](README.md) 阅读顺序表第 22～25 项。未做「三机三作者」演示提交（计划可选）。
+- 涉及信源：`51`～`54`、`10`、`40`、`50`、`55`、`08`、`93`、`inventory-epix-enumerated-agent`
+- 回顾：与 [52](52-gitnet-git-stack-vs-os-git.md) 互链的 `53`/`54`/`51` 便于从概念到操作跳转。
+
 ### 2026-05-14 — BestGit：三工具周知落盘、推送、woot/glab `pull` 与自检 **MISS=0**
 
 - 参与：Agent（Cursor，epix）
