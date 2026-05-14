@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — 三机 × 三工具 Git `includeIf` 核对与 glab 宽路径修复
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：**epix / woot**：核对 `~/.gitconfig` 与三片段（`cursor` / `codex` / `claude-code`），`git config --show-origin` 在样例仓已命中 **`{host}-cursor`**。**glab**：经 SSH 发现仅 **`gitdir:E:/DEV/GitNet/`** 时 **`E:/DEV/BestGit`** 落入人类全局 `Epix`；已重写 **`%USERPROFILE%\.gitconfig`**，增加 **`gitdir:E:/DEV/`**、**`gitdir:E:/Dev/`** 及 CodexDev 大小写对之 **`includeIf`**，`git -C E:/DEV/GitNet` 与 **`git -C E:/DEV/BestGit`** 均解析为 **`glab-cursor`**。更新 **`handbook/templates/windows-glab-git-includeIf.ps1`**、`gitconfig.windows.main.ini`、`55` §3.3/§6/修订记录。
+- 涉及信源：`40`、`55`、`templates/windows-glab-git-includeIf.ps1`、`90`
+- 回顾：**Cursor/Codex/Claude 的「会话铁律」**（User Rules、`.cursor/rules` 等）仍属各工具侧，与 Git 层互补；本回合只闭环 **Git 作者解析路径**。
+
 ### 2026-05-14 — 三节点 BestGit 落盘与编程 Agent 复测（woot / glab SSH）
 
 - 参与：Agent（Cursor，epix）

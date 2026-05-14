@@ -48,6 +48,7 @@ Set-Content -Encoding utf8 -Path $fragClaude -Value @(
 
 $dq = [char]34
 
+# 宽路径：须覆盖 Windows 上 E:\Dev 与 E:\DEV 等实际大小写（Git includeIf 对 gitdir 大小写敏感时，仅写一种会漏掉 BestGit/GitNet）。
 $mainLines = @(
   '[user]',
   '	name = Epix',
@@ -57,11 +58,19 @@ $mainLines = @(
   '	autocrlf = true',
   '	longpaths = true',
   '',
-  ('[includeIf ' + $dq + 'gitdir:' + $GitNetRoot + '/' + $dq + ']'),
+  ('[includeIf ' + $dq + 'gitdir:' + $DevRoot + '/' + $dq + ']'),
+  ('	path = ' + $fragCursor),
+  ('[includeIf ' + $dq + 'gitdir:E:/DEV/' + $dq + ']'),
+  ('	path = ' + $fragCursor),
+  ('[includeIf ' + $dq + 'gitdir:E:/Dev/' + $dq + ']'),
   ('	path = ' + $fragCursor),
   ('[includeIf ' + $dq + 'gitdir:' + $homeUnix + '/agent-work/cursor/' + $dq + ']'),
   ('	path = ' + $fragCursor),
   ('[includeIf ' + $dq + 'gitdir:' + $DevRoot + '/CodexDev/' + $dq + ']'),
+  ('	path = ' + $fragCodex),
+  ('[includeIf ' + $dq + 'gitdir:E:/DEV/CodexDev/' + $dq + ']'),
+  ('	path = ' + $fragCodex),
+  ('[includeIf ' + $dq + 'gitdir:E:/Dev/CodexDev/' + $dq + ']'),
   ('	path = ' + $fragCodex),
   ('[includeIf ' + $dq + 'gitdir:' + $homeUnix + '/agent-work/codex/' + $dq + ']'),
   ('	path = ' + $fragCodex),

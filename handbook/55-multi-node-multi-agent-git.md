@@ -52,9 +52,9 @@
 
 | 顺序 | `gitdir` 前缀（示例，按你本机用户目录改写） | 片段作者名 |
 |------|---------------------------------------------|------------|
-| 1 | `C:/Users/你的用户名/Dev/` | `glab-cursor` |
+| 1 | **`E:/DEV/`** 与 **`E:/Dev/`**（各一条 `includeIf` → `glab-cursor`；避免仅匹配单一大小写导致 `E:\DEV\GitNet` 与 `E:\Dev\BestGit` 漏命中） | `glab-cursor` |
 | 2 | `C:/Users/你的用户名/agent-work/cursor/` | `glab-cursor` |
-| 3 | `C:/Users/你的用户名/Dev/CodexDev/`（若存在） | `glab-codex` |
+| 3 | **`E:/DEV/CodexDev/`**、**`E:/Dev/CodexDev/`**（若存在） | `glab-codex` |
 | 4 | `C:/Users/你的用户名/agent-work/codex/` | `glab-codex` |
 | 5 | `C:/Users/你的用户名/agent-work/claude-code/` | `glab-claude-code` |
 
@@ -106,7 +106,7 @@ git config --show-origin user.email
 
 ## 6. 演进清单（可选）
 
-1. **woot / glab**：按上表补齐片段文件与 `includeIf`；结果记入 [90-process-log.md](90-process-log.md)。
+1. **woot / glab**：按上表补齐片段文件与 `includeIf`；**glab** 已实装 **`E:/DEV/` + `E:/Dev/` 宽路径**（2026-05-14，避免 BestGit/GitNet 因大小写漏命中）；结果记入 [90-process-log.md](90-process-log.md)。
 2. **Claude Code 主力目录**：若固定在 `~/Dev/CcDev` 等，可在该机 `.gitconfig` 末尾增加对应 `includeIf` → `epix-claude-code`（或 `HOSTNAME-claude-code`）。
 3. **若某仓要人类作者**：仅在该仓库 `git config --local user.name` / `user.email`，并记录在进程日志。
 4. **三机仓库盘点与 RACI**：见 [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md)；填表模板见 [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md)。
@@ -115,5 +115,6 @@ git config --show-origin user.email
 
 ## 修订记录
 
+- 2026-05-14：§3.3 **glab** 增补 **`E:/DEV/` 与 `E:/Dev/`** 双宽路径及 CodexDev 大小写对；演进清单 §6 标注 glab 已实装；与 `templates/windows-glab-git-includeIf.ps1` 对齐。
 - 2026-05-13：文首 **glab** 实机说明与 `46`/`91`/收口表对齐；演进清单链到 `94` 盘点与 RACI；补充 **woot** 经 Tailscale SSH 实装；SSH 用户名为 **`woot`**；`46`；**§5.1** 链到 `10`。
 - 2026-05-12：首版；基于 epix 当前 `~/Dev` + `agent-work` 实装与 tailnet 节点名归纳 glab/woot 方案。
