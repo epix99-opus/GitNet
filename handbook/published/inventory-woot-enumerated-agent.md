@@ -23,7 +23,7 @@
 2. **SSH 默认环境**：OpenSSH 非登录远程命令还会带上 **较短的 `PATH`**（此前会话曾见近似 `~/.cargo/bin` + 系统目录），与图形终端登录后的 `PATH` 不一致，进一步放大上述差异。
 3. **更贴近本机的探查方式**（任选其一，在 epix 上经 SSH）：`zsh -lic 'command -v codex; codex --version'`（`-i` = 交互，会读 `.zshrc`）；或在 woot 本机终端执行 `type -P codex` 将**绝对路径**记入上表「证据」列。
 
-> **Cursor Agent / 人类（二次核对后）**：在 **本机（epix）** 上应先执行 **`tailscale status`** 与 **`tailscale ping woot`**——**woot 在线且 L3 可达** 时，若 **`ssh woot@woot` 仍超时**，常见原因 **不是**「woot 没连 Tailscale」，而是 **系统 DNS / MagicDNS 解析出的 `woot` 之 100.x 与 `tailscale status` 表中该主机行不一致**（陈旧记录会指向 **`tailscale ping` 报 `no matching peer`** 的地址，SSH 即超时；而 **status 表中的当前 100.x** 上 **:22 可连**）。**处置与探查顺序**见 [46-tailscale-remote-git-identity.md](../46-tailscale-remote-git-identity.md) **§1.0**。**此前未先做上述核对即写成「执行主机不在 tailnet」属表述不当，已更正。**
+> **Cursor Agent / 人类（二次核对后）**：在 **本机（epix）** 上应先执行 **`tailscale status`** 与 **`tailscale ping woot`**——**woot 在线且 L3 可达** 时，若 **`ssh woot@woot`（短名）仍超时**，根因常为 **系统 DNS / MagicDNS 与 `tailscale status` 的 100.x 不一致**。**权威 IPv4** 以 **`tailscale ip -4 woot`** 为准；**`ssh woot@<该地址>` 已实机验证可登录**（与短名解析无关）。处置与 **`~/.ssh/config` 的 `HostName`** 见 [46-tailscale-remote-git-identity.md](../46-tailscale-remote-git-identity.md) **§1.0～§1.1**；事实变量见 NetOps **`configs/network_facts.env`** 之 **`TAILSCALE_WOOT_IP`**、脚本 **`scripts/tailscale-peer-ipv4.sh`**。
 
 ## 仓库表
 
