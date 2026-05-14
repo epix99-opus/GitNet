@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-12 — **v0.1.0：VERSION、Git 标签与 GitHub Release 落地**（PR #9）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：合入 **`chore/v0.1.0-version-inventory`**（PR #9，merge **`b87189bb396fffc2fad4e14a9b9f488f27f93248`**）：根 **`VERSION`=0.1.0**、`README` / **`97`** / **`90`** v0.1 条、`published/inventory-woot`·`glab` 对齐。已 **`git push github v0.1.0`**（附注标签）、**`git push origin v0.1.0`**（bare）、**`gh release create v0.1.0`**；**`handbook/scripts/gitnet-sync-github-main-to-bare.sh`** 将 **`github/main`** 快进至 **`b87189b…`**。
+- 涉及信源：`VERSION`、`README`、`90`、`97`、`published/inventory-*`、`56`、`30`
+- 回顾：与 **`97` §9**、根 **`VERSION`** 互指；Release：<https://github.com/epix99-opus/GitNet/releases/tag/v0.1.0>
+
 ### 2026-05-13 — **GitNet v0.1 封存发布**（`97` + 三节点周知链 + CAMA 检验）
 
 - 参与：Agent（Cursor，epix）
