@@ -6,14 +6,14 @@
 
 ## 编程 Agent 工具（实机探测）
 
-> **探测日期**：2026-05-12（首版）；**2026-05-14** 经 **epix** `ssh -o BatchMode=yes glab` **复测**（BestGit 落盘同批）；远端 **`cmd.exe` / PowerShell**：`where.exe`。
+> **探测日期**：2026-05-12（首版）；**2026-05-14** 经 **epix** `ssh -o BatchMode=yes glab` **复测**（BestGit 落盘同批）；**Cursor Agent 执行环境（二次）**：`ssh glab` **可达**；`Test-Path` 对 `C:\Users\GG\AppData\Roaming\npm\codex.cmd`、`C:\Users\GG\.local\bin\codex.exe` 均为 **False**；`cmd /c dir …\codex*` 在 `Roaming\npm`、`.local\bin` **未见** `codex*`；`where node` → `C:\Program Files\nodejs\node.exe`。远端 **`cmd.exe` / PowerShell**：`where.exe`。
 
 **组织口径（2026-05-14）**：与 epix、woot 一致，**本机具备 Cursor、Codex CLI、Claude Code 三套编程 Agent**。下表「结论」与组织对齐；「证据」含 **经 SSH 调起的会话** 可复现的快照——**Codex CLI** 若以仅交互用户 PATH 可见的方式安装，请在 glab 本机 `Get-Command codex` 将 **Source** 绝对路径补进本表。
 
 | 工具 | 结论 | 证据（可复跑） |
 |------|------|----------------|
 | **Cursor** | 已安装 | `where cursor` → `C:\Users\GG\AppData\Local\Programs\cursor\resources\app\bin\cursor`（及 `.cmd`）；`%LOCALAPPDATA%\Programs\cursor\Cursor.exe` 存在 |
-| **Codex CLI** | **已部署**（与三节点组织口径一致） | **SSH 快照**：`where codex` 未命中；`C:\Users\GG\AppData\Roaming\npm\codex*`、`C:\Users\GG\.local\bin\codex*` 等常见位首轮未列到文件（**待维护者补录** `codex` 绝对路径） |
+| **Codex CLI** | **已部署**（与三节点组织口径一致） | **SSH 快照**：`where codex` 未命中；**二次** `Test-Path`/`dir` 在 `Roaming\npm`、`.local\bin` **未见** `codex*`（**待维护者**在本机 `Get-Command codex` 或安装目录补**绝对路径**） |
 | **Claude Code** | 已安装 | `where claude` → `C:\Users\GG\.local\bin\claude.exe` |
 
 ## 仓库表
@@ -26,6 +26,7 @@
 
 ## 修订记录
 
+- 2026-05-14：**Cursor Agent 环境** 对 glab **二次** SSH：`Test-Path`/`dir` 仍未见 `codex*`（与组织口径并存，待补路径）。
 - 2026-05-14：编程 Agent **组织口径**三节点均具备 Cursor / Codex CLI / Claude Code；Codex 行保留 **SSH 快照**与「待补绝对路径」；登记 **`E:\Dev\BestGit`**。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（`where` 输出摘要）。
 - 2026-05-13：首版枚举（epix → `glab` SSH + PowerShell）。
