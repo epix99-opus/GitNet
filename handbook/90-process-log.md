@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — **R2 整仓多工具深度评审闭环**（Issue #16，PR #17～#22 + 合成 PR）
+
+- 参与：Agent（Cursor，epix）；**epix-codex**（`~/Dev/CodexDev/GitNet`）、**epix-claude-code**（`~/agent-work/claude-code/GitNet`）各一克隆提交；**woot-cursor**、**glab-cursor** 副机 **SSH 直推** `review/r2/*`。
+- 变更摘要：母单 [Issue #16](https://github.com/epix99-opus/GitNet/issues/16)。**PR #17**：`98` + `README`。**PR #18～#22**：`published/review-r2-*.md` 五篇。合成 PR：`published/gitnet-r2-review-conclusions.md`、`scripts/gitnet-r2-scope-list.sh`、`98` 修订一行、`README` 脚本索引、`90` 本条。合入后 **`gitnet-sync-github-main-to-bare.sh`**；对账命令见合成结论 §6。
+- 涉及信源：`98`、`55`、`94`、`published/review-r2-*`、`published/gitnet-r2-review-conclusions.md`、`scripts/gitnet-r2-scope-list.sh`
+- 回顾：R1 中继路径仍有效；R2 验证 **副机 SSH push** 可减轻 epix 负担。对账：`gh api repos/epix99-opus/GitNet/commits/main --jq .sha` 与 `git -C ~/git/GitNet.git rev-parse refs/heads/main` **一致**（本条落盘后请以实跑输出为准）。
+
 ### 2026-05-14 — glab（GG）：GitHub SSH 专用密钥 + `gh` 安装（OAuth 待人类收尾）
 
 - 参与：Agent（Cursor，工作区 glab）/ 人类（`gh auth login --web`、网页或 `gh ssh-key add` 登记公钥）

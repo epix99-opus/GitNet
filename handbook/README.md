@@ -49,6 +49,8 @@
 - [templates/gitnet-watch-github-sync.ps1](templates/gitnet-watch-github-sync.ps1)（glab：计划任务轮询）
 - [templates/com.gitnet.watch-github.plist](templates/com.gitnet.watch-github.plist)（epix `LaunchAgents` 示例，间隔秒见 plist 内 `StartInterval`）
 - [scripts/gitnet-v0.1-rollout-print-checks.sh](scripts/gitnet-v0.1-rollout-print-checks.sh)（打印 v0.1 周知建议命令；见 **`97`**）
+- [scripts/gitnet-multi-agent-retro-preflight.sh](scripts/gitnet-multi-agent-retro-preflight.sh)（Tailscale + BatchMode SSH 快检；见 Issue #11、`46` §1.0）
+- [scripts/gitnet-r2-scope-list.sh](scripts/gitnet-r2-scope-list.sh)（R2：按前缀 `git ls-files` 计数；见 Issue #16、`98`、`published/gitnet-r2-review-conclusions.md`）
 - [templates/com.gitnet.sync-github-to-bare.plist](templates/com.gitnet.sync-github-to-bare.plist)（epix：定时调用上脚本；**`ProgramArguments` 内路径须与本机 `~/bin` 一致**）
 - [scripts/setup-glab-github-ssh-and-gh.ps1](scripts/setup-glab-github-ssh-and-gh.ps1)（**glab GG**：`winget` 安装 `gh`、生成 `id_ed25519_github`、`Host github.com`、`origin`→SSH；**人类**再 `gh auth login --web` 与 `gh ssh-key add` 或网页添加公钥，见 `20` §8）
 - [scripts/append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1)（**glab 当前用户**：仅将定稿公钥行追加到 `%USERPROFILE%\.ssh\authorized_keys`，无需管理员；幂等；**若账户在 Administrators 组会提示另跑管理员脚本**）
