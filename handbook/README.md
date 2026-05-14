@@ -12,17 +12,17 @@
 | 2 | [05-project-scope-and-delivery.md](05-project-scope-and-delivery.md) | 项目定义、交付边界、会话结论归并、人类检查清单 |
 | 3 | [08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) | **北极星** + **Git 宗旨与全生命周期框架** + **全链路认证**：全局 Git 规定、阶段×分支矩阵、多 Agent 信源仲裁；Agent 优先；公钥默认优先；凭据明文不进 Git/Issue |
 | 4 | [07-documentation-placement.md](07-documentation-placement.md) | **内容落盘规则**：事实 / 过程 / 草稿各写何处；与 NetOps 网络事实源边界 |
-| 5 | [10-topology.md](10-topology.md) | epix 权威裸仓、GitHub 从镜像、各端角色；**多设备 × 多 Agent 时 bare 为写集成与默认 push 汇合点的目标规范与最优实现** |
+| 5 | [10-topology.md](10-topology.md) | **组织默认**：epix bare 写权威、GitHub 从镜像、各端角色；**多设备 × 多 Agent**。**GitNet 本元仓库登记例外**：`main` 经 **GitHub PR** 合入，bare **ff-only** 跟随（链 `56`/`30`/`90`） |
 | 6 | [40-identity-and-includeIf.md](40-identity-and-includeIf.md) | 人类兜底与 Agent 作者名、`includeIf` 模板 |
 | 7 | [55-multi-node-multi-agent-git.md](55-multi-node-multi-agent-git.md) | **epix / glab / woot** 多节点 × Cursor/Codex/Claude 的 Git 身份总表与 `includeIf` 顺序 |
 | 8 | [45-ssh-tailscale-for-humans.md](45-ssh-tailscale-for-humans.md) | 非技术向：Tailscale 机器名、SSH 别名、bare 路径 |
 | 9 | [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) | epix→woot/glab：Tailscale SSH 落地 Git 片段与 `~/.ssh/config` 约定 |
 | 10 | [22-glab-tailscale-epix-remote.md](22-glab-tailscale-epix-remote.md) | **Glab（Windows）本机 Tailscale 事实**与 epix 远程边界（与 46 互补：事实表 + 能力边界） |
 | 11 | [20-windows-setup.md](20-windows-setup.md) | Windows：Git、换行、远端顺序 |
-| 12 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd 镜像推送 |
+| 12 | [30-mac-epix-setup.md](30-mac-epix-setup.md) | epix：裸仓、SSH、launchd；**GitNet 本仓** `github→bare` **ff-only** 与**其它仓** bare→GitHub 镜像勿混用 |
 | 13 | [50-sourcetree.md](50-sourcetree.md) | SourceTree 与系统 Git 对齐 |
 | 14 | [70-docs-migration-map.md](70-docs-migration-map.md) | `docs/` 参考文与定稿章节对照 |
-| 15 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub 分支保护与 epix 主从一致 |
+| 15 | [06-github-branch-protection.md](06-github-branch-protection.md) | GitHub **`main` 分支保护**（本仓为 **PR 合入闸**）；与 bare **ff-only** 关系 |
 | 16 | [90-process-log.md](90-process-log.md) | 进程记录模板与 Tailscale/SSH 验证清单 |
 | 17 | [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) | **Handoff**：需 glab 配合的 epix→glab SSH/Git 验收（见 GitHub Issue） |
 | 18 | [92-github-auto-sync-collaboration.md](92-github-auto-sync-collaboration.md) | **备选 · Git 数据面**：GitHub 双端轮询/`ff-only` 拉取；与 OpenClaw/Hermes **并行互备**关系见文内对比 |
@@ -33,7 +33,7 @@
 | 23 | [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md) | **多 Agent × 主分支 × 根配置**：`AGENTS.md`/`CLAUDE.md` 等与合并冲突关系；`includeIf` 不解决冲突 |
 | 24 | [54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md) | **副机在 epix 上干 CAMA**：Remote-SSH、SSH+CLI、副机克隆三模式与前置条件 |
 | 25 | [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md) | **人类操作**：Git CLI 最小闭环、冲突处理、`git log --graph`、Cursor/VS Code **Git Graph** 扩展 |
-| 26 | [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md) | **工作流质量**：约定式提交、小步与 `add -p`、特性分支与 PR、**`rebase -i` 边界**、分支清理；**元仓 vs 业务仓**分层 |
+| 26 | [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md) | **工作流质量**：约定式提交、小步与 `add -p`、**GitNet 本仓 §3 全 PR**、`rebase -i` 边界、分支清理 |
 
 ## 模板与脚本
 
@@ -46,6 +46,8 @@
 - [scripts/gitnet-watch-github-sync.sh](scripts/gitnet-watch-github-sync.sh)（epix：`launchd` 轮询 `origin`，`ff-only` 合并；见 `92`）
 - [templates/gitnet-watch-github-sync.ps1](templates/gitnet-watch-github-sync.ps1)（glab：计划任务轮询）
 - [templates/com.gitnet.watch-github.plist](templates/com.gitnet.watch-github.plist)（epix `LaunchAgents` 示例，间隔秒见 plist 内 `StartInterval`）
+- [scripts/gitnet-sync-github-main-to-bare.sh](scripts/gitnet-sync-github-main-to-bare.sh)（**GitNet 本仓**：bare 上 **`fetch github main` → `refs/heads/main` ff-only**；日志默认 `~/Library/Logs/GitNet/sync-github-to-bare.log`）
+- [templates/com.gitnet.sync-github-to-bare.plist](templates/com.gitnet.sync-github-to-bare.plist)（epix：定时调用上脚本；**`ProgramArguments` 内路径须与本机 `~/bin` 一致**）
 - [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)（**glab 管理员**：OpenSSH + 防火墙 22 + 用户 `authorized_keys` + 若属 Administrators 则 **`ProgramData\ssh\administrators_authorized_keys`**；脚本须 **UTF-8 带 BOM** 以便 PowerShell 5.1 正确解析中文，见 `20` §7）
 - [scripts/append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1)（**glab 当前用户**：仅将定稿公钥行追加到 `%USERPROFILE%\.ssh\authorized_keys`，无需管理员；幂等；**若账户在 Administrators 组会提示另跑管理员脚本**）
 - [scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1](scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1)（**glab 管理员**：写入 `C:\ProgramData\ssh\administrators_authorized_keys`，解决 `Match Group administrators` 下 BatchMode 公钥失败）
@@ -63,8 +65,7 @@
 
 见仓库根目录 [AGENTS.md](../AGENTS.md) 与 [.cursor/rules/](../.cursor/rules/)。
 
-## GitHub 从镜像（只读灾备展示）
+## GitHub 与 epix bare（组织默认 vs 本仓例外）
 
-- HTTPS：<https://github.com/epix99-opus/GitNet>
-
-日常协作 **push/pull 以 epix 裸仓为准**；向 GitHub 的更新由 epix 侧定时任务执行（见 [30-mac-epix-setup.md](30-mac-epix-setup.md)）。**例外（对齐通知面）**：当提交已由任一端 **push 到 GitHub `main`**（例如 glab/Agent 收口文档后），需要与 glab 同树的 **epix 工作副本**若将 **GitHub** 设为拉取远端，应执行 **`git pull`** 载入同一提交；若以 **bare** 为唯一写入口，在 epix 将 GitHub 变更 **并入 bare** 后再从 bare 分发，详见 [90-process-log.md](90-process-log.md) 当日「文档收口」条。
+- **组织默认（其它业务仓）**：GitHub 多为**只读镜像**；日常 **push/pull 以 epix bare 为准**；向 GitHub 的更新由 epix 侧 **bare→github** 定时任务执行（见 [30-mac-epix-setup.md](30-mac-epix-setup.md)）。
+- **本元仓库 `epix99-opus/GitNet`（登记例外）**：**`main` 在 GitHub 经 PR 合入**；epix bare 上 **`main` 仅由 `github/main` ff-only 拉齐**（脚本见上「模板与脚本」）。工作副本操作入口：[CONTRIBUTING.md](../CONTRIBUTING.md)。

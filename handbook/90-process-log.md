@@ -14,6 +14,16 @@
 
 ## 已记录条目
 
+### 2026-05-14 — **GitNet 本仓治理升级**：GitHub `main` 为 PR 合入闸 + bare `ff-only` 跟随
+
+- 参与：人类 / Agent（Cursor，epix）
+- 变更摘要：采纳架构 **A**（附件计划）：**(1)** 在 `epix99-opus/GitNet` 的 **`main`** 上启用 GitHub **分支保护**（`gh api …/branches/main/protection` 显示 **`required_pull_request_reviews.required_approving_review_count: 1`**、`dismiss_stale_reviews: true`；**`enforce_admins.enabled: false`**——可按需在网页再加严）；(2) **`handbook/scripts/gitnet-sync-github-main-to-bare.sh`**（`git -C "$BARE" fetch github refs/heads/main:refs/heads/main`）与 **`~/bin`** 副本；(3) **`~/bin/gitnet-push-github.sh`** 对本仓语义改为 **默认不写** `push github`（**`GITNET_LEGACY_PUSH_GITHUB_MAIN=1`** 才恢复旧行为，防误用破坏保护）；(4) **`launchctl unload ~/Library/LaunchAgents/com.gitnet.push-github.plist`**（本机曾 load 则退出 0；若本机从未有则跳过）；(5) 定稿修订 **`06`/`08`/`10`/`30`/`56`**、根 **`CONTRIBUTING`/`AGENTS`/`README`**、**`handbook/README`**、**本条目**；新增 **`handbook/templates/com.gitnet.sync-github-to-bare.plist`**。跨仓：**BestGit** `docs/PROGRAMMING_AGENTS_WEEKLY_BRIEF.zh-CN.md`、**CAMA-concept** `regulations/cama-git-inventory.md` 增 GitNet 合入口径指针。
+- 涉及信源：`06`、`08`、`10`、`30`、`56`、`CONTRIBUTING`、`AGENTS`、`README`、`handbook/README`、`90`、BestGit、CAMA
+- 验收（PR merge + sync 后在本机执行，**双端 SHA 一致**）：
+  - `gh api repos/epix99-opus/GitNet/commits/main --jq .sha`
+  - `git -C ~/git/GitNet.git rev-parse refs/heads/main`
+- 回顾：**`com.gitnet.sync-github-to-bare`** 可按需 `cp handbook/templates/… ~/Library/LaunchAgents/` 再 **`launchctl load`**；若 ff-only fetch 失败，**禁止**对 bare **强推 `main` 静默修复**——须在 `90` 另开条写事故与协调步骤。
+
 ### 2026-05-14 — handbook **`56`** + 根 **`CONTRIBUTING.md`**：约定式提交与工作流六条定稿
 
 - 参与：Agent（Cursor，epix）
