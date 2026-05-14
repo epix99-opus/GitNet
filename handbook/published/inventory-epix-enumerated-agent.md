@@ -31,7 +31,7 @@
 | `/Users/epix/Dev/UniNode/3399/.build/rkbin` | master | `https://github.com/rockchip-linux/rkbin.git` | **epix-cursor** |
 | `/Users/epix/Dev/UniNode/3399/.build/rkdeveloptool` | master | `https://github.com/rockchip-linux/rkdeveloptool.git` | **epix-cursor** |
 | `/Users/epix/Dev/open-design` | main | `https://github.com/nexu-io/open-design.git` | **epix-cursor** |
-| `/Users/epix/Dev/BestGit` | main | *(无，待登记 `origin`)* | **epix-cursor** |
+| `/Users/epix/Dev/BestGit` | main | `https://github.com/epix99-opus/BestGit.git` | **epix-cursor** |
 
 ## 与 [10-topology.md](../10-topology.md) 的对照（摘要）
 
@@ -40,6 +40,6 @@
 
 ## 修订记录
 
-- 2026-05-13：仓库表追加 **`/Users/epix/Dev/BestGit`**（组织模板仓 BestGit）；与 `96` / CAMA `cama-git-inventory` 对齐。
+- 2026-05-13：仓库表追加 **`/Users/epix/Dev/BestGit`**；`origin` 更新为 GitHub **`epix99-opus/BestGit`**；与 `96` / CAMA `cama-git-inventory` 对齐。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（Cursor.app / codex / claude 路径）。
 - 2026-05-13：首版全表（Agent 本机枚举）。

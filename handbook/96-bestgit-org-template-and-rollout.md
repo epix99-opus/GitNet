@@ -10,12 +10,12 @@
 
 ## 远端与镜像（建议）
 
-- **建议 GitHub 镜像**：`https://github.com/epix99-opus/BestGit.git`（建仓后于 BestGit 根执行 `git remote add origin …` 与 `git push -u origin main`）。
+- **建议 GitHub 镜像**：`https://github.com/epix99-opus/BestGit.git`（**已创建**；各克隆 `git pull` 即可）。
 - **与 GitNet 主从策略**：BestGit 为**模板文本**，不要求 bare 权威（除非团队另行规定）；业务仓仍以 [10-topology.md](10-topology.md) 为准。
 
 ## 三节点与所有 Agent 如何周知
 
-1. 各节点按 BestGit 仓库内 **`docs/rollout-epix-glab-woot.md`** 完成 clone（文内 `<BestGit-URL>` 在 GitHub 建仓后替换为 `https://github.com/epix99-opus/BestGit.git` 或 SSH 等价物；**未上线前**可仅在 epix 保留本机路径 `/Users/epix/Dev/BestGit` 并以 rsync/共享盘分发）。
+1. 各节点按 BestGit 仓库内 **`docs/rollout-epix-glab-woot.md`** 完成 clone（文内 **`<BestGit-URL>`** 请使用 **`https://github.com/epix99-opus/BestGit.git`** 或 SSH `git@github.com:epix99-opus/BestGit.git`）。
 2. **所有 Agent**：在业务仓 `AGENTS` 或工具 User Rules 中增加一句：**新开仓执行 BestGit `docs/NEW_PROJECT_CHECKLIST.md`**。
 3. **盘点可选**：将 `…/BestGit` 路径记入 [published/inventory-*-enumerated-agent.md](published/inventory-epix-enumerated-agent.md) 或 CAMA `cama-git-inventory`「备注」列。
 
@@ -30,4 +30,5 @@
 
 ## 修订记录
 
+- 2026-05-13：GitHub 仓库 **`epix99-opus/BestGit`** 已创建并推送；周知步骤中的 clone URL 已固定。
 - 2026-05-13：首版（BestGit 建仓 + 本页归档与周知入口）。
