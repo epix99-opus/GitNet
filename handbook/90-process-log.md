@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — **多节点多 Agent Git 总线复盘**（Issue #11，PR #12～#14）
+
+- 参与：Agent（Cursor，epix）；副机 **woot** / **glab** 本地提交（`woot-cursor` / `glab-cursor`）；因副机 **GitHub HTTPS 无 TTY 凭据**，`woot`/`glab` 分支由 epix **`git format-patch` + `git am`** 中继推送至 **`github`**（作者头保持不变）。
+- 变更摘要：母单 [Issue #11](https://github.com/epix99-opus/GitNet/issues/11)。**网络预检**：`tailscale ping` woot/glab **pong**；`tailscale ip -4` 与 **`ssh -o BatchMode=yes`** 至 woot/glab **ok**。交付：**`published/retro-multi-agent-woot-2026-05.md`**、**`published/retro-multi-agent-glab-2026-05.md`**、**`scripts/gitnet-multi-agent-retro-preflight.sh`**（epix 已实跑）。合入 **PR #12**、**#13**、**#14** 后运行 **`gitnet-sync-github-main-to-bare.sh`**；当时 `gh api repos/epix99-opus/GitNet/commits/main --jq .sha` 与 `git -C ~/git/GitNet.git rev-parse refs/heads/main` 均为 **`aeed7f9a992470f2e0a1b66bf7a49f03ceefb607`**。
+- 涉及信源：`46`、`55`、`93` §7、`94`、`97`（范围指针）、`CONTRIBUTING`
+- 回顾：副机后续可在配置 **GCM / `gh auth`** 或 **`origin`→SSH** 后本地直推；中继路径已在 Issue #11 与 PR 描述注明。
+
 ### 2026-05-12 — **v0.1.0：VERSION、Git 标签与 GitHub Release 落地**（PR #9）
 
 - 参与：Agent（Cursor，epix）
