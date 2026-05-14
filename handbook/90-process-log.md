@@ -14,10 +14,10 @@
 
 ## 已记录条目
 
-### 2026-05-14 — **R2 合成结论 backlog 落地**（`97` §9 / `README` published 索引 / `GITNET_SYNC_DRY_RUN`）
+### 2026-05-14 — **R2 合成结论 backlog 落地**（PR #24：`97` §9 / `README` published 索引 / `GITNET_SYNC_DRY_RUN`）
 
 - 参与：Agent（Cursor，epix）
-- 变更摘要：落实 [published/gitnet-r2-review-conclusions.md](published/gitnet-r2-review-conclusions.md) §5 前三项：**`97` §9** 增「当前 `main` 头」对账指针链 **`90`** 与合成结论；**`handbook/README.md`** 模板区增 **published 主题索引（R2）** 一行；**`gitnet-sync-github-main-to-bare.sh`** 支持 **`GITNET_SYNC_DRY_RUN=1`** 预演；**`98`** §5 互链 dry-run；**合成结论** §5/§6 勾选与修订记录更新。
+- 变更摘要：**PR #24** 落实 [published/gitnet-r2-review-conclusions.md](published/gitnet-r2-review-conclusions.md) §5 前三项：**`97` §9** 增「当前 `main` 头」对账指针链 **`90`** 与合成结论；**`handbook/README.md`** 模板区增 **published 主题索引（R2）** 一行；**`gitnet-sync-github-main-to-bare.sh`** 支持 **`GITNET_SYNC_DRY_RUN=1`** 预演；**`98`** §5 互链 dry-run；**合成结论** §5/§6 勾选与修订记录更新。
 - 涉及信源：`97`、`98`、`README`、`scripts/gitnet-sync-github-main-to-bare.sh`、`published/gitnet-r2-review-conclusions.md`
 - 回顾：余项「清理 GitHub 短命分支」仍为 backlog，未自动删 remote。
 
