@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — glab（GG）：GitHub SSH 专用密钥 + `gh` 安装（OAuth 待人类收尾）
+
+- 参与：Agent（Cursor，工作区 glab）/ 人类（`gh auth login --web`、网页或 `gh ssh-key add` 登记公钥）
+- 变更摘要：`winget` 安装 **GitHub CLI 2.92.0**；生成 **`%USERPROFILE%\.ssh\id_ed25519_github`**；`%USERPROFILE%\.ssh\config` 增加 **`Host github.com`**（`IdentityFile` 指向上述密钥、`IdentitiesOnly yes`）；`ssh-keyscan github.com` 写入 **`known_hosts`**；`E:\DEV\GitNet` 的 **`origin`** 改为 **`git@github.com:epix99-opus/GitNet.git`**。新增可重复脚本 [scripts/setup-glab-github-ssh-and-gh.ps1](scripts/setup-glab-github-ssh-and-gh.ps1)；[20-windows-setup.md](20-windows-setup.md) **§8**；[README.md](README.md) 脚本索引。
+- 涉及信源：`20`、`README`、`90`、`scripts/setup-glab-github-ssh-and-gh.ps1`
+- 回顾：**未**代完成 `gh auth login`（需浏览器/凭据）；**未**代将公钥写入 GitHub账户（需已登录 `gh` 或网页）。验收：`gh auth status` 显示已登录；`ssh -T git@github.com` 成功；`git ls-remote origin HEAD` 正常。
+
 ### 2026-05-14 — **多节点多 Agent Git 总线复盘**（Issue #11，PR #12～#14）
 
 - 参与：Agent（Cursor，epix）；副机 **woot** / **glab** 本地提交（`woot-cursor` / `glab-cursor`）；因副机 **GitHub HTTPS 无 TTY 凭据**，`woot`/`glab` 分支由 epix **`git format-patch` + `git am`** 中继推送至 **`github`**（作者头保持不变）。

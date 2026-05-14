@@ -70,3 +70,21 @@ ssh -T git@github.com
 - **维护方式**：用 VS Code / Cursor 打开脚本 → 右下角编码 → **Save with Encoding** → **UTF-8 with BOM**；或合并前用工具检查文件头为 **`EF BB BF`**。
 - **PowerShell 7+**：对 UTF-8 无 BOM 更宽容；若团队统一用 `pwsh` 跑脚本，仍建议带 BOM，以免他人用 5.1 误跑。
 - **交叉引用**：epix→glab 全流程见 [46-tailscale-remote-git-identity.md](46-tailscale-remote-git-identity.md) §3.1；`ssh-keyscan` / macOS 见同文 §3.3 与 [91-glab-handoff-epix-ssh-verify.md](91-glab-handoff-epix-ssh-verify.md) §B。
+
+## 8. glab（GG）：GitHub 走 SSH + GitHub CLI（`gh`）
+
+目标：**`ssh -T git@github.com` 成功**，且 **`gh auth status` 已登录**；本仓库 `origin` 使用 `git@github.com:epix99-opus/GitNet.git`。
+
+1. **一键准备**（管理员不必，普通 PowerShell 即可）：在 GitNet 克隆根执行  
+   `.\handbook\scripts\setup-glab-github-ssh-and-gh.ps1 -GitNetWorkdirWin 'E:\DEV\GitNet'`  
+   会：按需 `winget` 安装 **GitHub CLI**、生成 **`%USERPROFILE%\.ssh\id_ed25519_github`**、在 **`%USERPROFILE%\.ssh\config`** 增加 `Host github.com`（`IdentitiesOnly yes`）、`ssh-keyscan github.com` 写入 `known_hosts`、将 **`origin` 改为 SSH URL**。
+2. **人类一步（浏览器 OAuth）**：在新窗口或本机执行  
+   `& 'C:\Program Files\GitHub CLI\gh.exe' auth login --hostname github.com --git-protocol ssh --web`  
+   按浏览器完成登录（凭据进系统凭据库，**勿**把 token 写入仓库）。
+3. **把公钥登记到 GitHub 账户**（二选一）：  
+   - 登录后执行：  
+     `gh ssh-key add $env:USERPROFILE\.ssh\id_ed25519_github.pub -t "glab-GG-windows"`  
+   - 或打开 <https://github.com/settings/ssh/new>，粘贴 **`id_ed25519_github.pub` 整行**。
+4. **验收**：`ssh -T git@github.com` 出现成功提示；`git ls-remote origin HEAD` 能列出远端提交。
+
+**私钥**仅保留在 **`%USERPROFILE%\.ssh\`**，永不提交进 Git。若曾用 HTTPS `origin` 且希望保留备用远端，可自行 `git remote add github https://github.com/epix99-opus/GitNet.git`。

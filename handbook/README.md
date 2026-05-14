@@ -49,7 +49,7 @@
 - [templates/com.gitnet.watch-github.plist](templates/com.gitnet.watch-github.plist)（epix `LaunchAgents` 示例，间隔秒见 plist 内 `StartInterval`）
 - [scripts/gitnet-v0.1-rollout-print-checks.sh](scripts/gitnet-v0.1-rollout-print-checks.sh)（打印 v0.1 周知建议命令；见 **`97`**）
 - [templates/com.gitnet.sync-github-to-bare.plist](templates/com.gitnet.sync-github-to-bare.plist)（epix：定时调用上脚本；**`ProgramArguments` 内路径须与本机 `~/bin` 一致**）
-- [scripts/setup-glab-openssh-for-epix.ps1](scripts/setup-glab-openssh-for-epix.ps1)（**glab 管理员**：OpenSSH + 防火墙 22 + 用户 `authorized_keys` + 若属 Administrators 则 **`ProgramData\ssh\administrators_authorized_keys`**；脚本须 **UTF-8 带 BOM** 以便 PowerShell 5.1 正确解析中文，见 `20` §7）
+- [scripts/setup-glab-github-ssh-and-gh.ps1](scripts/setup-glab-github-ssh-and-gh.ps1)（**glab GG**：`winget` 安装 `gh`、生成 `id_ed25519_github`、`Host github.com`、`origin`→SSH；**人类**再 `gh auth login --web` 与 `gh ssh-key add` 或网页添加公钥，见 `20` §8）
 - [scripts/append-epix-pubkey-to-local-authorized_keys.ps1](scripts/append-epix-pubkey-to-local-authorized_keys.ps1)（**glab 当前用户**：仅将定稿公钥行追加到 `%USERPROFILE%\.ssh\authorized_keys`，无需管理员；幂等；**若账户在 Administrators 组会提示另跑管理员脚本**）
 - [scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1](scripts/append-epix-pubkey-to-administrators-authorized_keys.ps1)（**glab 管理员**：写入 `C:\ProgramData\ssh\administrators_authorized_keys`，解决 `Match Group administrators` 下 BatchMode 公钥失败）
 - [scripts/91-glab-section-A-evidence.ps1](scripts/91-glab-section-A-evidence.ps1)（生成 §A 证据文本）
