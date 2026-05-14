@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-12 — `main` 全历史提交说明改为中文（拓扑与树不变）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：使用 `git filter-branch -f --msg-filter` 仅重写提交说明；**父链与合并结构不变**，根提交至 `main` 顶端 **tree 与旧 `c59608c…` 一致**；`Co-authored-by` 等 trailer 保留英文以兼容工具链。映射与可复现命令见 [handbook/scripts/gitnet-rewrite-commit-messages-zh.sh](scripts/gitnet-rewrite-commit-messages-zh.sh)。**所有被重写提交的 SHA 已变**；若需更新 `origin/main` 须 **`git push --force-with-lease`**（已与团队约定后再执行）。
+- 涉及信源：`90`、脚本 `handbook/scripts/`
+- 回顾：可删除 `refs/original/refs/heads/main` 释放备份引用；需要回滚时用 `git reset --hard refs/original/refs/heads/main`（在删除前）。
+
 ### 2026-05-13 — BestGit 组织模板仓 + GitNet `96` 归档与 CAMA 落盘
 
 - 参与：Agent（Cursor，epix）
