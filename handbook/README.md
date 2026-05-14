@@ -2,7 +2,7 @@
 
 本目录为 **GitNet** 仓库运维与多机协作的**唯一定稿信源**。环境事实、拓扑与操作步骤以本手册为准。
 
-**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — Agent 驱动开发的 **Git 宗旨与可外推框架**（全局规定、全生命周期 × Git、主分支/特性分支、多 Agent 信源仲裁）、最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。**初版封存索引（v0.1）**：[97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)。**组织模板仓（BestGit）**：[96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md)。**阶段结论成果**：[93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)。
+**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — Agent 驱动开发的 **Git 宗旨与可外推框架**（全局规定、全生命周期 × Git、主分支/特性分支、多 Agent 信源仲裁）、最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。**初版封存索引（v0.1）**：[97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)。**R2 整仓多工具深度评审（Git 总线）**：[98-gitnet-deep-review-round2-git-bus.md](98-gitnet-deep-review-round2-git-bus.md)（母单 GitHub Issue #16）。**组织模板仓（BestGit）**：[96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md)。**阶段结论成果**：[93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)。
 
 ## 阅读顺序
 
@@ -30,11 +30,12 @@
 | 20 | [94-multi-node-agent-inventory-raci-and-config-matrix.md](94-multi-node-agent-inventory-raci-and-config-matrix.md) | **三机盘点与 RACI**：工具清单、仓库表模板、纳入分层（L1～L3）、全局/项目配置矩阵；模板 [published/inventory-machine-TEMPLATE.md](published/inventory-machine-TEMPLATE.md) |
 | 21 | [96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md) | **BestGit 组织模板仓**：分层 Git 方案归档、三节点周知入口、新开仓清单与 `bestgit-doctor`；独立仓库路径与建议 GitHub 镜像 |
 | 22 | [97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md) | **初版 GitNet（v0.1）封存**：规范/配置/脚本单页索引；组织默认 vs 本仓例外；三节点×三 Agent 验收矩阵；CAMA pilot 链 |
-| 23 | [52-gitnet-git-stack-vs-os-git.md](52-gitnet-git-stack-vs-os-git.md) | **体系 vs 系统 Git**：本栈叠加层（bare、includeIf、Tailscale、镜像角色）与特别价值 |
-| 24 | [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md) | **多 Agent × 主分支 × 根配置**：`AGENTS.md`/`CLAUDE.md` 等与合并冲突关系；`includeIf` 不解决冲突 |
-| 25 | [54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md) | **副机在 epix 上干 CAMA**：Remote-SSH、SSH+CLI、副机克隆三模式与前置条件 |
-| 26 | [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md) | **人类操作**：Git CLI 最小闭环、冲突处理、`git log --graph`、Cursor/VS Code **Git Graph** 扩展 |
-| 27 | [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md) | **工作流质量**：约定式提交、小步与 `add -p`、**GitNet 本仓 §3 全 PR**、`rebase -i` 边界、分支清理 |
+| 23 | [98-gitnet-deep-review-round2-git-bus.md](98-gitnet-deep-review-round2-git-bus.md) | **R2 深度评审**：整仓多工具 Git 总线协作模式；Issue #16；分稿 `published/review-r2-*.md` 与合成 `gitnet-r2-review-conclusions.md` |
+| 24 | [52-gitnet-git-stack-vs-os-git.md](52-gitnet-git-stack-vs-os-git.md) | **体系 vs 系统 Git**：本栈叠加层（bare、includeIf、Tailscale、镜像角色）与特别价值 |
+| 25 | [53-multi-agent-main-branch-and-agent-files.md](53-multi-agent-main-branch-and-agent-files.md) | **多 Agent × 主分支 × 根配置**：`AGENTS.md`/`CLAUDE.md` 等与合并冲突关系；`includeIf` 不解决冲突 |
+| 26 | [54-remote-work-cama-on-epix-from-other-nodes.md](54-remote-work-cama-on-epix-from-other-nodes.md) | **副机在 epix 上干 CAMA**：Remote-SSH、SSH+CLI、副机克隆三模式与前置条件 |
+| 27 | [51-git-cli-and-git-graph-user-guide.md](51-git-cli-and-git-graph-user-guide.md) | **人类操作**：Git CLI 最小闭环、冲突处理、`git log --graph`、Cursor/VS Code **Git Graph** 扩展 |
+| 28 | [56-git-workflow-quality-practices.md](56-git-workflow-quality-practices.md) | **工作流质量**：约定式提交、小步与 `add -p`、**GitNet 本仓 §3 全 PR**、`rebase -i` 边界、分支清理 |
 
 ## 模板与脚本
 
