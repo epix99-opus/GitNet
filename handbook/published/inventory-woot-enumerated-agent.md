@@ -13,8 +13,16 @@
 | 工具 | 结论 | 证据（可复跑） |
 |------|------|----------------|
 | **Cursor** | 已安装 | `/Applications/Cursor.app` 存在 |
-| **Codex CLI** | **已部署**（与三节点组织口径一致） | **SSH 快照**：`/usr/local/bin/codex` 不存在；默认 SSH 与 `zsh -l -c 'command -v codex'` 当前仍为空（**待维护者补录**本机 `codex` 绝对路径）；自动化盘点应加长 `PATH`、用登录 shell，或调用已登记路径 |
+| **Codex CLI** | **已部署**（与三节点组织口径一致） | **SSH 快照**：`/usr/local/bin/codex` 不存在；默认 SSH 与 `zsh -l -c 'command -v codex'` 仍无输出（见下节 **原因**）；自动化盘点建议用 **`zsh -lic 'command -v codex'`**（交互+登录，更接近「终端.app」）或 **显式绝对路径** |
 | **Claude Code** | 已安装 | `/Users/woot/.local/bin/claude` → `~/.local/share/claude/versions/2.1.81`；`/Users/woot/.local/bin/claude --version` 输出 `2.1.81 (Claude Code)` |
+
+### 为何已安装 Codex CLI，`zsh -l -c 'command -v codex'` 仍可能无输出？
+
+1. **zsh 启动文件（根因）**：`zsh -l -c '…'` 是 **登录（`-l`）+ 非交互（`-c`）** shell。按 **zsh** 规则，此种组合会读 **`~/.zshenv`、`~/.zprofile`**（及系统对应文件）等，但 **不会**读 **`~/.zshrc`**（`.zshrc` 仅在 **交互式** shell 时读取）。许多用户把 **Homebrew / npm 全局 bin / nvm** 的 `PATH` 写在 **`~/.zshrc`** 里，因此在 **Terminal.app 里**能跑 `codex`，在 **`zsh -l -c`** 里却 **找不到**——**不是没装，而是探测命令没加载你放 PATH 的那份启动脚本**。
+2. **SSH 默认环境**：OpenSSH 非登录远程命令还会带上 **较短的 `PATH`**（此前会话曾见近似 `~/.cargo/bin` + 系统目录），与图形终端登录后的 `PATH` 不一致，进一步放大上述差异。
+3. **更贴近本机的探查方式**（任选其一，在 epix 上经 SSH）：`zsh -lic 'command -v codex; codex --version'`（`-i` = 交互，会读 `.zshrc`）；或在 woot 本机终端执行 `type -P codex` 将**绝对路径**记入上表「证据」列。
+
+> **本轮说明**：从当前 Agent 环境对 `woot` 的 SSH 曾出现 **连接超时**，未能再次实机复跑；上列依据为 **zsh 官方启动规则** + 此前可达时 woot 上的 PATH/目录探测。
 | **cursor-agent** | 已安装 | `/Users/woot/.local/bin/cursor-agent`、`agent` 符号链至 `~/.local/share/cursor-agent/versions/2026.04.17-787b533/cursor-agent`；**注意**：同会话跑 `cursor-agent --version` 曾报 **macOS login keychain locked**（凭据/解锁问题，与二进制是否存在无关） |
 
 ## 仓库表
@@ -30,6 +38,7 @@
 
 ## 修订记录
 
+- 2026-05-14：增补 **「为何 `zsh -l -c` 探不到已安装之 codex」**（zsh 非交互不读 `.zshrc`、SSH PATH）；Codex 证据列改为建议 **`zsh -lic`** 或补绝对路径。
 - 2026-05-14：编程 Agent **组织口径**改为三节点均具备 Cursor / Codex CLI / Claude Code；Codex 行保留 **SSH 快照**与「待补绝对路径」说明；登记 **`/Users/woot/Dev/BestGit`**。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（PATH 约束说明、claude/cursor-agent 路径）；**2026-05-14** 与组织口径对齐后，Codex 行不再写「未检出」为结论。
 - 2026-05-13：首版枚举（epix → `woot@woot` SSH）。
