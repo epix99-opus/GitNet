@@ -7,6 +7,8 @@
 - Bare 仓库目录：`/srv/git/GitNet.git` 或 `~/git/GitNet.git`（目录名以 `.git` 结尾表示 bare 较常见，非强制）
 - 同步日志：`~/Library/Logs/GitNet/push-github.log`（可自定）
 
+**本机实装（epix，已填）**：`/Users/epix/git/GitNet.git`（即 **`~/git/GitNet.git`**）；工作副本 **`/Users/epix/Dev/GitNet`** 的 **`origin`** 已指向该 bare，**`github`** 远程保留作镜像；进程与验证见 [90-process-log.md](90-process-log.md)。
+
 下文以 `BARE=/srv/git/GitNet.git` 为例，替换为你的真实路径。
 
 ## 2. 初始化 bare（仅首次）
@@ -132,3 +134,11 @@ tail -n 50 ~/Library/Logs/GitNet/push-github.log
 ## 8. 与工作副本的关系
 
 其它机器克隆 **bare 的 URL**，向 `origin` 推送；epix 本机若也要编辑，使用**单独工作目录**克隆同一 bare，勿在 bare 目录内直接编辑文件。
+
+- **本机（epix）已用路径**：工作副本 **`/Users/epix/Dev/GitNet`** 的 **`origin` = `file:///Users/epix/git/GitNet.git`**（见 `90`）。
+
+## 修订记录
+
+| 日期 | 摘要 |
+|------|------|
+| 2026-05-14 | §1 增 **`~/git/GitNet.git`** 实装与 `90` 互指；§8 增本机 `file://` `origin` 一句。 |

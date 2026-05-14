@@ -14,12 +14,19 @@
 
 ## 已记录条目
 
-### 2026-05-14 — epix：GitNet bare 路径探测（无常见路径）+ CAMA-concept 落盘跨 epix 工作规条
+### 2026-05-14 — epix：GitNet **bare 实装**（`~/git/GitNet.git`）+ 工作副本 `origin` + 镜像推送
 
 - 参与：Agent（Cursor，epix）
-- 变更摘要：在本机探测 **`/srv/git/GitNet.git`**、**`$HOME/git/GitNet.git`**、**`/Users/epix/git/GitNet.git`** —— **均不存在**，故 **无法**代执行 `git -C <bare> push github`；若 bare 实装在其它路径，由后续会话在 `30`/`90` 填实值后再验。已在 **`/Users/epix/Dev/CAMA/CAMA-concept`** 新增 **`regulations/gitnet-cross-node-work-on-epix-cama.md`**、**`.zh-CN.md`**，并更新 **`AGENTS.md`**、**`README*.md`**、**`doctrine/CAMA-git手册.md`**（§6/§7）、**`doctrine/CAMA-git方案.md`**、**`regulations/cama-git-inventory.md`**（§3 指针 + Last sync 对齐 GitNet **`ddc6e32`**）。**措辞**：凡「须有人类执行」的镜像/bare 同步，**默认由 Agent 先做**本机可做的探测与推送；仅硬边界才交接——不再使用模糊「你们」指代维护者。
-- 涉及信源：`54`、`90`、`CAMA-concept`、`30`
-- 回顾：CAMA 提交与 push 在 **CAMA** 仓单独执行（本条目仅 GitNet 留证）。
+- 变更摘要：此前仅探测未建属失职；本回合 **已创建** bare **`/Users/epix/git/GitNet.git`**（`git init --bare`）；从工作副本 **`/Users/epix/Dev/GitNet`** 执行 **`git push <bare> main`** 填充对象库；在 bare 上 **`remote add github git@github.com:epix99-opus/GitNet.git`** 并 **`git -C "$HOME/git/GitNet.git" push github main`**（结果 **Everything up-to-date**，与 GitHub `main` 已对齐）。工作副本 **`git remote rename origin github`**，**`git remote add origin file:///Users/epix/git/GitNet.git`**，**`main` 跟踪 `origin/main`**。镜像脚本 **`~/bin/gitnet-push-github.sh`** 已写入，默认 **`BARE=$HOME/git/GitNet.git`**；**launchd 尚未 load**（表内填「否」，待按需 `load` `30` 中 plist）。**其它机器**上旧克隆若仍仅指 GitHub，须自行改 **`origin` → epix bare（SSH URL 见 `45`/`30` 配好后）** 或保留 `github` 作只读拉取。
+- 涉及信源：`30`、`10`、`90` 验证表、`published/inventory-epix-enumerated-agent`
+- 回顾：`/srv/git/` 未用（免 `sudo`）；与手册「`~/git/GitNet.git` 亦可」一致。
+
+### 2026-05-14 — CAMA-concept：跨 epix 工作规条落盘（绑定 GitNet `54`）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：在 **`/Users/epix/Dev/CAMA/CAMA-concept`** 新增 **`regulations/gitnet-cross-node-work-on-epix-cama.md`**、**`.zh-CN.md`**，并更新 **`AGENTS.md`**、**`README*.md`**、**`doctrine/CAMA-git手册.md`**（§6/§7）、**`doctrine/CAMA-git方案.md`**、**`regulations/cama-git-inventory.md`**（§3 指针 + Last sync）。CAMA 提交 **`219f214`** 已 push **`origin/CAMA_Cursor`**。
+- 涉及信源：`54`、`CAMA-concept`
+- 回顾：与 bare 实装条分拆，避免一条目混杂两仓事实。
 
 ### 2026-05-14 — handbook：`51`～`54` 四文档落盘（Git 人类指南、体系边界、多 Agent 冲突、epix CAMA 远程）
 
@@ -278,10 +285,10 @@ git push -u origin main
 | epix Tailscale MagicDNS（`HostName`） | |
 | SSH `Host` 别名（建议 `git-epix`） | |
 | SSH 登录用户（`User`） | |
-| bare 全路径（例 `/srv/git/GitNet.git`） | |
-| 克隆 URL（`git@...:...`） | |
-| launchd 是否已 `load` | 是 / 否 |
-| 首次 `git -C <bare> push github` 是否成功 | 是 / 否 |
+| bare 全路径（例 `/srv/git/GitNet.git`） | **`/Users/epix/git/GitNet.git`**（本机 epix 实装，2026-05-14） |
+| 克隆 URL（`git@...:...`） | 本机工作副本：`file:///Users/epix/git/GitNet.git`；跨机待配 `git@git-epix:…`（见 `30`/`45`） |
+| launchd 是否已 `load` | **否**（`~/bin/gitnet-push-github.sh` 已就位，plist 待按需 load） |
+| 首次 `git -C <bare> push github` 是否成功 | **是**（输出 *Everything up-to-date*，与 GitHub 已对齐） |
 
 ### 命令验证（由技术角色执行）
 
@@ -295,8 +302,8 @@ ssh -T git@git-epix
 在 **epix**（有权限用户）：
 
 ```bash
-git -C /你的/bare路径.git remote -v
-git -C /你的/bare路径.git push github --dry-run
+git -C "$HOME/git/GitNet.git" remote -v
+git -C "$HOME/git/GitNet.git" push github --dry-run
 ```
 
 ### 验证记录

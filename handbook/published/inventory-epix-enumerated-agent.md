@@ -23,7 +23,7 @@
 | `/Users/epix/Dev/CAMA/CAMA-codex-start` | main | *(无)* | `~/.gitconfig-fragment-cursor` → **epix-cursor** |
 | `/Users/epix/Dev/CAMA/CAMA-concept` | CAMA_Cursor | *(无)* | **epix-cursor** |
 | `/Users/epix/Dev/CodexDev/SelfEvo/paseo` | main | `https://github.com/getpaseo/paseo.git` | `~/.gitconfig-fragment-codex` → **epix-codex** |
-| `/Users/epix/Dev/GitNet` | main | `https://github.com/epix99-opus/GitNet.git` | **epix-cursor** |
+| `/Users/epix/Dev/GitNet` | main | **`origin`** → `file:///Users/epix/git/GitNet.git`；**`github`** → `https://github.com/epix99-opus/GitNet.git` | **epix-cursor** |
 | `/Users/epix/Dev/Hermes` | main | *(无)* | **epix-cursor** |
 | `/Users/epix/Dev/Hermes/cama-hermes-front-harness` | main | *(无)* | **epix-cursor** |
 | `/Users/epix/Dev/NetOps` | main | *(无)* | **epix-cursor** |
@@ -38,10 +38,12 @@
 ## 与 [10-topology.md](../10-topology.md) 的对照（摘要）
 
 - 表中 **`origin` 为 GitHub 或其它远端** 的仓库：相对「**写集成在 epix bare**」目标，属 **L2 待对齐** 或已登记例外；请在 [90-process-log.md](../90-process-log.md) 按需记录迁移动作。
+- **`/Users/epix/Dev/GitNet`（本表 epix 行）**：**`origin` → `file:///Users/epix/git/GitNet.git`**（epix bare），**`github` → HTTPS 镜像**；与 `10` 写权威一致（2026-05-14 实装，见 `90`）。
 - **`(无) origin`**：可能为纯本地或后续再绑 remote；不视为已纳入对象层规范。
 
 ## 修订记录
 
+- 2026-05-14：**GitNet** 工作副本 `origin` 改为 **`file:///Users/epix/git/GitNet.git`**（bare），`github` 保留；与 `10`/`90` 对齐。
 - 2026-05-14：编程 Agent 节增补 **组织口径**（三节点均具备 Cursor / Codex CLI / Claude Code），与 CAMA §1 及 woot/glab inventory 互指。
 - 2026-05-13：仓库表追加 **`/Users/epix/Dev/BestGit`**；`origin` 更新为 GitHub **`epix99-opus/BestGit`**；与 `96` / CAMA `cama-git-inventory` 对齐。
 - 2026-05-12：增补「编程 Agent 工具」实机探测（Cursor.app / codex / claude 路径）。
