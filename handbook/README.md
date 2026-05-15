@@ -2,7 +2,7 @@
 
 本目录为 **GitNet** 仓库运维与多机协作的**唯一定稿信源**。环境事实、拓扑与操作步骤以本手册为准。
 
-**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — Agent 驱动开发的 **Git 宗旨与可外推框架**（全局规定、全生命周期 × Git、主分支/特性分支、多 Agent 信源仲裁）、最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。**初版封存索引（v0.1）**：[97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)。**R2 整仓多工具深度评审（Git 总线）**：[98-gitnet-deep-review-round2-git-bus.md](98-gitnet-deep-review-round2-git-bus.md)（母单 GitHub Issue #16）。**组织模板仓（BestGit）**：[96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md)。**阶段结论成果**：[93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)。
+**北极星（项目本意）**：[08-agent-first-collaboration-vision.md](08-agent-first-collaboration-vision.md) — Agent 驱动开发的 **Git 宗旨与可外推框架**（全局规定、全生命周期 × Git、主分支/特性分支、多 Agent 信源仲裁）、最大化 Agent 可执行范围、全链路认证（公钥 + 经 OS/机外安全存储的口令/PAT）、**凭据明文不进 Git/Issue**；与 [AGENTS.md](../AGENTS.md) 一致。**初版封存索引（v0.1）**：[97-initial-gitnet-v0.1-deliverable.md](97-initial-gitnet-v0.1-deliverable.md)。**R2 整仓多工具深度评审（Git 总线）**：[98-gitnet-deep-review-round2-git-bus.md](98-gitnet-deep-review-round2-git-bus.md)（母单 GitHub Issue #16）。**组织模板仓（BestGit）**：[96-bestgit-org-template-and-rollout.md](96-bestgit-org-template-and-rollout.md)。**阶段结论成果**：[93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md](93-gitnet-phase-conclusion-and-cross-collab-git-playbook.md)。**外推资产索引（`reuse/`）**：[reuse/README.md](../reuse/README.md) — 目录化 Raw 链与外项目接入清单；定稿仍以本 `handbook/` 为准。
 
 ## 阅读顺序
 

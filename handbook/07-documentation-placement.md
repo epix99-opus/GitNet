@@ -11,6 +11,7 @@
 | **事实** | 拓扑、路径、主机名、远端 URL、可复现命令与验收标准 | `handbook/` 对应章节 |
 | **过程** | 某次迁移、冲突处理、验证结果、例外与日期 | [90-process-log.md](90-process-log.md) |
 | **草稿 / 调研** | 未定稿对照、思路、长文参考 | `docs/`；定稿后按 [70-docs-migration-map.md](70-docs-migration-map.md) 并入 `handbook/` 或删冗余，避免双权威长期并存 |
+| **外推资产索引** | 给其它仓库/外会话 Agent 的清单、Raw 链、接入勾选；**不**替代 `handbook` 正文 | 仓库根 [`reuse/`](../reuse/README.md)（入口 `reuse/README.md`；强约束 `reuse/AGENT_MUST_READ.md`；资产表 `reuse/CATALOG.md`） |
 
 ## 落盘矩阵（执行用）
 
@@ -32,3 +33,4 @@
 ## 修订记录
 
 - 2026-05-12：首次写入，落实「同意后续落盘建议」的定稿。
+- 2026-05-12：判别表增 **外推资产索引** 行，指向仓库根 `reuse/`（与 `handbook` 互补，非第二定稿信源）。

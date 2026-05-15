@@ -1,0 +1,12 @@
+---
+description: 外推 / 多仓复用 / 维护 `reuse/` 时强制阅读索引（与 gitnet-collaboration 互补）
+globs: "**/*"
+alwaysApply: true
+---
+
+# GitNet `reuse/` 外推包（Cursor）
+
+- **触发心智**：任务涉及 **外推**、**多仓复用 GitNet 资产**、**给其它项目写接入说明**，或 **编辑 `reuse/`** 时，**先读** `reuse/AGENT_MUST_READ.md` 与 `reuse/CATALOG.md`，再改 `reuse/` 或写外引文档。
+- **信源**：定稿事实仍以 **`handbook/`** 与根 **`AGENTS.md`** 为准；`reuse/` 为 **目录化索引 + Raw 链**，禁止在 `reuse/` 长篇复制 `handbook` 正文形成第二权威。
+- **禁止**：把 GitNet 组织实例路径（bare 路径、固定主机名）当作其它项目的默认事实。
+- **秘密**：凭据不进仓库；公钥单行信源见 `CATALOG` 中 `handbook/templates/epix-id_ed25519.pub` 条目。
