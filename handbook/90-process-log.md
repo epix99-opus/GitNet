@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-14 — **`reuse/HUMAN_NEW_PROJECT_AND_AGENTS.md`**（人类：新项目 × Cursor / Codex / Claude Code）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：外推包新增人类操作说明：版本锚 Raw、`AGENTS.md` 最小段落、三工具推荐目录与 `git config` 验收、Cursor `.cursor/rules` 建议；`reuse/README` / `BOOTSTRAP` / `CATALOG` 互链。
+- 涉及信源：`reuse/*`、`handbook/55`（目录与作者约定，未改定稿）
+- 回顾：外仓仍须自带拓扑与 remote；勿照搬 GitNet bare 路径。
+
 ### 2026-05-12 — **新建 `reuse/` 外推资产包**（索引、Raw 链、Cursor 规则、`07`/`README` 指针）
 
 - 参与：Agent（Cursor，epix）

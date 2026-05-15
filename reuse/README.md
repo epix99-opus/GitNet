@@ -16,7 +16,8 @@
 1. 读 [**AGENT_MUST_READ.md**](AGENT_MUST_READ.md)（外仓 Agent **强约束**）。  
 2. 打开 [**CATALOG.md**](CATALOG.md) 按分类找资产 → 用 **权威路径** 或 **Raw URL** 拉取。  
 3. 新仓接入：跟 [**BOOTSTRAP_OTHER_REPO.md**](BOOTSTRAP_OTHER_REPO.md) 勾选。  
-4. 需要物理拷贝进外仓时：先看 [**vendor/README.md**](vendor/README.md) 边界，再决定 **subtree / submodule / 单次拷贝**。
+4. **人类**：新项目 × **Cursor / Codex / Claude Code** 见 [**HUMAN_NEW_PROJECT_AND_AGENTS.md**](HUMAN_NEW_PROJECT_AND_AGENTS.md)。  
+5. 需要物理拷贝进外仓时：先看 [**vendor/README.md**](vendor/README.md) 边界，再决定 **subtree / submodule / 单次拷贝**。
 
 ## 引用方式（三种）
 

@@ -1,6 +1,6 @@
 # 外项目接入清单（一页勾选）
 
-> 每步完成后打 `[x]`。详细条目与 Raw 链见 [CATALOG.md](CATALOG.md)。
+> 每步完成后打 `[x]`。详细条目与 Raw 链见 [CATALOG.md](CATALOG.md)。**人类**按工具落地见 [HUMAN_NEW_PROJECT_AND_AGENTS.md](HUMAN_NEW_PROJECT_AND_AGENTS.md)。
 
 ## A. 选拓扑与写权威（必选其一并写进自家 README）
 
