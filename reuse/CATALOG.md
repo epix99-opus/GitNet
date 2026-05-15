@@ -158,6 +158,7 @@
 | 名称 | 适用场景 | 权威路径 | Raw URL | 外引建议 |
 |------|----------|----------|---------|----------|
 | `reuse` 人类与 Agent 入口 | 外项目了解包 | `reuse/README.md` | https://raw.githubusercontent.com/epix99-opus/GitNet/main/reuse/README.md | Raw |
+| 人类：新项目 × 三 Agent 配置 | Cursor / Codex / Claude Code 放仓路径、`AGENTS`、`.cursor/rules` | `reuse/HUMAN_NEW_PROJECT_AND_AGENTS.md` | https://raw.githubusercontent.com/epix99-opus/GitNet/main/reuse/HUMAN_NEW_PROJECT_AND_AGENTS.md | Raw |
 | 外仓 Agent 强制阅读 | 强约束 | `reuse/AGENT_MUST_READ.md` | https://raw.githubusercontent.com/epix99-opus/GitNet/main/reuse/AGENT_MUST_READ.md | Raw |
 | 本目录 | 资产表 | `reuse/CATALOG.md` | https://raw.githubusercontent.com/epix99-opus/GitNet/main/reuse/CATALOG.md | Raw |
 | 外项目接入清单 | 勾选 onboarding | `reuse/BOOTSTRAP_OTHER_REPO.md` | https://raw.githubusercontent.com/epix99-opus/GitNet/main/reuse/BOOTSTRAP_OTHER_REPO.md | Raw |
