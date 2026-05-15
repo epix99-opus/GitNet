@@ -14,6 +14,13 @@
 
 ## 已记录条目
 
+### 2026-05-12 — **新建 `reuse/` 外推资产包**（索引、Raw 链、Cursor 规则、`07`/`README` 指针）
+
+- 参与：Agent（Cursor，epix）
+- 变更摘要：仓库根新增 **`reuse/`**（`README.md`、`AGENT_MUST_READ.md`、`CATALOG.md`、`BOOTSTRAP_OTHER_REPO.md`、`vendor/README.md`）；**`.cursor/rules/gitnet-reuse-pack.mdc`** 与协作规则互补；**`handbook/07-documentation-placement.md`** 判别表增外推索引行；**`handbook/README.md`** 北极星段链至 `reuse/README.md`。`CATALOG` 覆盖 `handbook` 核心章、`templates/`、`scripts/`、`published/`、根 `AGENTS`/`CONTRIBUTING`、`.cursor/rules` 与 `reuse` 自身条目，并附 GitHub `main` Raw URL。
+- 涉及信源：`07`、`README`、`90`、`.cursor/rules/gitnet-reuse-pack.mdc`、`reuse/*`
+- 回顾：定稿拓扑与路径仍以 `handbook/` 为准；外项目勿照搬 epix 实例路径。合入路径：GitHub PR → **`handbook/scripts/gitnet-sync-github-main-to-bare.sh`** → bare `main` **ff-only** 对账。
+
 ### 2026-05-14 — **R2 合成结论 backlog 落地**（PR #24：`97` §9 / `README` published 索引 / `GITNET_SYNC_DRY_RUN`）
 
 - 参与：Agent（Cursor，epix）
